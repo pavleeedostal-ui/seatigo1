@@ -6,12 +6,38 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:crests": "tsx --tsconfig tsconfig.json scripts/sync-club-crests.ts",
+    "sync:logos": "tsx --tsconfig tsconfig.json scripts/sync-competition-logos.ts",
+    "sync:artwork": "npm run sync:crests && npm run sync:logos",
+    "import:pl": "tsx --tsconfig tsconfig.json scripts/import-premier-league-fixtures.ts",
+    "sync:fixtures": "tsx --tsconfig tsconfig.json scripts/sync-fixtures.ts",
+    "import:laliga": "tsx --tsconfig tsconfig.json scripts/import-la-liga-fixtures.ts",
+    "validate:seasons": "tsx --tsconfig tsconfig.json scripts/validate-seasons.ts",
+    "import:seriea": "tsx --tsconfig tsconfig.json scripts/import-serie-a-fixtures.ts",
+    "import:ligue1": "tsx --tsconfig tsconfig.json scripts/import-ligue-1-fixtures.ts",
+    "import:bundesliga": "tsx --tsconfig tsconfig.json scripts/import-bundesliga-fixtures.ts",
+    "import:ucl": "tsx --tsconfig tsconfig.json scripts/import-champions-league-fixtures.ts",
+    "import:uel": "tsx --tsconfig tsconfig.json scripts/import-europa-league-fixtures.ts"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.20",
+    "@radix-ui/react-dialog": "^1.1.23",
+    "@radix-ui/react-dropdown-menu": "^2.1.24",
+    "@radix-ui/react-select": "^2.3.7",
+    "@radix-ui/react-slider": "^1.4.7",
+    "@radix-ui/react-slot": "^1.3.3",
+    "@radix-ui/react-tooltip": "^1.2.16",
+    "@radix-ui/react-visually-hidden": "^1.2.11",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.2.0",
+    "lucide-react": "^1.45.0",
     "next": "16.3.5",
+    "next-intl": "^4.14.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,6 +47,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

@@ -1,0 +1,379 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Seatigo – Porovnání vstupenek na fotbal po celé Evropě",
+      "description": "Porovnejte ceny vstupenek na fotbal od ověřených prodejců po celé Evropě. Najděte svůj zápas z Premier League, La Ligy, Serie A, Bundesligy, Ligy mistrů a dalších soutěží."
+    },
+    "matches": {
+      "title": "Zápasy | Seatigo",
+      "description": "Porovnejte nabídky vstupenek na nadcházející fotbalové zápasy z nejlepších evropských lig a pohárů od více prověřených prodejců."
+    },
+    "competitions": {
+      "title": "Soutěže | Seatigo",
+      "description": "Prozkoumejte největší evropské fotbalové soutěže a najděte vstupenky na nadcházející zápasy."
+    },
+    "clubs": {
+      "title": "Kluby | Seatigo",
+      "description": "Procházejte oblíbené evropské fotbalové kluby a najděte vstupenky na jejich nadcházející zápasy."
+    },
+    "competition": {
+      "title": "{competition} — zápasy a vstupenky | Seatigo",
+      "description": "Všechny nadcházející zápasy soutěže {competition} a porovnání nabídek vstupenek od prodejců, pokud jsou k dispozici."
+    },
+    "club": {
+      "title": "{club} — vstupenky a zápasy | Seatigo",
+      "description": "Nadcházející zápasy klubu {club} a porovnání nabídek vstupenek od prodejců, pokud jsou k dispozici."
+    }
+  },
+  "Nav": {
+    "matches": "Zápasy",
+    "competitions": "Soutěže",
+    "clubs": "Kluby",
+    "howItWorks": "Jak to funguje",
+    "signIn": "Přihlásit se",
+    "findTickets": "Najít vstupenky",
+    "search": "Hledat",
+    "menu": "Menu",
+    "language": "Jazyk"
+  },
+  "Hero": {
+    "eyebrow": "Vstupenky na fotbal po celé Evropě",
+    "subtitle": "Porovnejte ceny vstupenek na fotbal od ověřených prodejců.",
+    "searchLabel": "Kde",
+    "searchPlaceholder": "Tým, soutěž nebo město",
+    "dateLabel": "Kdy",
+    "searchButton": "Hledat vstupenky",
+    "ticketsLabel": "Vstupenky",
+    "headline": "Find your Seat",
+    "datePlaceholder": "Vyberte datum"
+  },
+  "Home": {
+    "popularMatches": {
+      "title": "Oblíbené zápasy",
+      "subtitle": "Zápasy, které fanoušci hledají právě teď.",
+      "viewAll": "Zobrazit všechny zápasy"
+    },
+    "competitions": {
+      "title": "Procházet podle soutěže",
+      "subtitle": "Všechny významné evropské ligy a poháry na jednom místě."
+    },
+    "clubs": {
+      "title": "Oblíbené kluby",
+      "subtitle": "Přejděte přímo na zápasy největších evropských týmů.",
+      "subtitleTrending": "Kluby, které fanoušci na Seatigu právě hledají nejčastěji.",
+      "popular": "Populární"
+    },
+    "howItWorks": {
+      "title": "Jak Seatigo funguje",
+      "subtitle": "Tři kroky, které vás dělí od zápasového dne.",
+      "step1Title": "Najděte svůj zápas",
+      "step1Desc": "Vyhledávejte podle týmu, města, soutěže nebo data a během chvilky uvidíte dostupné vstupenky.",
+      "step2Title": "Vyberte si sedadlo",
+      "step2Desc": "Porovnejte sektory na mapě stadionu a vyberte si výhled, který vám vyhovuje.",
+      "step3Title": "Užijte si zápas",
+      "step3Desc": "Potvrďte své údaje a je hotovo — uvidíme se na stadionu."
+    },
+    "trust": {
+      "title": "Proč porovnávat přes Seatigo",
+      "secure": "Transparentní ceny",
+      "secureDesc": "Před opuštěním Seatigo uvidíte celou cenu včetně poplatků.",
+      "verified": "Pouze ověření prodejci",
+      "verifiedDesc": "Porovnáváme nabídky od zavedených prodejců vstupenek a pokladen.",
+      "support": "Rozhodujete vy",
+      "supportDesc": "Volně porovnávejte a nákup bezpečně dokončete přímo na webu prodejce."
+    },
+    "faq": {
+      "title": "Časté dotazy",
+      "subtitle": "Vše, co potřebujete vědět o porovnávání fotbalových vstupenek na Seatigo.",
+      "items": [
+        {
+          "q": "Prodává Seatigo vstupenky?",
+          "a": "Ne. Seatigo porovnává nabídky vstupenek od prodejců třetích stran — nákup bezpečně dokončíte přímo na webu prodejce."
+        },
+        {
+          "q": "Jak Seatigo najde nejnižší cenu?",
+          "a": "Pro každý zápas stahujeme aktuální nabídky od všech napojených prodejců, sjednotíme je a zobrazíme vám nejnižší cenu i celý seznam prodejců vedle sebe."
+        },
+        {
+          "q": "Jsou prodejci důvěryhodní?",
+          "a": "Porovnáváme pouze nabídky od zavedených prodejců vstupenek a pokladen. Před nákupem si vždy zkontrolujte obchodní podmínky daného prodejce."
+        },
+        {
+          "q": "Proč se ceny tak rychle mění?",
+          "a": "Ceny a dostupnost vstupenek určuje každý prodejce sám a mohou se kdykoli změnit — nabídky proto často aktualizujeme, abyste porovnávali aktuální ceny."
+        }
+      ]
+    },
+    "upcoming": {
+      "title": "Nadcházející zápasy",
+      "subtitle": "Všechny oznámené zápasy v soutěžích, které pokrýváme — s vstupenkami i bez nich.",
+      "exploreAll": "Prozkoumat všechny zápasy"
+    }
+  },
+  "Matches": {
+    "title": "Najděte svůj zápas",
+    "subtitle": "Filtrujte podle soutěže, klubu, města nebo data a najděte ten pravý zápas.",
+    "resultsCount": "{count, plural, =0 {Žádné zápasy} one {# zápas} few {# zápasy} other {# zápasů}}",
+    "filters": {
+      "filters": "Filtry",
+      "competition": "Soutěž",
+      "allCompetitions": "Všechny soutěže",
+      "club": "Klub",
+      "allClubs": "Všechny kluby",
+      "location": "Město",
+      "allLocations": "Všechna města",
+      "date": "Datum",
+      "price": "Max. cena",
+      "all": "Všechny zápasy",
+      "weekend": "Tento víkend",
+      "next7": "Dalších 7 dní",
+      "month": "Tento měsíc",
+      "reset": "Resetovat filtry",
+      "apply": "Zobrazit zápasy",
+      "close": "Zavřít",
+      "any": "Jakákoli",
+      "more": "Další filtry",
+      "datePlaceholder": "Vyberte datum",
+      "availability": "Dostupnost vstupenek",
+      "availabilityAll": "Všechny zápasy",
+      "availabilityAvailable": "Vstupenky k dispozici",
+      "availabilityNone": "Zatím bez nabídek",
+      "country": "Země",
+      "allCountries": "Všechny země",
+      "anyDate": "Libovolné datum"
+    },
+    "card": {
+      "from": "Od",
+      "compareTickets": "Porovnat vstupenky",
+      "seeOffers": "Zobrazit dostupné nabídky",
+      "offersCount": "{count, plural, one {# nabídka} few {# nabídky} other {# nabídek}}",
+      "noOffers": "Zatím žádné nabídky",
+      "viewMatch": "Zobrazit zápas",
+      "dateTbc": "Datum a čas bude upřesněn",
+      "timeTbc": "Čas bude upřesněn",
+      "venueTbc": "Místo bude upřesněno",
+      "postponed": "Odloženo",
+      "ticketsFrom": "Vstupenky od",
+      "timeProvisional": "Čas se může změnit"
+    },
+    "empty": {
+      "title": "Nenalezeny žádné zápasy",
+      "description": "Zkuste upravit filtry a najít více zápasů.",
+      "reset": "Resetovat filtry"
+    },
+    "sort": {
+      "label": "Řadit podle",
+      "recommended": "Doporučené",
+      "price_asc": "Nejnižší cena",
+      "best_seats": "Nejlepší místa"
+    },
+    "searchSummary": {
+      "editSearch": "Upravit hledání",
+      "ticketsCount": "{count, plural, one {# vstupenka} few {# vstupenky} other {# vstupenek}}"
+    }
+  },
+  "MatchDetail": {
+    "breadcrumbHome": "Domů",
+    "breadcrumbMatches": "Zápasy",
+    "kickoff": "Výkop",
+    "stadium": "Stadion",
+    "notFoundTitle": "Zápas nenalezen",
+    "notFoundDescription": "Tento zápas mohl být přesunut nebo se již odehrál.",
+    "backToMatches": "Zpět na zápasy",
+    "metaTitleSuffix": "Vstupenky",
+    "metaDescription": "Porovnejte nabídky vstupenek na {home} vs {away} — {competition} na stadionu {stadium}, {city}.",
+    "noOffersTitle": "Zatím žádné nabídky vstupenek",
+    "noOffersBody": "Pro tento zápas momentálně nezobrazujeme žádné nabídky vstupenek.",
+    "notAnnouncedTitle": "Výkop zatím není potvrzen",
+    "notAnnouncedBody": "Tento zápas byl oznámen, ale čas výkopu zatím nebyl potvrzen. Nabídky vstupenek se zobrazí, jakmile bude zápas naplánován.",
+    "browseOther": "Procházet další zápasy",
+    "postponedNotice": "Tento zápas byl odložen. Nový termín zatím nebyl potvrzen."
+  },
+  "Stadium": {
+    "mapTitle": "Mapa stadionu",
+    "mapHint": "Klepněte na sektor pro zobrazení ceny",
+    "categories": {
+      "longside": {
+        "name": "Podél hřiště",
+        "description": "Skvělý výhled z boční strany hřiště."
+      },
+      "shortside": {
+        "name": "Za brankou z boku",
+        "description": "Vyvýšený rohový výhled na celé hřiště."
+      },
+      "behind_goal": {
+        "name": "Za brankou",
+        "description": "Vášnivá atmosféra přímo za sítí."
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Polstrovaná sedadla blízko hřiště s větším prostorem na nohy."
+      },
+      "hospitality": {
+        "name": "Hospitality",
+        "description": "Přístup do salonku, občerstvení a osobní zápasový hostitel."
+      }
+    }
+  },
+  "Footer": {
+    "tagline": "Find your Seat",
+    "navTitle": "Prozkoumat",
+    "companyTitle": "Společnost",
+    "legalTitle": "Právní informace",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "faq": "Časté dotazy",
+    "terms": "Podmínky",
+    "privacy": "Soukromí",
+    "cookies": "Cookies",
+    "rights": "Všechna práva vyhrazena.",
+    "disclaimer": "Seatigo porovnává nabídky vstupenek od třetích stran. Nákup se dokončuje na webu prodejce."
+  },
+  "Competitions": {
+    "title": "Soutěže",
+    "subtitle": "Největší evropské ligy a poháry na jednom místě.",
+    "viewMatches": "Zobrazit zápasy",
+    "browseByCountry": "Procházet podle země",
+    "upcomingFixtures": "Nadcházející zápasy",
+    "fixtureCount": "{count, plural, =0 {Žádné nadcházející zápasy} one {# nadcházející zápas} few {# nadcházející zápasy} other {# nadcházejících zápasů}}",
+    "noFixtures": "V této soutěži teď nejsou žádné nadcházející zápasy.",
+    "allMatches": "Všechny zápasy",
+    "season": "Sezóna {season}",
+    "matchweek": "{number}. kolo",
+    "matchweekShort": "{number}. kolo",
+    "allMatchweeks": "Všechna kola",
+    "team": "Tým",
+    "allTeams": "Všechny týmy",
+    "currentMatchweek": "Aktuální kolo",
+    "stages": "Fáze soutěže",
+    "stage": {
+      "qualifying": "Kvalifikace",
+      "league_phase": "Ligová fáze",
+      "knockout_playoff": "Play-off vyřazovací fáze",
+      "round_of_16": "Osmifinále",
+      "quarter_final": "Čtvrtfinále",
+      "semi_final": "Semifinále",
+      "final": "Finále"
+    },
+    "stageUndrawnShort": "neurčeno",
+    "stageTeamsTbc": "Týmy budou potvrzeny",
+    "stageTeamsTbcHint": "Termíny jsou potvrzené, ale los tohoto kola zatím neproběhl. Zápasy se tu objeví, jakmile budou týmy známé.",
+    "stageDates": "Termíny",
+    "stageTeamCount": "Týmy",
+    "stageTeams": "{count, plural, one {# tým} few {# týmy} many {# týmu} other {# týmů}}",
+    "stageTwoLegs": "Dva zápasy",
+    "stageOneLeg": "Jeden zápas",
+    "stageVenue": "Stadion",
+    "matchday": "{number}. kolo",
+    "allMatchdays": "Všechna kola"
+  },
+  "Clubs": {
+    "title": "Kluby",
+    "subtitle": "Najděte nadcházející zápasy nejoblíbenějších evropských klubů.",
+    "viewMatches": "Zobrazit zápasy",
+    "upcomingFixtures": "Nadcházející zápasy",
+    "noFixtures": "Tento klub teď nemá žádné nadcházející zápasy.",
+    "stadium": "Domácí stadion",
+    "stadiumUnknown": "Domácí stadion bude upřesněn",
+    "competitions": "Soutěže",
+    "backToClubs": "Všechny kluby"
+  },
+  "Common": {
+    "loading": "Načítání…",
+    "language": "Jazyk",
+    "currencyNote": "Ceny jsou uvedeny za sedadlo, včetně daní."
+  },
+  "NotFound": {
+    "title": "Stránka nenalezena",
+    "description": "Stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
+    "cta": "Zpět na hlavní stránku"
+  },
+  "StaticPages": {
+    "about": {
+      "title": "O Seatigo",
+      "body": "Seatigo porovnává nabídky vstupenek na fotbal od ověřených prodejců napříč největšími evropskými ligami a poháry. Pomáháme fanouškům najít zápas, porovnat prodejce a vybrat nabídku, která jim vyhovuje — nákup se vždy dokončuje na webu prodejce."
+    },
+    "contact": {
+      "title": "Kontaktujte nás",
+      "body": "Máte dotaz k objednávce nebo zájem o spolupráci? Napište nám kdykoli na support@seatigo.com a ozveme se co nejdříve."
+    },
+    "faq": {
+      "title": "Časté dotazy",
+      "body": "Najdete zde rychlé odpovědi na otázky o procházení zápasů, výběru sedadel a průběhu objednávky. Pokud nenajdete, co hledáte, náš tým podpory rád pomůže."
+    },
+    "terms": {
+      "title": "Podmínky použití",
+      "body": "Tyto podmínky upravují používání Seatigo. Procházením zápasů nebo kliknutím na nabídku prodejce s nimi souhlasíte. Kompletní právní verze bude zveřejněna před spuštěním."
+    },
+    "privacy": {
+      "title": "Zásady ochrany soukromí",
+      "body": "Shromažďujeme pouze údaje potřebné k vyhledávání vstupenek a zobrazení relevantních nabídek a vaše data nikdy neprodáváme. Úplné zásady ochrany soukromí budou zveřejněny před spuštěním."
+    },
+    "cookies": {
+      "title": "Zásady používání cookies",
+      "body": "Seatigo používá malé množství cookies pro zapamatování jazyka a plynulý chod webu. Úplné zásady cookies budou zveřejněny před spuštěním."
+    },
+    "signIn": {
+      "title": "Přihlášení",
+      "body": "Přihlášení k účtu zatím v této ukázce není dostupné. Brzy zde budete moci sledovat objednávky a ukládat si oblíbené kluby a soutěže."
+    }
+  },
+  "Offers": {
+    "title": "Porovnat nabídky vstupenek",
+    "subtitle": "Skutečné nabídky od více prodejců — vyberte tu, která vám vyhovuje.",
+    "summary": "{count} nabídek od {sellers} prodejců",
+    "summaryOne": "{count} nabídka od {sellers} prodejce",
+    "lowestPrice": "Nejnižší cena",
+    "categoriesLabel": "Kategorie vstupenek",
+    "updatedMinutes": "Aktualizováno před {minutes} min",
+    "updatedNow": "Aktualizováno právě teď",
+    "redirectNotice": "Budete přesměrováni k prodejci pro dokončení nákupu.",
+    "viewDeal": "Zobrazit nabídku",
+    "goToProvider": "Přejít k prodejci",
+    "sponsored": "Sponzorováno",
+    "bestPrice": "Nejnižší cena",
+    "feesIncluded": "Poplatky v ceně",
+    "feesExcluded": "+ poplatky u prodejce",
+    "perTicket": "za vstupenku",
+    "quantityAvailable": "Zbývá {count}",
+    "sort": {
+      "label": "Řadit podle",
+      "recommended": "Doporučené",
+      "price_asc": "Nejnižší cena",
+      "price_desc": "Nejvyšší cena",
+      "best_seats": "Nejlepší místa"
+    },
+    "filters": {
+      "title": "Filtry",
+      "category": "Kategorie",
+      "any": "Jakákoli",
+      "quantity": "Počet",
+      "provider": "Prodejce",
+      "reset": "Resetovat filtry",
+      "apply": "Zobrazit nabídky",
+      "price": "Max. cena",
+      "section": "Sektor",
+      "ticketsCount": "{count, plural, one {# vstupenka} few {# vstupenky} other {# vstupenek}}"
+    },
+    "delivery": {
+      "mobile": "Mobilní vstupenka",
+      "e-ticket": "E-vstupenka",
+      "post": "Doručení poštou",
+      "box-office": "Vyzvednutí na pokladně"
+    },
+    "empty": {
+      "title": "Nabídky vstupenek již brzy",
+      "description": "Pro tento zápas zatím nemáme žádné aktuální nabídky. Zkuste to znovu později nebo procházejte jiné zápasy."
+    },
+    "disclaimer": "Seatigo porovnává nabídky vstupenek od prodejců třetích stran. Ceny a dostupnost se mohou měnit. Nákup se dokončuje na webu prodejce."
+  },
+  "Countries": {
+    "England": "Anglie",
+    "Spain": "Španělsko",
+    "Italy": "Itálie",
+    "Germany": "Německo",
+    "France": "Francie",
+    "Europe": "Evropa",
+    "Monaco": "Monako"
+  }
+}

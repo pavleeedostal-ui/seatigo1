@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
+/*
+ * Seatigo design tokens.
+ *
+ * The palette is deliberately quiet: white and off-white surfaces, deep navy
+ * for weight, and a single lime accent reserved for primary actions, selected
+ * states and price/trust emphasis. Structure comes from 1px borders and
+ * whitespace — shadows are reserved for things that genuinely float
+ * (search surface, dropdowns, sheets).
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Raw palette. Kept out of the --color-* namespace so the @theme mapping
+     below is a real reference, not a self-reference (which CSS treats as
+     invalid, silently falling back to currentColor in plain rules). */
+  --navy: #0b1220;
+  --navy-soft: #16202e;
+  --bg: #f7f8fa;
+  --white: #ffffff;
+  --lime: #b6ff4a;
+  --lime-dark: #9ae62f;
+  --ink: #101828;
+  --ink-muted: #667085;
+  /* Non-text only: placeholders, icons, decorative separators.
+     Below 4.5:1 on white, so informational copy uses --ink-muted. */
+  --ink-faint: #98a2b3;
+  --border: #e7e9ee;
+  --border-strong: #d4d8e0;
+  --danger: #d92d20;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-background: var(--bg);
+  --color-surface: var(--white);
+  --color-lime: var(--lime);
+  --color-lime-dark: var(--lime-dark);
+  --color-foreground: var(--ink);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-danger: var(--danger);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Only floating surfaces get a shadow. Cards use borders. Literal values:
+     @theme inline needs to inline these, so they cannot be var() references. */
+  --shadow-search: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -8px rgba(11, 18, 32, 0.12);
+  --shadow-pop: 0 4px 6px -2px rgba(16, 24, 40, 0.04), 0 12px 24px -6px rgba(11, 18, 32, 0.12);
+  --shadow-sheet: 0 -8px 40px rgba(11, 18, 32, 0.16);
+
+  /* One radius per role, so components stop inventing their own. */
+  --radius-control: 10px;
+  --radius-button: 12px;
+  --radius-card: 16px;
+  --radius-surface: 20px;
+
+  --animate-fade-in: fade-in 0.2s ease both;
+  --animate-slide-up: slide-up 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+  --animate-accordion-down: accordion-down 0.2s ease;
+  --animate-accordion-up: accordion-up 0.2s ease;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
+/* Tailwind v4 defaults border-color to currentColor; keep borders neutral. */
+*,
+::before,
+::after {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Native date inputs render their own placeholder/indicator; keep them quiet. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+.container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-inline: 48px;
+  }
 }

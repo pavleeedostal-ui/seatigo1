@@ -1,0 +1,379 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Seatigo – Compara entradas de fútbol por toda Europa",
+      "description": "Compara entradas de fútbol de vendedores de confianza por toda Europa. Encuentra tu partido de Premier League, La Liga, Serie A, Bundesliga, Champions League y más."
+    },
+    "matches": {
+      "title": "Partidos | Seatigo",
+      "description": "Compara ofertas de entradas para los próximos partidos de las mejores ligas y copas de Europa entre varios vendedores de confianza."
+    },
+    "competitions": {
+      "title": "Competiciones | Seatigo",
+      "description": "Descubre las mayores competiciones de fútbol de Europa y encuentra entradas para los próximos partidos."
+    },
+    "clubs": {
+      "title": "Clubes | Seatigo",
+      "description": "Explora los clubes de fútbol europeos más populares y encuentra entradas para sus próximos partidos."
+    },
+    "competition": {
+      "title": "{competition}: partidos y entradas | Seatigo",
+      "description": "Todos los próximos partidos de {competition}, con ofertas de entradas comparadas entre vendedores cuando están disponibles."
+    },
+    "club": {
+      "title": "{club}: entradas y partidos | Seatigo",
+      "description": "Próximos partidos de {club}, con ofertas de entradas comparadas entre vendedores cuando están disponibles."
+    }
+  },
+  "Nav": {
+    "matches": "Partidos",
+    "competitions": "Competiciones",
+    "clubs": "Clubes",
+    "howItWorks": "Cómo funciona",
+    "signIn": "Iniciar sesión",
+    "findTickets": "Encontrar entradas",
+    "search": "Buscar",
+    "menu": "Menú",
+    "language": "Idioma"
+  },
+  "Hero": {
+    "eyebrow": "Entradas de fútbol por toda Europa",
+    "subtitle": "Compara precios de entradas de vendedores de confianza.",
+    "searchLabel": "Dónde",
+    "searchPlaceholder": "Equipo, competición o ciudad",
+    "dateLabel": "Cuándo",
+    "searchButton": "Buscar entradas",
+    "ticketsLabel": "Entradas",
+    "headline": "Find your Seat",
+    "datePlaceholder": "Elegir fecha"
+  },
+  "Home": {
+    "popularMatches": {
+      "title": "Partidos populares",
+      "subtitle": "Los partidos que los aficionados buscan ahora mismo.",
+      "viewAll": "Ver todos los partidos"
+    },
+    "competitions": {
+      "title": "Explorar por competición",
+      "subtitle": "Todas las grandes ligas y copas europeas en un solo lugar."
+    },
+    "clubs": {
+      "title": "Clubes populares",
+      "subtitle": "Accede directamente a los partidos de los grandes equipos europeos.",
+      "subtitleTrending": "Los clubes más buscados en Seatigo en este momento.",
+      "popular": "Popular"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona Seatigo",
+      "subtitle": "Tres pasos hasta el día del partido.",
+      "step1Title": "Encuentra tu partido",
+      "step1Desc": "Busca por equipo, ciudad, competición o fecha y descubre la disponibilidad en segundos.",
+      "step2Title": "Elige tu asiento",
+      "step2Desc": "Compara zonas en el mapa del estadio y elige la vista que prefieras.",
+      "step3Title": "Disfruta del partido",
+      "step3Desc": "Confirma tus datos y listo: nos vemos en el estadio."
+    },
+    "trust": {
+      "title": "Por qué comparar con Seatigo",
+      "secure": "Precios transparentes",
+      "secureDesc": "Verás el precio completo con las tasas antes de salir de Seatigo.",
+      "verified": "Solo vendedores de confianza",
+      "verifiedDesc": "Comparamos ofertas de vendedores de entradas y taquillas establecidos.",
+      "support": "Tú tienes el control",
+      "supportDesc": "Compara con calma y completa la compra de forma segura en la web del vendedor."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "subtitle": "Todo lo que necesitas saber sobre comparar entradas de fútbol en Seatigo.",
+      "items": [
+        {
+          "q": "¿Vende Seatigo las entradas?",
+          "a": "No. Seatigo compara ofertas de entradas de vendedores externos — completas la compra de forma segura en la web del propio vendedor."
+        },
+        {
+          "q": "¿Cómo encuentra Seatigo el precio más bajo?",
+          "a": "Para cada partido, recopilamos las ofertas activas de todos los vendedores conectados, las normalizamos y te mostramos el precio más bajo junto con la lista completa de vendedores."
+        },
+        {
+          "q": "¿Son fiables los vendedores?",
+          "a": "Solo comparamos ofertas de vendedores de entradas y taquillas establecidos. Revisa siempre las condiciones propias del vendedor antes de comprar."
+        },
+        {
+          "q": "¿Por qué cambian los precios tan rápido?",
+          "a": "Cada vendedor fija sus propios precios y disponibilidad, que pueden cambiar en cualquier momento — actualizamos las ofertas con frecuencia para que compares precios actuales."
+        }
+      ]
+    },
+    "upcoming": {
+      "title": "Próximos partidos",
+      "subtitle": "Todos los partidos anunciados de las competiciones que cubrimos, con entradas o sin ellas.",
+      "exploreAll": "Explorar todos los partidos"
+    }
+  },
+  "Matches": {
+    "title": "Encuentra tu partido",
+    "subtitle": "Filtra por competición, club, ciudad o fecha para encontrar el partido perfecto.",
+    "resultsCount": "{count, plural, =0 {Ningún partido} one {# partido} other {# partidos}}",
+    "filters": {
+      "filters": "Filtros",
+      "competition": "Competición",
+      "allCompetitions": "Todas las competiciones",
+      "club": "Club",
+      "allClubs": "Todos los clubes",
+      "location": "Ciudad",
+      "allLocations": "Todas las ciudades",
+      "date": "Fecha",
+      "price": "Precio máximo",
+      "all": "Todos los partidos",
+      "weekend": "Este fin de semana",
+      "next7": "Próximos 7 días",
+      "month": "Este mes",
+      "reset": "Restablecer filtros",
+      "apply": "Mostrar partidos",
+      "close": "Cerrar",
+      "any": "Cualquiera",
+      "more": "Más filtros",
+      "datePlaceholder": "Elegir fecha",
+      "availability": "Disponibilidad de entradas",
+      "availabilityAll": "Todos los partidos",
+      "availabilityAvailable": "Entradas disponibles",
+      "availabilityNone": "Sin ofertas todavía",
+      "country": "País",
+      "allCountries": "Todos los países",
+      "anyDate": "Cualquier fecha"
+    },
+    "card": {
+      "from": "Desde",
+      "compareTickets": "Comparar entradas",
+      "seeOffers": "Ver ofertas disponibles",
+      "offersCount": "{count, plural, one {# oferta} other {# ofertas}}",
+      "noOffers": "Aún no hay ofertas disponibles",
+      "viewMatch": "Ver partido",
+      "dateTbc": "Fecha y hora por confirmar",
+      "timeTbc": "Hora por confirmar",
+      "venueTbc": "Estadio por confirmar",
+      "postponed": "Aplazado",
+      "ticketsFrom": "Entradas desde",
+      "timeProvisional": "La hora puede cambiar"
+    },
+    "empty": {
+      "title": "No se encontraron partidos",
+      "description": "Prueba a ajustar los filtros para encontrar más partidos.",
+      "reset": "Restablecer filtros"
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "recommended": "Recomendado",
+      "price_asc": "Precio más bajo",
+      "best_seats": "Mejores asientos"
+    },
+    "searchSummary": {
+      "editSearch": "Editar búsqueda",
+      "ticketsCount": "{count, plural, one {# entrada} other {# entradas}}"
+    }
+  },
+  "MatchDetail": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbMatches": "Partidos",
+    "kickoff": "Inicio",
+    "stadium": "Estadio",
+    "notFoundTitle": "Partido no encontrado",
+    "notFoundDescription": "Este partido puede haberse movido o ya haberse jugado.",
+    "backToMatches": "Volver a los partidos",
+    "metaTitleSuffix": "Entradas",
+    "metaDescription": "Compara ofertas de entradas para {home} vs {away} — {competition} en {stadium}, {city}.",
+    "noOffersTitle": "Aún no hay ofertas de entradas",
+    "noOffersBody": "Por ahora no mostramos ofertas de entradas para este partido.",
+    "notAnnouncedTitle": "Horario aún sin confirmar",
+    "notAnnouncedBody": "El partido está anunciado, pero su hora de inicio aún no está confirmada. Las ofertas aparecerán cuando se programe.",
+    "browseOther": "Ver otros partidos",
+    "postponedNotice": "Este partido se ha aplazado. Todavía no hay una nueva fecha confirmada."
+  },
+  "Stadium": {
+    "mapTitle": "Mapa del estadio",
+    "mapHint": "Toca una zona para ver el precio",
+    "categories": {
+      "longside": {
+        "name": "Lateral",
+        "description": "Excelente vista desde el lateral del campo."
+      },
+      "shortside": {
+        "name": "Fondo lateral",
+        "description": "Vista elevada de esquina sobre todo el campo."
+      },
+      "behind_goal": {
+        "name": "Detrás de la portería",
+        "description": "Ambiente apasionado justo detrás de la red."
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Asientos acolchados cerca del campo con más espacio para las piernas."
+      },
+      "hospitality": {
+        "name": "Hospitality",
+        "description": "Acceso a lounge, restauración y anfitrión personal el día del partido."
+      }
+    }
+  },
+  "Footer": {
+    "tagline": "Find your Seat",
+    "navTitle": "Explorar",
+    "companyTitle": "Empresa",
+    "legalTitle": "Legal",
+    "about": "Sobre nosotros",
+    "contact": "Contacto",
+    "faq": "Preguntas frecuentes",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "cookies": "Cookies",
+    "rights": "Todos los derechos reservados.",
+    "disclaimer": "Seatigo compara ofertas de entradas de terceros. La compra se completa en la web del vendedor."
+  },
+  "Competitions": {
+    "title": "Competiciones",
+    "subtitle": "Las mayores ligas y copas de Europa en un solo lugar.",
+    "viewMatches": "Ver partidos",
+    "browseByCountry": "Explorar por país",
+    "upcomingFixtures": "Próximos partidos",
+    "fixtureCount": "{count, plural, =0 {Sin próximos partidos} one {# próximo partido} other {# próximos partidos}}",
+    "noFixtures": "Ahora mismo no hay próximos partidos en esta competición.",
+    "allMatches": "Todos los partidos",
+    "season": "Temporada {season}",
+    "matchweek": "Jornada {number}",
+    "matchweekShort": "J{number}",
+    "allMatchweeks": "Todas las jornadas",
+    "team": "Equipo",
+    "allTeams": "Todos los equipos",
+    "currentMatchweek": "Jornada actual",
+    "stages": "Fases de la competición",
+    "stage": {
+      "qualifying": "Clasificación",
+      "league_phase": "Fase de liga",
+      "knockout_playoff": "Play-offs eliminatorios",
+      "round_of_16": "Octavos de final",
+      "quarter_final": "Cuartos de final",
+      "semi_final": "Semifinales",
+      "final": "Final"
+    },
+    "stageUndrawnShort": "pendiente",
+    "stageTeamsTbc": "Equipos por confirmar",
+    "stageTeamsTbcHint": "Las fechas están confirmadas, pero el sorteo de esta ronda aún no se ha celebrado. Los partidos aparecerán aquí en cuanto se confirmen los equipos.",
+    "stageDates": "Fechas",
+    "stageTeamCount": "Equipos",
+    "stageTeams": "{count, plural, one {# equipo} other {# equipos}}",
+    "stageTwoLegs": "Ida y vuelta",
+    "stageOneLeg": "Partido único",
+    "stageVenue": "Estadio",
+    "matchday": "Jornada {number}",
+    "allMatchdays": "Todas las jornadas"
+  },
+  "Clubs": {
+    "title": "Clubes",
+    "subtitle": "Encuentra los próximos partidos de los clubes europeos más populares.",
+    "viewMatches": "Ver partidos",
+    "upcomingFixtures": "Próximos partidos",
+    "noFixtures": "Este club no tiene próximos partidos ahora mismo.",
+    "stadium": "Estadio",
+    "stadiumUnknown": "Estadio por confirmar",
+    "competitions": "Competiciones",
+    "backToClubs": "Todos los clubes"
+  },
+  "Common": {
+    "loading": "Cargando…",
+    "language": "Idioma",
+    "currencyNote": "Precios por asiento, impuestos incluidos."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "cta": "Volver al inicio"
+  },
+  "StaticPages": {
+    "about": {
+      "title": "Sobre Seatigo",
+      "body": "Seatigo compara ofertas de entradas de fútbol de vendedores de confianza en las mayores ligas y copas de Europa. Ayudamos a los aficionados a encontrar su partido, comparar vendedores y elegir la oferta que más les convenga — la compra siempre se completa en la web del propio vendedor."
+    },
+    "contact": {
+      "title": "Contacto",
+      "body": "¿Tienes una pregunta sobre un pedido o una propuesta de colaboración? Escríbenos cuando quieras a support@seatigo.com y te responderemos lo antes posible."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "body": "Encuentra respuestas rápidas sobre cómo explorar partidos, elegir asientos y cómo funciona el proceso de compra. Si no encuentras lo que buscas, nuestro equipo de soporte estará encantado de ayudar."
+    },
+    "terms": {
+      "title": "Términos de servicio",
+      "body": "Estos términos regulan el uso de Seatigo. Al explorar partidos o hacer clic hacia un vendedor, aceptas lo aquí descrito. Se publicará una versión legal completa antes del lanzamiento."
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "body": "Solo recopilamos la información necesaria para tu búsqueda de entradas y para mostrar ofertas relevantes, y nunca vendemos tus datos. Se publicará una política de privacidad completa antes del lanzamiento."
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "body": "Seatigo utiliza un pequeño número de cookies para recordar tu idioma y mantener el sitio funcionando sin problemas. Se publicará una política de cookies completa antes del lanzamiento."
+    },
+    "signIn": {
+      "title": "Iniciar sesión",
+      "body": "El inicio de sesión aún no está disponible en esta vista previa. Pronto podrás seguir tus pedidos y guardar tus clubes y competiciones favoritos aquí."
+    }
+  },
+  "Offers": {
+    "title": "Comparar ofertas de entradas",
+    "subtitle": "Ofertas reales de varios vendedores — elige la que más te convenga.",
+    "summary": "{count} ofertas de {sellers} vendedores",
+    "summaryOne": "{count} oferta de {sellers} vendedor",
+    "lowestPrice": "Precio más bajo",
+    "categoriesLabel": "Categorías de entradas",
+    "updatedMinutes": "Actualizado hace {minutes} min",
+    "updatedNow": "Actualizado ahora mismo",
+    "redirectNotice": "Serás redirigido al vendedor para completar tu compra.",
+    "viewDeal": "Ver oferta",
+    "goToProvider": "Ir al vendedor",
+    "sponsored": "Patrocinado",
+    "bestPrice": "Precio más bajo",
+    "feesIncluded": "Tasas incluidas",
+    "feesExcluded": "+ tasas en el vendedor",
+    "perTicket": "por entrada",
+    "quantityAvailable": "Quedan {count}",
+    "sort": {
+      "label": "Ordenar por",
+      "recommended": "Recomendado",
+      "price_asc": "Precio más bajo",
+      "price_desc": "Precio más alto",
+      "best_seats": "Mejores asientos"
+    },
+    "filters": {
+      "title": "Filtros",
+      "category": "Categoría",
+      "any": "Cualquiera",
+      "quantity": "Cantidad",
+      "provider": "Vendedor",
+      "reset": "Restablecer filtros",
+      "apply": "Mostrar ofertas",
+      "price": "Precio máximo",
+      "section": "Zona",
+      "ticketsCount": "{count, plural, one {# entrada} other {# entradas}}"
+    },
+    "delivery": {
+      "mobile": "Entrada móvil",
+      "e-ticket": "Entrada electrónica",
+      "post": "Envío postal",
+      "box-office": "Recogida en taquilla"
+    },
+    "empty": {
+      "title": "Ofertas de entradas próximamente",
+      "description": "Todavía no tenemos ofertas activas para este partido. Vuelve pronto o explora otros partidos."
+    },
+    "disclaimer": "Seatigo compara ofertas de entradas de vendedores externos. Los precios y la disponibilidad pueden cambiar. Las compras se completan en la web del vendedor."
+  },
+  "Countries": {
+    "England": "Inglaterra",
+    "Spain": "España",
+    "Italy": "Italia",
+    "Germany": "Alemania",
+    "France": "Francia",
+    "Europe": "Europa",
+    "Monaco": "Mónaco"
+  }
+}
