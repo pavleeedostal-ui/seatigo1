@@ -234,3 +234,52 @@ export function recordClubInterest(event: AnalyticsEvent): void {
   if (event.clubIds.length === 0) return;
   getClubActivityStore().record(event);
 }
+
+/**
+ * Club id -> measured interest, for use as a *tie-break only*.
+ *
+ * Search uses this to order two suggestions that already scored identically
+ * on name matching — "Manchester City" and "Manchester United" both match
+ * "manchester" exactly as well, and real interest is a better answer than
+ * the alphabet.
+ *
+ * Two deliberate limits keep search from inheriting analytics' problems:
+ * it is cached on its own TTL so a lookup costs nothing, and it stays empty
+ * until there is enough real traffic to mean anything — the seeded
+ * editorial list must never quietly become a search ordering.
+ *
+ * It scores the counters directly rather than going through
+ * `computePopularClubs`, because that function also asks "are there enough
+ * ranked clubs to fill the homepage grid?", which is not a question search
+ * has any reason to care about.
+ */
+const globalForIndex = globalThis as unknown as {
+  __seatigoPopularityIndex?: { at: number; value: Map<string, number> };
+};
+
+export async function getClubPopularityIndex(): Promise<Map<string, number>> {
+  const cached = globalForIndex.__seatigoPopularityIndex;
+  if (cached && Date.now() - cached.at < RANKING_CACHE_TTL_MS) return cached.value;
+
+  const now = new Date();
+  const store = getClubActivityStore();
+  const recentFrom = daysAgo(RECENT_WINDOW_DAYS, now);
+  const baselineFrom = daysAgo(RECENT_WINDOW_DAYS + BASELINE_WINDOW_DAYS, now);
+  const recent = store.countsBetween(recentFrom, daysAgo(-1, now));
+  const baseline = store.countsBetween(baselineFrom, recentFrom);
+
+  let eventsConsidered = 0;
+  for (const counts of recent.values()) eventsConsidered += eventCount(counts);
+  for (const counts of baseline.values()) eventsConsidered += eventCount(counts);
+
+  const value = new Map<string, number>();
+  if (eventsConsidered >= MIN_EVENTS_FOR_RANKING) {
+    for (const id of new Set([...recent.keys(), ...baseline.keys()])) {
+      const score = scoreFor(recent.get(id) ?? {}, baseline.get(id) ?? {});
+      if (score > 0) value.set(id, score);
+    }
+  }
+
+  globalForIndex.__seatigoPopularityIndex = { at: Date.now(), value };
+  return value;
+}

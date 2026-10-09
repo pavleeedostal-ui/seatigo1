@@ -158,9 +158,15 @@ export default async function MatchesPage({
   });
 
   const sortedMatches = sortMatches(matches, offersSummaries, sp.sort);
-  // Date headings only make sense while the list is chronological. Sorting by
-  // price reorders across days, so grouping would produce headings that
-  // repeat and mislead.
+  // Date headings are shown only for the chronological sort.
+  //
+  // MatchDateGroups is safe under any order — it emits one group per date
+  // whatever it is handed — but safety is not the same as usefulness here.
+  // Asking for "lowest price" is asking for one list, cheapest first; split
+  // into day buckets the cheapest fixture overall could sit halfway down the
+  // page under its own heading. So the sort the user chose is honoured
+  // literally, as a flat list, and grouping is reserved for the default
+  // chronological view where the headings genuinely aid scanning.
   const groupedByDate = !sp.sort || sp.sort === "recommended";
 
   const filterOptions = {

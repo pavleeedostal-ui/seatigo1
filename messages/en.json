@@ -50,14 +50,15 @@
       "club": "Club",
       "competition": "Competition",
       "city": "City"
-    }
+    },
+    "searching": "Searching…",
+    "noSuggestions": "No clubs, competitions or cities match “{query}”."
   },
   "Home": {
     "popularMatches": {
       "title": "Popular Matches",
       "subtitle": "The fixtures fans are searching for right now.",
-      "viewAll": "View all matches",
-      "exploreAll": "Explore all matches"
+      "viewAll": "View all matches"
     },
     "competitions": {
       "title": "Browse by Competition",

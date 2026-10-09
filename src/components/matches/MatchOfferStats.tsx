@@ -1,6 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { TicketOffer } from "@/types/ticketing";
 import { formatPrice } from "@/lib/format";
+import { dedupeOffers, sellerCountOf } from "@/lib/ticketing/identity";
 
 /**
  * A three-figure read on the market for this fixture, directly under the
@@ -15,10 +16,14 @@ export function MatchOfferStats({ offers }: { offers: TicketOffer[] }) {
   const locale = useLocale();
   const t = useTranslations("MatchDetail.stats");
 
-  if (offers.length === 0) return null;
+  // The aggregator already drops repeats, but the count is only meaningful
+  // if that holds wherever these offers came from — so the rule is applied
+  // here too rather than assumed. See lib/ticketing/identity.ts.
+  const unique = dedupeOffers(offers);
+  if (unique.length === 0) return null;
 
-  const lowest = offers.reduce((min, o) => (o.price < min.price ? o : min), offers[0]);
-  const sellerCount = new Set(offers.map((o) => o.providerId)).size;
+  const lowest = unique.reduce((min, o) => (o.price < min.price ? o : min), unique[0]);
+  const sellerCount = sellerCountOf(unique);
 
   return (
     <dl className="mt-6 flex flex-wrap items-end gap-x-10 gap-y-5">
@@ -45,7 +50,7 @@ export function MatchOfferStats({ offers }: { offers: TicketOffer[] }) {
           {t("offers")}
         </dt>
         <dd className="mt-1 text-[20px] font-medium leading-none tabular-nums text-ink">
-          {offers.length}
+          {unique.length}
         </dd>
       </div>
     </dl>

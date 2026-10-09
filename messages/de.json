@@ -50,14 +50,15 @@
       "club": "Verein",
       "competition": "Wettbewerb",
       "city": "Stadt"
-    }
+    },
+    "searching": "Suche läuft…",
+    "noSuggestions": "Keine Vereine, Wettbewerbe oder Städte passen zu „{query}“."
   },
   "Home": {
     "popularMatches": {
       "title": "Beliebte Spiele",
       "subtitle": "Die Partien, nach denen Fans gerade suchen.",
-      "viewAll": "Alle Spiele ansehen",
-      "exploreAll": "Alle Spiele entdecken"
+      "viewAll": "Alle Spiele ansehen"
     },
     "competitions": {
       "title": "Nach Wettbewerb stöbern",

@@ -1,18 +1,34 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { MapPin, Search } from "lucide-react";
+import { Loader2, MapPin, Search } from "lucide-react";
 import { useRouter } from "@/i18n/navigation";
 import { buildMatchesQuery } from "@/lib/matchesUrl";
-import type { SearchSuggestion, SuggestionKind } from "@/lib/search/suggestions";
+import {
+  SUGGESTION_KIND_ORDER,
+  type SearchSuggestion,
+  type SuggestionKind,
+} from "@/lib/search/suggestions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const TICKET_OPTIONS = ["1", "2", "3", "4+"];
 const DEBOUNCE_MS = 140;
 const MIN_QUERY_LENGTH = 2;
+/**
+ * "Nothing found" is only worth saying once the query looks finished.
+ * Below this, an empty result is just a word the user is still typing.
+ */
+const MIN_QUERY_LENGTH_FOR_EMPTY_STATE = 4;
+/** Never let the panel grow past this, however tall the window is. */
+const MAX_PANEL_HEIGHT = 352;
+/** Below this it is not worth showing a list at all. */
+const MIN_PANEL_HEIGHT = 132;
+const PANEL_VIEWPORT_MARGIN = 16;
+/** Space between the anchor and the panel. */
+const PANEL_GAP = 8;
 
 /**
  * One search surface, not three stacked inputs: the fields share a single
@@ -34,11 +50,16 @@ export function SearchBar({ className }: { className?: string }) {
 
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  /** The query the current `suggestions` actually answer. */
+  const [resolvedQuery, setResolvedQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [panel, setPanel] = useState({ top: 0, maxHeight: MAX_PANEL_HEIGHT });
 
   const listboxId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fieldRef = useRef<HTMLDivElement>(null);
   /** Guards against a slow response overwriting a newer one. */
   const requestSeq = useRef(0);
 
@@ -52,9 +73,12 @@ export function SearchBar({ className }: { className?: string }) {
     const timer = setTimeout(async () => {
       if (term.length < MIN_QUERY_LENGTH) {
         setSuggestions([]);
+        setResolvedQuery("");
+        setLoading(false);
         setActiveIndex(-1);
         return;
       }
+      setLoading(true);
       try {
         const res = await fetch(
           `/api/search/suggestions?q=${encodeURIComponent(term)}`,
@@ -64,10 +88,13 @@ export function SearchBar({ className }: { className?: string }) {
         const data = (await res.json()) as { suggestions: SearchSuggestion[] };
         if (seq !== requestSeq.current) return;
         setSuggestions(data.suggestions);
+        setResolvedQuery(term);
         setActiveIndex(-1);
       } catch {
         // An aborted or failed lookup just means no suggestions; typing and
         // pressing Enter still works.
+      } finally {
+        if (seq === requestSeq.current) setLoading(false);
       }
     }, DEBOUNCE_MS);
 
@@ -77,7 +104,73 @@ export function SearchBar({ className }: { className?: string }) {
     };
   }, [query]);
 
-  // Close when focus or a click leaves the whole control.
+  /**
+   * Work out where the panel hangs from, and how tall it may be.
+   *
+   * Two things make this worth measuring rather than hard-coding.
+   *
+   * The anchor: above `sm` the form is a single row, so the panel belongs
+   * under the whole control. Below it the form stacks into four rows, and
+   * hanging the panel off the bottom of *that* puts the suggestions under
+   * the Search button, a long way from the text being typed and usually
+   * off-screen. On a narrow screen it hangs off the text field instead and
+   * overlays the rest of the form.
+   *
+   * The height: on a phone the software keyboard covers the bottom of the
+   * window and `window.innerHeight` does not know it — `visualViewport`
+   * does. Without this the list runs under the keyboard and everything
+   * below the fold is unreachable. On desktop the measurement is simply
+   * large, so the panel keeps its normal maximum and nothing changes.
+   */
+  const measurePanel = useCallback(() => {
+    const root = rootRef.current;
+    const field = fieldRef.current;
+    if (!root || !field) return;
+
+    // Tailwind's `sm` breakpoint, where the form becomes one row.
+    const isRow = window.matchMedia("(min-width: 640px)").matches;
+    const rootBox = root.getBoundingClientRect();
+    const anchorBottom = isRow ? rootBox.bottom : field.getBoundingClientRect().bottom;
+
+    const viewport = window.visualViewport;
+    const viewportBottom = viewport
+      ? viewport.offsetTop + viewport.height
+      : window.innerHeight;
+
+    const available =
+      viewportBottom - anchorBottom - PANEL_GAP - PANEL_VIEWPORT_MARGIN;
+
+    setPanel({
+      top: Math.round(anchorBottom - rootBox.top + PANEL_GAP),
+      maxHeight: Math.max(
+        MIN_PANEL_HEIGHT,
+        Math.min(MAX_PANEL_HEIGHT, Math.round(available)),
+      ),
+    });
+  }, []);
+
+  // Re-measured whenever anything that moves the field or shrinks the
+  // window happens — opening, the result count changing the panel's
+  // content, page scroll, a rotation, or the software keyboard sliding in.
+  // Measuring only once on open left the panel at a stale height.
+  useEffect(() => {
+    if (!open) return;
+    measurePanel();
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", measurePanel);
+    viewport?.addEventListener("scroll", measurePanel);
+    window.addEventListener("resize", measurePanel);
+    // Capture phase, so a scrolling ancestor counts too, not just the page.
+    window.addEventListener("scroll", measurePanel, true);
+    return () => {
+      viewport?.removeEventListener("resize", measurePanel);
+      viewport?.removeEventListener("scroll", measurePanel);
+      window.removeEventListener("resize", measurePanel);
+      window.removeEventListener("scroll", measurePanel, true);
+    };
+  }, [open, suggestions.length, loading, measurePanel]);
+
+  // Close when a click lands outside the whole control.
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
@@ -105,7 +198,7 @@ export function SearchBar({ className }: { className?: string }) {
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     // Enter on a highlighted suggestion takes it; otherwise free text.
-    if (open && activeIndex >= 0 && suggestions[activeIndex]) {
+    if (showList && activeIndex >= 0 && suggestions[activeIndex]) {
       choose(suggestions[activeIndex]);
       return;
     }
@@ -116,13 +209,14 @@ export function SearchBar({ className }: { className?: string }) {
     if (event.key === "Escape") {
       setOpen(false);
       setActiveIndex(-1);
+      // Focus stays in the field so typing can continue immediately.
+      inputRef.current?.focus();
       return;
     }
-    if (!suggestions.length) return;
+    if (!showList) return;
 
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      setOpen(true);
       const step = event.key === "ArrowDown" ? 1 : -1;
       setActiveIndex((current) => {
         const next = current + step;
@@ -142,10 +236,36 @@ export function SearchBar({ className }: { className?: string }) {
     }
   }
 
-  // Guarded on the live query too, so suggestions from a longer previous
-  // term never linger under a query that is now too short to search.
-  const showList =
-    open && query.trim().length >= MIN_QUERY_LENGTH && suggestions.length > 0;
+  const term = query.trim();
+  const longEnough = term.length >= MIN_QUERY_LENGTH;
+  const answersCurrentQuery = resolvedQuery === term;
+  const showList = open && longEnough && answersCurrentQuery && suggestions.length > 0;
+  const showLoading = open && longEnough && loading && suggestions.length === 0;
+  const showEmpty =
+    open &&
+    !loading &&
+    answersCurrentQuery &&
+    suggestions.length === 0 &&
+    term.length >= MIN_QUERY_LENGTH_FOR_EMPTY_STATE;
+  const showPanel = showList || showLoading || showEmpty;
+
+  /**
+   * Suggestions split into their groups, each carrying the index it has in
+   * the flat list — so headings are purely visual and keyboard navigation
+   * still walks one continuous sequence.
+   */
+  const groups = useMemo(() => {
+    return SUGGESTION_KIND_ORDER.map((kind) => ({
+      kind,
+      items: suggestions
+        .map((suggestion, index) => ({ suggestion, index }))
+        .filter((entry) => entry.suggestion.kind === kind),
+    })).filter((group) => group.items.length > 0);
+  }, [suggestions]);
+
+  /** Stable per suggestion, not per position, so it survives re-ranking. */
+  const optionId = (suggestion: SearchSuggestion) =>
+    `${listboxId}-opt-${suggestion.kind}-${suggestion.value.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
 
   return (
     <div ref={rootRef} className={cn("relative", className)}>
@@ -153,8 +273,11 @@ export function SearchBar({ className }: { className?: string }) {
         onSubmit={handleSubmit}
         className="flex flex-col rounded-surface border border-border bg-white p-2 text-left shadow-search sm:flex-row sm:items-center"
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5 px-4 py-2.5">
-          <label htmlFor={`${listboxId}-input`} className="text-xs font-medium text-ink-muted">
+        <div ref={fieldRef} className="flex min-w-0 flex-1 flex-col gap-0.5 px-4 py-2.5">
+          <label
+            htmlFor={`${listboxId}-input`}
+            className="text-xs font-medium text-ink-muted"
+          >
             {t("searchLabel")}
           </label>
           <input
@@ -173,8 +296,11 @@ export function SearchBar({ className }: { className?: string }) {
             aria-expanded={showList}
             aria-controls={listboxId}
             aria-autocomplete="list"
+            aria-busy={showLoading || undefined}
             aria-activedescendant={
-              showList && activeIndex >= 0 ? `${listboxId}-opt-${activeIndex}` : undefined
+              showList && activeIndex >= 0 && suggestions[activeIndex]
+                ? optionId(suggestions[activeIndex])
+                : undefined
             }
             className="w-full bg-transparent text-[15px] text-ink placeholder:text-ink-faint focus:outline-none"
           />
@@ -225,25 +351,54 @@ export function SearchBar({ className }: { className?: string }) {
         </Button>
       </form>
 
-      {showList && (
-        <ul
-          id={listboxId}
-          role="listbox"
-          aria-label={t("suggestionsLabel")}
-          className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 max-h-[22rem] overflow-y-auto rounded-card border border-border bg-white p-1.5 shadow-pop"
+      {showPanel && (
+        <div
+          className="absolute left-0 right-0 z-50 overflow-y-auto overscroll-contain rounded-card border border-border bg-white p-1.5 text-left shadow-pop"
+          style={{ top: panel.top, maxHeight: panel.maxHeight }}
         >
-          {suggestions.map((suggestion, index) => (
-            <SuggestionRow
-              key={`${suggestion.kind}-${suggestion.value}`}
-              id={`${listboxId}-opt-${index}`}
-              suggestion={suggestion}
-              active={index === activeIndex}
-              onHover={() => setActiveIndex(index)}
-              onSelect={() => choose(suggestion)}
-              kindLabel={t(`suggestionKind.${suggestion.kind}` as const)}
-            />
-          ))}
-        </ul>
+          {showLoading && (
+            <p className="flex items-center gap-2.5 px-3 py-3 text-[14px] text-ink-muted">
+              <Loader2 className="h-4 w-4 animate-spin text-ink-faint" aria-hidden="true" />
+              {t("searching")}
+            </p>
+          )}
+
+          {showEmpty && (
+            <p className="px-3 py-3 text-[14px] text-ink-muted">
+              {t("noSuggestions", { query: term })}
+            </p>
+          )}
+
+          <ul
+            id={listboxId}
+            role="listbox"
+            aria-label={t("suggestionsLabel")}
+            className={cn(!showList && "hidden")}
+          >
+            {groups.map((group) => (
+              <li key={group.kind} role="presentation">
+                <p
+                  role="presentation"
+                  className="px-3 pb-1 pt-2.5 text-[11px] font-medium uppercase tracking-wider text-ink-faint"
+                >
+                  {t(`suggestionKind.${group.kind}` as const)}
+                </p>
+                <ul role="group" aria-label={t(`suggestionKind.${group.kind}` as const)}>
+                  {group.items.map(({ suggestion, index }) => (
+                    <SuggestionRow
+                      key={optionId(suggestion)}
+                      id={optionId(suggestion)}
+                      suggestion={suggestion}
+                      active={index === activeIndex}
+                      onHover={() => setActiveIndex(index)}
+                      onSelect={() => choose(suggestion)}
+                    />
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
@@ -255,14 +410,12 @@ function SuggestionRow({
   active,
   onHover,
   onSelect,
-  kindLabel,
 }: {
   id: string;
   suggestion: SearchSuggestion;
   active: boolean;
   onHover: () => void;
   onSelect: () => void;
-  kindLabel: string;
 }) {
   return (
     <li
@@ -271,7 +424,8 @@ function SuggestionRow({
       aria-selected={active}
       onMouseEnter={onHover}
       // mousedown, not click: the input's blur would otherwise close the
-      // list before the click lands.
+      // list before the click lands. Touch raises mousedown too, so one tap
+      // selects on a phone as well.
       onMouseDown={(e) => {
         e.preventDefault();
         onSelect();
@@ -284,9 +438,11 @@ function SuggestionRow({
       <SuggestionIcon suggestion={suggestion} />
       <span className="min-w-0 flex-1">
         <span className="block truncate text-[15px] text-ink">{suggestion.label}</span>
-        <span className="block truncate text-[13px] text-ink-muted">
-          {suggestion.hint ? `${kindLabel} · ${suggestion.hint}` : kindLabel}
-        </span>
+        {suggestion.hint && (
+          <span className="block truncate text-[13px] text-ink-muted">
+            {suggestion.hint}
+          </span>
+        )}
       </span>
     </li>
   );

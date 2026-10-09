@@ -50,14 +50,15 @@
       "club": "Klub",
       "competition": "Soutěž",
       "city": "Město"
-    }
+    },
+    "searching": "Hledání…",
+    "noSuggestions": "Dotazu „{query}“ neodpovídá žádný klub, soutěž ani město."
   },
   "Home": {
     "popularMatches": {
       "title": "Oblíbené zápasy",
       "subtitle": "Zápasy, které fanoušci hledají právě teď.",
-      "viewAll": "Zobrazit všechny zápasy",
-      "exploreAll": "Prozkoumat všechny zápasy"
+      "viewAll": "Zobrazit všechny zápasy"
     },
     "competitions": {
       "title": "Procházet podle soutěže",

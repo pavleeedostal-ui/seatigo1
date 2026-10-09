@@ -5,7 +5,6 @@ import type { Match } from "@/types/football";
 import type { CheapestOfferSummary } from "@/types/ticketing";
 import { MatchCard } from "@/components/matches/MatchCard";
 import { Section, SectionHeader } from "@/components/shared/Section";
-import { Button } from "@/components/ui/button";
 
 /**
  * The homepage's one fixture section.
@@ -17,6 +16,10 @@ import { Button } from "@/components/ui/button";
  *
  * Fixtures are whatever the provider returns, in its order. Nothing here is
  * curated or pinned.
+ *
+ * One way out, not two: the header link is the section's navigation. A
+ * second button under the grid pointed at the same place and only made the
+ * page longer.
  */
 export function PopularMatches({
   matches,
@@ -70,15 +73,6 @@ export function PopularMatches({
           ))}
         </div>
       )}
-
-      <div className="mt-10 flex justify-center">
-        <Button asChild variant="outline">
-          <Link href="/matches">
-            {t("exploreAll")}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
     </Section>
   );
 }

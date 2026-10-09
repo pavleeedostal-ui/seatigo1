@@ -36,7 +36,9 @@ export async function getOffersForFixture(fixture: Match): Promise<OffersResult>
     if (result.status !== "fulfilled") return;
     const meta = providers[index].meta;
     for (const offer of result.value) {
-      if (seen.has(offer.id)) continue; // drop exact duplicates
+      // Same identity rule as lib/ticketing/identity.ts: one listing per
+      // provider offer id, however many feeds hand it to us.
+      if (seen.has(offer.id)) continue;
       seen.set(offer.id, { ...offer, provider: meta });
     }
   });
