@@ -7,7 +7,7 @@ import { getTicketAvailability } from "@/lib/fixtures/availability";
 import { ClubLogo } from "@/components/shared/ClubLogo";
 import { CompetitionLogo } from "@/components/shared/CompetitionLogo";
 import { FixtureSchedule } from "./FixtureSchedule";
-import { FixturePrice } from "./FixturePrice";
+import { FixtureCta, FixturePrice } from "./FixturePrice";
 
 /**
  * Search-result row: identity on the left, when/where in the middle, price and
@@ -67,12 +67,12 @@ export function MatchListRow({
           align="right"
         />
 
-        <span className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-button bg-navy px-4 text-[14px] font-medium text-white transition-colors group-hover:bg-navy-soft">
+        <FixtureCta availability={availability}>
           {availability === "available"
             ? t("card.compareTickets")
             : t("card.viewMatch")}
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </span>
+        </FixtureCta>
       </div>
     </Link>
   );

@@ -15,7 +15,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("py-14 sm:py-20 lg:py-24", tone === "muted" && "bg-background", className)}
+      className={cn("py-12 sm:py-16 lg:py-20", tone === "muted" && "bg-background", className)}
     >
       <div className="container-page">{children}</div>
     </section>
@@ -36,7 +36,7 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "mb-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end",
+        "mb-8 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end",
         className,
       )}
     >

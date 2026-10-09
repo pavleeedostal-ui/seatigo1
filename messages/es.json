@@ -37,7 +37,6 @@
     "language": "Idioma"
   },
   "Hero": {
-    "eyebrow": "Entradas de fútbol por toda Europa",
     "subtitle": "Compara precios de entradas de vendedores de confianza.",
     "searchLabel": "Dónde",
     "searchPlaceholder": "Equipo, competición o ciudad",
@@ -45,13 +44,20 @@
     "searchButton": "Buscar entradas",
     "ticketsLabel": "Entradas",
     "headline": "Find your Seat",
-    "datePlaceholder": "Elegir fecha"
+    "datePlaceholder": "Elegir fecha",
+    "suggestionsLabel": "Sugerencias de búsqueda",
+    "suggestionKind": {
+      "club": "Club",
+      "competition": "Competición",
+      "city": "Ciudad"
+    }
   },
   "Home": {
     "popularMatches": {
       "title": "Partidos populares",
       "subtitle": "Los partidos que los aficionados buscan ahora mismo.",
-      "viewAll": "Ver todos los partidos"
+      "viewAll": "Ver todos los partidos",
+      "exploreAll": "Explorar todos los partidos"
     },
     "competitions": {
       "title": "Explorar por competición",
@@ -103,11 +109,6 @@
           "a": "Cada vendedor fija sus propios precios y disponibilidad, que pueden cambiar en cualquier momento — actualizamos las ofertas con frecuencia para que compares precios actuales."
         }
       ]
-    },
-    "upcoming": {
-      "title": "Próximos partidos",
-      "subtitle": "Todos los partidos anunciados de las competiciones que cubrimos, con entradas o sin ellas.",
-      "exploreAll": "Explorar todos los partidos"
     }
   },
   "Matches": {
@@ -170,6 +171,11 @@
     "searchSummary": {
       "editSearch": "Editar búsqueda",
       "ticketsCount": "{count, plural, one {# entrada} other {# entradas}}"
+    },
+    "dates": {
+      "today": "Hoy",
+      "tomorrow": "Mañana",
+      "tbc": "Fecha por confirmar"
     }
   },
   "MatchDetail": {
@@ -187,7 +193,18 @@
     "notAnnouncedTitle": "Horario aún sin confirmar",
     "notAnnouncedBody": "El partido está anunciado, pero su hora de inicio aún no está confirmada. Las ofertas aparecerán cuando se programe.",
     "browseOther": "Ver otros partidos",
-    "postponedNotice": "Este partido se ha aplazado. Todavía no hay una nueva fecha confirmada."
+    "postponedNotice": "Este partido se ha aplazado. Todavía no hay una nueva fecha confirmada.",
+    "stats": {
+      "lowestPrice": "Desde",
+      "sellers": "Vendedores",
+      "offers": "Ofertas"
+    },
+    "related": {
+      "homeTeam": "Más partidos del {name}",
+      "awayTeam": "Más partidos del {name}",
+      "competition": "Más de {name}",
+      "seeAll": "Ver todo"
+    }
   },
   "Stadium": {
     "mapTitle": "Mapa del estadio",

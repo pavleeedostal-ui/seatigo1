@@ -37,7 +37,6 @@
     "language": "Langue"
   },
   "Hero": {
-    "eyebrow": "Billets de football partout en Europe",
     "subtitle": "Comparez les prix des billets de vendeurs fiables.",
     "searchLabel": "Où",
     "searchPlaceholder": "Équipe, compétition ou ville",
@@ -45,13 +44,20 @@
     "searchButton": "Rechercher des billets",
     "ticketsLabel": "Billets",
     "headline": "Find your Seat",
-    "datePlaceholder": "Choisir une date"
+    "datePlaceholder": "Choisir une date",
+    "suggestionsLabel": "Suggestions de recherche",
+    "suggestionKind": {
+      "club": "Club",
+      "competition": "Compétition",
+      "city": "Ville"
+    }
   },
   "Home": {
     "popularMatches": {
       "title": "Matchs populaires",
       "subtitle": "Les rencontres que les fans recherchent en ce moment.",
-      "viewAll": "Voir tous les matchs"
+      "viewAll": "Voir tous les matchs",
+      "exploreAll": "Explorer tous les matchs"
     },
     "competitions": {
       "title": "Parcourir par compétition",
@@ -103,11 +109,6 @@
           "a": "Les prix et la disponibilité sont fixés par chaque vendeur et peuvent changer à tout moment — nous actualisons souvent les offres pour comparer des prix à jour."
         }
       ]
-    },
-    "upcoming": {
-      "title": "Prochains matchs",
-      "subtitle": "Tous les matchs annoncés dans les compétitions que nous couvrons, avec ou sans billets.",
-      "exploreAll": "Explorer tous les matchs"
     }
   },
   "Matches": {
@@ -170,6 +171,11 @@
     "searchSummary": {
       "editSearch": "Modifier la recherche",
       "ticketsCount": "{count, plural, one {# billet} other {# billets}}"
+    },
+    "dates": {
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "tbc": "Date à confirmer"
     }
   },
   "MatchDetail": {
@@ -187,7 +193,18 @@
     "notAnnouncedTitle": "Coup d'envoi non confirmé",
     "notAnnouncedBody": "Ce match est annoncé, mais l'heure du coup d'envoi reste à confirmer. Les offres apparaîtront une fois le match programmé.",
     "browseOther": "Voir d'autres matchs",
-    "postponedNotice": "Ce match a été reporté. Une nouvelle date reste à confirmer."
+    "postponedNotice": "Ce match a été reporté. Une nouvelle date reste à confirmer.",
+    "stats": {
+      "lowestPrice": "À partir de",
+      "sellers": "Vendeurs",
+      "offers": "Offres"
+    },
+    "related": {
+      "homeTeam": "Autres matchs de {name}",
+      "awayTeam": "Autres matchs de {name}",
+      "competition": "Plus en {name}",
+      "seeAll": "Tout voir"
+    }
   },
   "Stadium": {
     "mapTitle": "Plan du stade",

@@ -16,6 +16,7 @@ import { recordClubInterest } from "@/lib/analytics/club-popularity";
 import { resolveCompetitionLogo } from "@/lib/football/competition-logos";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
 import { MatchListRow } from "@/components/matches/MatchListRow";
+import { MatchDateGroups } from "@/components/matches/MatchDateGroups";
 import { MatchFiltersControls } from "@/components/matches/MatchFiltersDrawer";
 import { SearchSummaryBar } from "@/components/matches/SearchSummaryBar";
 import { EmptyState } from "@/components/matches/EmptyState";
@@ -157,6 +158,10 @@ export default async function MatchesPage({
   });
 
   const sortedMatches = sortMatches(matches, offersSummaries, sp.sort);
+  // Date headings only make sense while the list is chronological. Sorting by
+  // price reorders across days, so grouping would produce headings that
+  // repeat and mislead.
+  const groupedByDate = !sp.sort || sp.sort === "recommended";
 
   const filterOptions = {
     competitionOptions: competitions.map((c) => ({
@@ -208,6 +213,12 @@ export default async function MatchesPage({
 
       {sortedMatches.length === 0 ? (
         <EmptyState resetHref="/matches" />
+      ) : groupedByDate ? (
+        <MatchDateGroups
+          matches={sortedMatches}
+          offersSummaries={offersSummaries}
+          tickets={sp.tickets}
+        />
       ) : (
         <div className="flex flex-col gap-3">
           {sortedMatches.map((match) => (

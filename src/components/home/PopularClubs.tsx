@@ -34,26 +34,32 @@ export function PopularClubs({
         subtitle={measured ? t("subtitleTrending") : t("subtitle")}
       />
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {/* Compact navigation, not a card wall: two columns on a phone, up to
+          six on a wide desktop, so twelve clubs read as one tidy block. */}
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {clubs.map((club, index) => (
           <Link
             key={club.id}
             href={`/clubs/${club.slug}`}
-            className="group flex min-w-0 items-center gap-3 rounded-card border border-border bg-white px-4 py-3.5 transition-colors duration-200 hover:border-border-strong"
+            className="group flex min-w-0 items-center gap-2.5 rounded-control border border-border bg-white px-3 py-2.5 transition-colors duration-200 hover:border-border-strong"
           >
-            <ClubLogo club={club} size={36} />
+            <ClubLogo club={club} size={30} />
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-[15px] font-medium text-ink">
+              <span className="block truncate text-[14px] font-medium text-ink">
                 {club.name}
               </span>
-              <span className="block truncate text-[13px] text-ink-muted">
+              <span className="block truncate text-[12px] text-ink-muted">
                 {tCountries.has(club.country) ? tCountries(club.country) : club.country}
               </span>
             </span>
-            {/* Only the leaders carry it: a badge on every tile says nothing. */}
+            {/* Only the leaders carry it, and as a dot rather than a chip:
+                at six columns a text badge would crowd out the club name. */}
             {measured && index < 3 && (
-              <span className="shrink-0 rounded-full bg-background px-2 py-0.5 text-[11px] leading-[18px] text-ink-muted">
-                {t("popular")}
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-lime-dark"
+                title={t("popular")}
+              >
+                <span className="sr-only">{t("popular")}</span>
               </span>
             )}
           </Link>

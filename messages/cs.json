@@ -37,7 +37,6 @@
     "language": "Jazyk"
   },
   "Hero": {
-    "eyebrow": "Vstupenky na fotbal po celé Evropě",
     "subtitle": "Porovnejte ceny vstupenek na fotbal od ověřených prodejců.",
     "searchLabel": "Kde",
     "searchPlaceholder": "Tým, soutěž nebo město",
@@ -45,13 +44,20 @@
     "searchButton": "Hledat vstupenky",
     "ticketsLabel": "Vstupenky",
     "headline": "Find your Seat",
-    "datePlaceholder": "Vyberte datum"
+    "datePlaceholder": "Vyberte datum",
+    "suggestionsLabel": "Našeptávač",
+    "suggestionKind": {
+      "club": "Klub",
+      "competition": "Soutěž",
+      "city": "Město"
+    }
   },
   "Home": {
     "popularMatches": {
       "title": "Oblíbené zápasy",
       "subtitle": "Zápasy, které fanoušci hledají právě teď.",
-      "viewAll": "Zobrazit všechny zápasy"
+      "viewAll": "Zobrazit všechny zápasy",
+      "exploreAll": "Prozkoumat všechny zápasy"
     },
     "competitions": {
       "title": "Procházet podle soutěže",
@@ -103,11 +109,6 @@
           "a": "Ceny a dostupnost vstupenek určuje každý prodejce sám a mohou se kdykoli změnit — nabídky proto často aktualizujeme, abyste porovnávali aktuální ceny."
         }
       ]
-    },
-    "upcoming": {
-      "title": "Nadcházející zápasy",
-      "subtitle": "Všechny oznámené zápasy v soutěžích, které pokrýváme — s vstupenkami i bez nich.",
-      "exploreAll": "Prozkoumat všechny zápasy"
     }
   },
   "Matches": {
@@ -170,6 +171,11 @@
     "searchSummary": {
       "editSearch": "Upravit hledání",
       "ticketsCount": "{count, plural, one {# vstupenka} few {# vstupenky} other {# vstupenek}}"
+    },
+    "dates": {
+      "today": "Dnes",
+      "tomorrow": "Zítra",
+      "tbc": "Termín bude potvrzen"
     }
   },
   "MatchDetail": {
@@ -187,7 +193,18 @@
     "notAnnouncedTitle": "Výkop zatím není potvrzen",
     "notAnnouncedBody": "Tento zápas byl oznámen, ale čas výkopu zatím nebyl potvrzen. Nabídky vstupenek se zobrazí, jakmile bude zápas naplánován.",
     "browseOther": "Procházet další zápasy",
-    "postponedNotice": "Tento zápas byl odložen. Nový termín zatím nebyl potvrzen."
+    "postponedNotice": "Tento zápas byl odložen. Nový termín zatím nebyl potvrzen.",
+    "stats": {
+      "lowestPrice": "Od",
+      "sellers": "Prodejců",
+      "offers": "Nabídek"
+    },
+    "related": {
+      "homeTeam": "Další zápasy týmu {name}",
+      "awayTeam": "Další zápasy týmu {name}",
+      "competition": "Další zápasy – {name}",
+      "seeAll": "Zobrazit vše"
+    }
   },
   "Stadium": {
     "mapTitle": "Mapa stadionu",

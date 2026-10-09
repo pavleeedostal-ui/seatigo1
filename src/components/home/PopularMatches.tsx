@@ -5,7 +5,19 @@ import type { Match } from "@/types/football";
 import type { CheapestOfferSummary } from "@/types/ticketing";
 import { MatchCard } from "@/components/matches/MatchCard";
 import { Section, SectionHeader } from "@/components/shared/Section";
+import { Button } from "@/components/ui/button";
 
+/**
+ * The homepage's one fixture section.
+ *
+ * It used to be two — "Popular Matches" and "Upcoming Fixtures" — which drew
+ * from the same provider in the same order and so showed the same football
+ * twice. This is the merge: the next two fixtures get a larger card, the
+ * rest stay scannable at normal size, and one link goes to the full list.
+ *
+ * Fixtures are whatever the provider returns, in its order. Nothing here is
+ * curated or pinned.
+ */
 export function PopularMatches({
   matches,
   offersSummaries,
@@ -14,6 +26,9 @@ export function PopularMatches({
   offersSummaries: Map<string, CheapestOfferSummary>;
 }) {
   const t = useTranslations("Home.popularMatches");
+
+  const [first, second, ...rest] = matches;
+  const lead = [first, second].filter(Boolean);
 
   return (
     <Section>
@@ -31,14 +46,38 @@ export function PopularMatches({
         }
       />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {matches.map((match) => (
-          <MatchCard
-            key={match.id}
-            match={match}
-            offersSummary={offersSummaries.get(match.id) ?? null}
-          />
-        ))}
+      {lead.length > 0 && (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {lead.map((match) => (
+            <MatchCard
+              key={match.id}
+              match={match}
+              variant="lead"
+              offersSummary={offersSummaries.get(match.id) ?? null}
+            />
+          ))}
+        </div>
+      )}
+
+      {rest.length > 0 && (
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {rest.map((match) => (
+            <MatchCard
+              key={match.id}
+              match={match}
+              offersSummary={offersSummaries.get(match.id) ?? null}
+            />
+          ))}
+        </div>
+      )}
+
+      <div className="mt-10 flex justify-center">
+        <Button asChild variant="outline">
+          <Link href="/matches">
+            {t("exploreAll")}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
       </div>
     </Section>
   );

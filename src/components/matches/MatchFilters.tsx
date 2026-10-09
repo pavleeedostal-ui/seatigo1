@@ -101,7 +101,8 @@ export function MatchFilters({
   const competitionLabel =
     competitionOptions.find((o) => o.value === value.competition)?.label ??
     t("competition");
-  const cityLabel = value.city ?? t("location");
+  const clubLabel =
+    clubOptions.find((o) => o.value === value.club)?.label ?? t("club");
   const priceLabel = value.maxPrice ? `< €${value.maxPrice}` : t("price");
   const availabilityActive = Boolean(
     value.availability && value.availability !== "all",
@@ -113,7 +114,7 @@ export function MatchFilters({
   // otherwise a narrowed result set looks unexplained.
   const hiddenActiveCount = [
     value.country,
-    value.club,
+    value.city,
     value.category,
     value.provider,
     value.range && value.range !== "all" ? value.range : undefined,
@@ -152,6 +153,12 @@ export function MatchFilters({
   if (layout === "bar") {
     return (
       <div className="flex flex-wrap items-center gap-2">
+        <DatePill
+          label={t("date")}
+          value={value.date ?? ""}
+          onChange={(v) => updateParams({ date: v || undefined })}
+        />
+
         <FilterPill
           label={competitionLabel}
           active={Boolean(value.competition)}
@@ -163,10 +170,12 @@ export function MatchFilters({
           ]}
         />
 
-        <DatePill
-          label={t("date")}
-          value={value.date ?? ""}
-          onChange={(v) => updateParams({ date: v || undefined })}
+        <FilterPill
+          label={clubLabel}
+          active={Boolean(value.club)}
+          value={value.club ?? "all"}
+          onChange={(v) => updateParams({ club: v === "all" ? undefined : v })}
+          options={[{ value: "all", label: t("allClubs") }, ...clubOptions]}
         />
 
         <FilterPill
@@ -177,17 +186,6 @@ export function MatchFilters({
           options={[
             { value: "all", label: t("any") },
             ...PRICE_OPTIONS.map((p) => ({ value: p, label: `< €${p}` })),
-          ]}
-        />
-
-        <FilterPill
-          label={cityLabel}
-          active={Boolean(value.city)}
-          value={value.city ?? "all"}
-          onChange={(v) => updateParams({ city: v === "all" ? undefined : v })}
-          options={[
-            { value: "all", label: t("allLocations") },
-            ...cityOptions,
           ]}
         />
 

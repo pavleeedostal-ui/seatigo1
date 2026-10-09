@@ -37,7 +37,6 @@
     "language": "Language"
   },
   "Hero": {
-    "eyebrow": "Football tickets across Europe",
     "subtitle": "Compare football ticket prices from trusted sellers.",
     "searchLabel": "Where",
     "searchPlaceholder": "Team, competition or city",
@@ -45,13 +44,20 @@
     "searchButton": "Search tickets",
     "ticketsLabel": "Tickets",
     "headline": "Find your Seat",
-    "datePlaceholder": "Choose date"
+    "datePlaceholder": "Choose date",
+    "suggestionsLabel": "Search suggestions",
+    "suggestionKind": {
+      "club": "Club",
+      "competition": "Competition",
+      "city": "City"
+    }
   },
   "Home": {
     "popularMatches": {
       "title": "Popular Matches",
       "subtitle": "The fixtures fans are searching for right now.",
-      "viewAll": "View all matches"
+      "viewAll": "View all matches",
+      "exploreAll": "Explore all matches"
     },
     "competitions": {
       "title": "Browse by Competition",
@@ -103,11 +109,6 @@
           "a": "Ticket prices and availability are set by each seller and can change at any time — we refresh offers frequently so you're comparing current prices."
         }
       ]
-    },
-    "upcoming": {
-      "title": "Upcoming Fixtures",
-      "subtitle": "Every announced match across the leagues we cover — tickets or not.",
-      "exploreAll": "Explore all matches"
     }
   },
   "Matches": {
@@ -170,6 +171,11 @@
     "searchSummary": {
       "editSearch": "Edit search",
       "ticketsCount": "{count, plural, one {# ticket} other {# tickets}}"
+    },
+    "dates": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "tbc": "Date to be confirmed"
     }
   },
   "MatchDetail": {
@@ -187,7 +193,18 @@
     "notAnnouncedTitle": "Kickoff not confirmed yet",
     "notAnnouncedBody": "This fixture has been announced, but its kickoff time is still to be confirmed. Ticket offers appear once the match is scheduled.",
     "browseOther": "Browse other matches",
-    "postponedNotice": "This match has been postponed. A new date is yet to be confirmed."
+    "postponedNotice": "This match has been postponed. A new date is yet to be confirmed.",
+    "stats": {
+      "lowestPrice": "From",
+      "sellers": "Sellers",
+      "offers": "Offers"
+    },
+    "related": {
+      "homeTeam": "More {name} fixtures",
+      "awayTeam": "More {name} fixtures",
+      "competition": "More in the {name}",
+      "seeAll": "See all"
+    }
   },
   "Stadium": {
     "mapTitle": "Stadium map",

@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Match } from "@/types/football";
@@ -7,27 +7,33 @@ import { getTicketAvailability } from "@/lib/fixtures/availability";
 import { ClubLogo } from "@/components/shared/ClubLogo";
 import { CompetitionLogo } from "@/components/shared/CompetitionLogo";
 import { FixtureSchedule } from "./FixtureSchedule";
-import { formatPrice } from "@/lib/format";
+import { FixtureCta, FixturePrice } from "./FixturePrice";
 import { cn } from "@/lib/utils";
 
 /**
  * Answers, in order: who is playing, when, where, how much, what to click.
  * Competition appears once, as a quiet label — never repeated as a badge.
  * A fixture with no ticket offers uses the same card, with the price slot
- * saying so; it is a normal result, not a disabled one.
+ * and the action label carrying the difference.
+ *
+ * `variant="lead"` is the same card at a larger size, used for the first one
+ * or two fixtures on the homepage. It is a scale change, not a different
+ * design — nothing is added that the normal card does not have.
  */
 export function MatchCard({
   match,
   offersSummary,
+  variant = "default",
   className,
 }: {
   match: Match;
   offersSummary?: CheapestOfferSummary | null;
+  variant?: "default" | "lead";
   className?: string;
 }) {
-  const locale = useLocale();
   const t = useTranslations("Matches");
   const availability = getTicketAvailability(match, Boolean(offersSummary));
+  const lead = variant === "lead";
 
   return (
     <Link
@@ -42,7 +48,8 @@ export function MatchCard({
           }
         : {})}
       className={cn(
-        "group flex flex-col rounded-card border border-border bg-white p-5 transition-colors duration-200 hover:border-border-strong",
+        "group flex flex-col rounded-card border border-border bg-white transition-colors duration-200 hover:border-border-strong",
+        lead ? "p-5 sm:p-6" : "p-5",
         className,
       )}
     >
@@ -51,45 +58,54 @@ export function MatchCard({
         <span className="truncate">{match.competition.name}</span>
       </p>
 
-      <div className="mt-4 flex flex-col gap-2.5">
-        <TeamLine club={match.homeTeam} />
-        <TeamLine club={match.awayTeam} />
+      <div className={cn("mt-4 flex flex-col", lead ? "gap-3" : "gap-2.5")}>
+        <TeamLine club={match.homeTeam} size={lead ? 44 : 36} lead={lead} />
+        <TeamLine club={match.awayTeam} size={lead ? 44 : 36} lead={lead} />
       </div>
 
-      <FixtureSchedule match={match} showTbc={false} className="mt-4 space-y-0.5 text-[13px]" />
+      <FixtureSchedule
+        match={match}
+        showTbc={false}
+        className="mt-4 space-y-0.5 text-[13px]"
+      />
 
       <div className="mt-5 flex items-end justify-between gap-3 border-t border-border pt-4">
-        {availability === "available" && offersSummary ? (
-          <p className="flex items-baseline gap-1.5">
-            <span className="text-[13px] text-ink-muted">{t("card.from")}</span>
-            <span className="text-[19px] font-semibold leading-none tracking-tight text-ink">
-              {formatPrice(offersSummary.lowestPrice, offersSummary.currency, locale)}
-            </span>
-          </p>
-        ) : (
-          <p className="text-[13px] text-ink-muted">
-            {availability === "not_announced"
-              ? t("card.dateTbc")
-              : t("card.noOffers")}
-          </p>
-        )}
+        <FixturePrice
+          availability={availability}
+          summary={offersSummary}
+          size={lead ? "lead" : "default"}
+        />
 
-        <span className="inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-ink">
+        <FixtureCta availability={availability}>
           {availability === "available"
             ? t("card.compareTickets")
             : t("card.viewMatch")}
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </span>
+        </FixtureCta>
       </div>
     </Link>
   );
 }
 
-function TeamLine({ club }: { club: Match["homeTeam"] }) {
+function TeamLine({
+  club,
+  size,
+  lead,
+}: {
+  club: Match["homeTeam"];
+  size: number;
+  lead: boolean;
+}) {
   return (
     <div className="flex min-w-0 items-center gap-2.5">
-      <ClubLogo club={club} size={36} />
-      <span className="truncate text-[15px] font-medium text-ink" title={club.name}>
+      <ClubLogo club={club} size={size} />
+      <span
+        className={cn(
+          "truncate font-medium text-ink",
+          lead ? "text-[17px]" : "text-[15px]",
+        )}
+        title={club.name}
+      >
         {club.name}
       </span>
     </div>

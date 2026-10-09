@@ -5,18 +5,24 @@ import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 /**
- * The price slot of a match card. Every availability state fills the same
- * slot with the same weight, so a fixture with no offers reads as a normal
- * result rather than a disabled one.
+ * The price slot of a match card — the single most important thing on it,
+ * so the figure itself carries the weight and everything around it stays
+ * quiet: a small "From" lead-in and one muted line of offer count.
+ *
+ * Every availability state fills the same slot, so a fixture with no offers
+ * reads as a normal result rather than a disabled one.
  */
 export function FixturePrice({
   availability,
   summary,
   align = "left",
+  size = "default",
 }: {
   availability: TicketAvailability;
   summary: CheapestOfferSummary | null | undefined;
   align?: "left" | "right";
+  /** `lead` is used by the one or two featured fixtures on the homepage. */
+  size?: "default" | "lead";
 }) {
   const locale = useLocale();
   const t = useTranslations("Matches.card");
@@ -32,8 +38,15 @@ export function FixturePrice({
             align === "right" && "lg:justify-end",
           )}
         >
-          <span className="text-[13px] text-ink-muted">{t("from")}</span>
-          <span className="text-[22px] font-semibold leading-none tracking-tight text-ink">
+          <span className="text-[12px] uppercase tracking-wide text-ink-muted">
+            {t("from")}
+          </span>
+          <span
+            className={cn(
+              "font-semibold leading-none tracking-[-0.02em] text-ink",
+              size === "lead" ? "text-[30px]" : "text-[26px]",
+            )}
+          >
             {formatPrice(summary.lowestPrice, summary.currency, locale)}
           </span>
         </p>
@@ -46,7 +59,7 @@ export function FixturePrice({
 
   return (
     <div className={alignment}>
-      <p className="text-[15px] font-medium text-ink">
+      <p className="text-[15px] font-medium text-ink-muted">
         {availability === "not_announced" ? t("dateTbc") : t("noOffers")}
       </p>
     </div>
@@ -57,4 +70,33 @@ export function FixturePrice({
 export function useFixtureCta(availability: TicketAvailability): string {
   const t = useTranslations("Matches.card");
   return availability === "available" ? t("compareTickets") : t("viewMatch");
+}
+
+/**
+ * The card-level action. A compact secondary button rather than the page's
+ * primary style: there are a dozen of these on a results page, and if each
+ * one shouted, none of them would.
+ */
+export function FixtureCta({
+  availability,
+  className,
+  children,
+}: {
+  availability: TicketAvailability;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex h-10 shrink-0 items-center gap-1.5 rounded-button border px-4 text-[14px] font-medium transition-colors duration-200",
+        availability === "available"
+          ? "border-border-strong text-ink group-hover:border-navy group-hover:bg-navy group-hover:text-white"
+          : "border-border text-ink-muted group-hover:border-border-strong group-hover:text-ink",
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
 }

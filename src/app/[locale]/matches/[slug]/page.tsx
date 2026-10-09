@@ -4,11 +4,14 @@ import { ChevronRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getFootballDataProvider } from "@/lib/football";
-import { getOffersForFixture } from "@/lib/ticketing/aggregator";
+import { getOffersForFixture, getCheapestOffersForFixtures } from "@/lib/ticketing/aggregator";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
 import { getTicketAvailability } from "@/lib/fixtures/availability";
+import type { CheapestOfferSummary } from "@/types/ticketing";
 import { recordClubInterest } from "@/lib/analytics/club-popularity";
 import { MatchHeroCard } from "@/components/matches/MatchHeroCard";
+import { MatchOfferStats } from "@/components/matches/MatchOfferStats";
+import { RelatedMatches, type RelatedMatchGroup } from "@/components/matches/RelatedMatches";
 import { TicketComparison } from "@/components/offers/TicketComparison";
 import { EmptyOffers } from "@/components/offers/EmptyOffers";
 
@@ -84,6 +87,50 @@ export default async function MatchDetailPage({
   const { offers } = await getOffersForFixture(match);
   const availability = getTicketAvailability(match, offers.length > 0);
 
+  // A fixture with nothing to compare must still lead somewhere, so the page
+  // offers real alternatives: the same two clubs, and the same competition.
+  // Only looked up when they are going to be shown.
+  const related: RelatedMatchGroup[] = [];
+  let relatedSummaries = new Map<string, CheapestOfferSummary>();
+  if (availability !== "available") {
+    const [home, away, competition] = await Promise.all([
+      provider.getMatches({ club: match.homeTeam.slug, pageSize: 4 }),
+      provider.getMatches({ club: match.awayTeam.slug, pageSize: 4 }),
+      provider.getMatches({ competition: match.competition.slug, pageSize: 5 }),
+    ]);
+    const exclude = new Set([match.id]);
+    const take = (list: typeof home.matches, limit: number) => {
+      const picked = list.filter((m) => !exclude.has(m.id)).slice(0, limit);
+      for (const m of picked) exclude.add(m.id);
+      return picked;
+    };
+
+    related.push(
+      {
+        kind: "homeTeam",
+        name: match.homeTeam.name,
+        href: `/clubs/${match.homeTeam.slug}`,
+        matches: take(home.matches, 2),
+      },
+      {
+        kind: "awayTeam",
+        name: match.awayTeam.name,
+        href: `/clubs/${match.awayTeam.slug}`,
+        matches: take(away.matches, 2),
+      },
+      {
+        kind: "competition",
+        name: match.competition.name,
+        href: `/competitions/${match.competition.slug}`,
+        matches: take(competition.matches, 3),
+      },
+    );
+
+    relatedSummaries = await getCheapestOffersForFixtures(
+      related.flatMap((group) => group.matches),
+    );
+  }
+
   return (
     <div className="container-page py-10">
       <nav
@@ -108,6 +155,10 @@ export default async function MatchDetailPage({
 
       <MatchHeroCard match={match} />
 
+      {/* Counted from the offers on this page, so it only ever appears when
+          there is a real market to describe. */}
+      {availability === "available" && <MatchOfferStats offers={offers} />}
+
       {match.status === "postponed" && (
         <p className="mt-6 rounded-card border border-border bg-background px-4 py-3 text-[14px] text-ink-muted">
           {t("postponedNotice")}
@@ -128,7 +179,10 @@ export default async function MatchDetailPage({
             <TicketComparison offers={offers} initialTickets={sp.tickets} />
           </>
         ) : (
-          <EmptyOffers availability={availability} />
+          <>
+            <EmptyOffers availability={availability} />
+            <RelatedMatches groups={related} offersSummaries={relatedSummaries} />
+          </>
         )}
       </div>
     </div>

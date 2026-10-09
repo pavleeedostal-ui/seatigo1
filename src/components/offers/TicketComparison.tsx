@@ -77,8 +77,6 @@ export function TicketComparison({
     ? Math.min(...sortedOffers.map((o) => o.price))
     : null;
 
-  const overallLowestPrice = offers.length ? Math.min(...offers.map((o) => o.price)) : null;
-  const overallCurrency = offers[0]?.currency ?? null;
   const overallSellerCount = providers.length;
 
   return (
@@ -99,8 +97,6 @@ export function TicketComparison({
               offerCount={offers.length}
               sellerCount={overallSellerCount}
               categoryCount={availableCategories.length}
-              lowestPrice={overallLowestPrice}
-              currency={overallCurrency}
             />
             <div className="flex items-center gap-2">
               <OffersFiltersDrawer

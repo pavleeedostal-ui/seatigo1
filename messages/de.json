@@ -37,7 +37,6 @@
     "language": "Sprache"
   },
   "Hero": {
-    "eyebrow": "Fußballtickets in ganz Europa",
     "subtitle": "Vergleiche Ticketpreise von vertrauenswürdigen Anbietern.",
     "searchLabel": "Wo",
     "searchPlaceholder": "Verein, Wettbewerb oder Stadt",
@@ -45,13 +44,20 @@
     "searchButton": "Tickets suchen",
     "ticketsLabel": "Tickets",
     "headline": "Find your Seat",
-    "datePlaceholder": "Datum wählen"
+    "datePlaceholder": "Datum wählen",
+    "suggestionsLabel": "Suchvorschläge",
+    "suggestionKind": {
+      "club": "Verein",
+      "competition": "Wettbewerb",
+      "city": "Stadt"
+    }
   },
   "Home": {
     "popularMatches": {
       "title": "Beliebte Spiele",
       "subtitle": "Die Partien, nach denen Fans gerade suchen.",
-      "viewAll": "Alle Spiele ansehen"
+      "viewAll": "Alle Spiele ansehen",
+      "exploreAll": "Alle Spiele entdecken"
     },
     "competitions": {
       "title": "Nach Wettbewerb stöbern",
@@ -103,11 +109,6 @@
           "a": "Preise und Verfügbarkeit werden von jedem Anbieter selbst festgelegt und können sich jederzeit ändern — wir aktualisieren Angebote häufig, damit du aktuelle Preise vergleichst."
         }
       ]
-    },
-    "upcoming": {
-      "title": "Kommende Spiele",
-      "subtitle": "Alle angesetzten Spiele unserer Wettbewerbe — mit und ohne Tickets.",
-      "exploreAll": "Alle Spiele entdecken"
     }
   },
   "Matches": {
@@ -170,6 +171,11 @@
     "searchSummary": {
       "editSearch": "Suche bearbeiten",
       "ticketsCount": "{count, plural, one {# Ticket} other {# Tickets}}"
+    },
+    "dates": {
+      "today": "Heute",
+      "tomorrow": "Morgen",
+      "tbc": "Termin wird noch bestätigt"
     }
   },
   "MatchDetail": {
@@ -187,7 +193,18 @@
     "notAnnouncedTitle": "Anstoßzeit noch nicht bestätigt",
     "notAnnouncedBody": "Diese Partie wurde angesetzt, die Anstoßzeit steht aber noch nicht fest. Ticketangebote erscheinen, sobald das Spiel terminiert ist.",
     "browseOther": "Andere Spiele ansehen",
-    "postponedNotice": "Dieses Spiel wurde verschoben. Ein neuer Termin steht noch nicht fest."
+    "postponedNotice": "Dieses Spiel wurde verschoben. Ein neuer Termin steht noch nicht fest.",
+    "stats": {
+      "lowestPrice": "Ab",
+      "sellers": "Anbieter",
+      "offers": "Angebote"
+    },
+    "related": {
+      "homeTeam": "Weitere Spiele von {name}",
+      "awayTeam": "Weitere Spiele von {name}",
+      "competition": "Mehr aus der {name}",
+      "seeAll": "Alle ansehen"
+    }
   },
   "Stadium": {
     "mapTitle": "Stadionplan",

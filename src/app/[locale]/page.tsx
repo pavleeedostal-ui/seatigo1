@@ -4,7 +4,6 @@ import { getCheapestOffersForFixtures } from "@/lib/ticketing/aggregator";
 import { getPopularClubs } from "@/lib/analytics/club-popularity";
 import { Hero } from "@/components/home/Hero";
 import { PopularMatches } from "@/components/home/PopularMatches";
-import { UpcomingFixtures } from "@/components/home/UpcomingFixtures";
 import { CompetitionsGrid } from "@/components/home/CompetitionsGrid";
 import { PopularClubs } from "@/components/home/PopularClubs";
 import { HowItWorks } from "@/components/home/HowItWorks";
@@ -31,29 +30,22 @@ export default async function HomePage({
   const provider = getFootballDataProvider();
   // Both fixture lists come from the football provider alone. Ticket offers
   // are joined in afterwards for display and never decide what is listed.
-  const [popularMatches, { matches: upcomingFixtures }, competitions, popularClubs] =
-    await Promise.all([
-      provider.getUpcomingMatches(8),
-      provider.getMatches({ pageSize: 6 }),
-      provider.getCompetitions(),
-      // Ranked by measured interest, with a seeded order until there is
-      // enough of it — see lib/analytics/club-popularity.ts.
-      getPopularClubs(8),
-    ]);
-
-  const offersSummaries = await getCheapestOffersForFixtures([
-    ...popularMatches,
-    ...upcomingFixtures,
+  const [popularMatches, competitions, popularClubs] = await Promise.all([
+    // One fixture list, not two: the homepage used to show the same matches
+    // under "Popular" and "Upcoming".
+    provider.getUpcomingMatches(6),
+    provider.getCompetitions(),
+    // Ranked by measured interest, with a seeded order until there is
+    // enough of it — see lib/analytics/club-popularity.ts.
+    getPopularClubs(12),
   ]);
+
+  const offersSummaries = await getCheapestOffersForFixtures(popularMatches);
 
   return (
     <>
       <Hero />
       <PopularMatches matches={popularMatches} offersSummaries={offersSummaries} />
-      <UpcomingFixtures
-        matches={upcomingFixtures}
-        offersSummaries={offersSummaries}
-      />
       <CompetitionsGrid competitions={competitions} />
       <PopularClubs
         clubs={popularClubs.clubs.map((entry) => entry.club)}

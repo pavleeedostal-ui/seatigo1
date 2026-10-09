@@ -1,25 +1,28 @@
-import { useLocale, useTranslations } from "next-intl";
-import { formatPrice } from "@/lib/format";
+import { useTranslations } from "next-intl";
 
+/**
+ * What the comparison toolbar says about the list underneath it.
+ *
+ * Deliberately narrow: the lowest price, the seller count and the total
+ * offer count all live in the stats block beside the fixture hero, and
+ * repeating them here was the same three numbers twice on one screen. This
+ * reports only what the hero cannot — how much is on offer *now*, after the
+ * filters the user has applied.
+ */
 export function OffersSummary({
   offerCount,
   sellerCount,
   categoryCount,
-  lowestPrice,
-  currency,
 }: {
   offerCount: number;
   sellerCount: number;
   categoryCount: number;
-  lowestPrice: number | null;
-  currency: string | null;
 }) {
   const t = useTranslations("Offers");
-  const locale = useLocale();
 
   return (
     <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
-      <p className="text-[14px] text-ink-muted">
+      <p className="text-[14px] text-ink">
         {t(offerCount === 1 ? "summaryOne" : "summary", {
           count: offerCount,
           sellers: sellerCount,
@@ -28,14 +31,6 @@ export function OffersSummary({
       {categoryCount > 0 && (
         <p className="text-[14px] text-ink-muted">
           {categoryCount} {t("categoriesLabel").toLowerCase()}
-        </p>
-      )}
-      {lowestPrice != null && currency && (
-        <p className="flex items-baseline gap-1.5">
-          <span className="text-[13px] text-ink-muted">{t("lowestPrice")}</span>
-          <span className="text-[19px] font-semibold tracking-tight text-ink">
-            {formatPrice(lowestPrice, currency, locale)}
-          </span>
         </p>
       )}
     </div>
