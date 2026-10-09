@@ -65,16 +65,6 @@
       "subtitle": "The fixtures fans are searching for right now.",
       "viewAll": "View all matches"
     },
-    "competitions": {
-      "title": "Browse by Competition",
-      "subtitle": "Every major European league and cup, in one place."
-    },
-    "clubs": {
-      "title": "Popular Clubs",
-      "subtitle": "Jump straight to fixtures for Europe's biggest teams.",
-      "subtitleTrending": "The clubs fans are searching for most on Seatigo right now.",
-      "popular": "Popular"
-    },
     "howItWorks": {
       "title": "How Seatigo Works",
       "subtitle": "Three steps between you and matchday.",
@@ -115,6 +105,11 @@
           "a": "Ticket prices and availability are set by each seller and can change at any time — we refresh offers frequently so you're comparing current prices."
         }
       ]
+    },
+    "discover": {
+      "title": "Discover your next match",
+      "body": "Browse upcoming football matches across Europe and find the fixture you want to experience live.",
+      "cta": "Explore matches"
     }
   },
   "Matches": {

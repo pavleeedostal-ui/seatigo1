@@ -65,16 +65,6 @@
       "subtitle": "Zápasy, které fanoušci hledají právě teď.",
       "viewAll": "Zobrazit všechny zápasy"
     },
-    "competitions": {
-      "title": "Procházet podle soutěže",
-      "subtitle": "Všechny významné evropské ligy a poháry na jednom místě."
-    },
-    "clubs": {
-      "title": "Oblíbené kluby",
-      "subtitle": "Přejděte přímo na zápasy největších evropských týmů.",
-      "subtitleTrending": "Kluby, které fanoušci na Seatigu právě hledají nejčastěji.",
-      "popular": "Populární"
-    },
     "howItWorks": {
       "title": "Jak Seatigo funguje",
       "subtitle": "Tři kroky, které vás dělí od zápasového dne.",
@@ -115,6 +105,11 @@
           "a": "Ceny a dostupnost vstupenek určuje každý prodejce sám a mohou se kdykoli změnit — nabídky proto často aktualizujeme, abyste porovnávali aktuální ceny."
         }
       ]
+    },
+    "discover": {
+      "title": "Objevte svůj další zápas",
+      "body": "Procházejte nadcházející fotbalové zápasy po celé Evropě a najděte ten, který chcete zažít naživo.",
+      "cta": "Objevujte"
     }
   },
   "Matches": {

@@ -65,16 +65,6 @@
       "subtitle": "Le partite più cercate dai tifosi in questo momento.",
       "viewAll": "Vedi tutte le partite"
     },
-    "competitions": {
-      "title": "Sfoglia per competizione",
-      "subtitle": "Tutti i principali campionati e coppe europee in un unico posto."
-    },
-    "clubs": {
-      "title": "Squadre popolari",
-      "subtitle": "Vai direttamente alle partite delle squadre più grandi d'Europa.",
-      "subtitleTrending": "Le squadre più cercate su Seatigo in questo momento.",
-      "popular": "Popolare"
-    },
     "howItWorks": {
       "title": "Come funziona Seatigo",
       "subtitle": "Tre passi che ti separano dal giorno della partita.",
@@ -115,6 +105,11 @@
           "a": "Prezzi e disponibilità sono stabiliti da ciascun venditore e possono cambiare in qualsiasi momento — aggiorniamo spesso le offerte così confronti prezzi aggiornati."
         }
       ]
+    },
+    "discover": {
+      "title": "Scopri la tua prossima partita",
+      "body": "Sfoglia le prossime partite di calcio in tutta Europa e trova l'incontro che vuoi vivere dal vivo.",
+      "cta": "Esplora le partite"
     }
   },
   "Matches": {

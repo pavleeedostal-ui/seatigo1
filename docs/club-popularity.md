@@ -1,8 +1,17 @@
-# Popular Clubs — how the ranking works
+# Club popularity — how the ranking works
 
-The homepage's Popular Clubs section is ordered by **what people actually do
-on Seatigo**, not by how big a club is in the world. Everything that decides
-the order lives in `src/lib/analytics/club-popularity.ts`.
+Clubs are ranked by **what people actually do on Seatigo**, not by how big a
+club is in the world. Everything that decides the order lives in
+`src/lib/analytics/club-popularity.ts`.
+
+> **No surface renders this right now.** The homepage's Popular Clubs grid
+> was removed in favour of a single editorial banner, so nothing currently
+> calls `getPopularClubs()`. Collection is unaffected and still running —
+> every club page view, match view, club search, ticket CTA click and
+> outbound seller click is still counted — so the ranking is warm and
+> correct the moment a surface asks for it again. `getPopularClubs(limit)`
+> is that entry point; the dev inspection route below shows what it would
+> return today.
 
 ## The pieces
 
@@ -93,13 +102,13 @@ The switch is automatic. Nothing has to be flipped when traffic arrives.
 
 ## Performance
 
-The homepage never scores on a request:
+Whatever renders this must never score on a request:
 
 1. Counters are aggregated on write, so there are no rows to scan.
 2. `getPopularClubs` caches the computed ranking for
    `RANKING_CACHE_TTL_MS` (5 minutes).
-3. The homepage is ISR with `revalidate = 300`, so the HTML itself is served
-   from cache and rebuilt in the background.
+3. The homepage is ISR with `revalidate = 300`, so a page embedding the
+   ranking is served from cache and rebuilt in the background.
 
 A cold score is a sum over at most ~135 clubs x 120 days.
 

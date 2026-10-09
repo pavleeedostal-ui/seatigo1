@@ -65,16 +65,6 @@
       "subtitle": "Les rencontres que les fans recherchent en ce moment.",
       "viewAll": "Voir tous les matchs"
     },
-    "competitions": {
-      "title": "Parcourir par compétition",
-      "subtitle": "Tous les grands championnats et coupes d'Europe au même endroit."
-    },
-    "clubs": {
-      "title": "Clubs populaires",
-      "subtitle": "Accédez directement aux matchs des plus grands clubs européens.",
-      "subtitleTrending": "Les clubs les plus recherchés sur Seatigo en ce moment.",
-      "popular": "Populaire"
-    },
     "howItWorks": {
       "title": "Comment fonctionne Seatigo",
       "subtitle": "Trois étapes avant le jour du match.",
@@ -115,6 +105,11 @@
           "a": "Les prix et la disponibilité sont fixés par chaque vendeur et peuvent changer à tout moment — nous actualisons souvent les offres pour comparer des prix à jour."
         }
       ]
+    },
+    "discover": {
+      "title": "Découvrez votre prochain match",
+      "body": "Parcourez les prochains matchs de football dans toute l'Europe et trouvez la rencontre que vous voulez vivre en direct.",
+      "cta": "Explorer les matchs"
     }
   },
   "Matches": {

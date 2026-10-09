@@ -65,16 +65,6 @@
       "subtitle": "Die Partien, nach denen Fans gerade suchen.",
       "viewAll": "Alle Spiele ansehen"
     },
-    "competitions": {
-      "title": "Nach Wettbewerb stöbern",
-      "subtitle": "Jede große europäische Liga und jeder Pokal an einem Ort."
-    },
-    "clubs": {
-      "title": "Beliebte Vereine",
-      "subtitle": "Direkt zu den Spielen von Europas größten Teams.",
-      "subtitleTrending": "Die Vereine, nach denen auf Seatigo gerade am meisten gesucht wird.",
-      "popular": "Beliebt"
-    },
     "howItWorks": {
       "title": "So funktioniert Seatigo",
       "subtitle": "Drei Schritte bis zum Spieltag.",
@@ -115,6 +105,11 @@
           "a": "Preise und Verfügbarkeit werden von jedem Anbieter selbst festgelegt und können sich jederzeit ändern — wir aktualisieren Angebote häufig, damit du aktuelle Preise vergleichst."
         }
       ]
+    },
+    "discover": {
+      "title": "Entdecken Sie Ihr nächstes Spiel",
+      "body": "Stöbern Sie durch kommende Fußballspiele in ganz Europa und finden Sie die Partie, die Sie live erleben möchten.",
+      "cta": "Spiele entdecken"
     }
   },
   "Matches": {
