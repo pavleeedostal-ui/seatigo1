@@ -13,9 +13,27 @@ import { cn } from "@/lib/utils";
  * of saying "this is Seatigo" once, at the top, instead of being spread
  * thinly over every page.
  *
- * The composition is deliberately flat: pills, headline, search, options.
- * Four things stacked in reading order, left-aligned on desktop so the eye
- * lands on the headline and falls straight into the search field below it.
+ * ## The overlap
+ *
+ * The search surface is the last thing in the hero and deliberately hangs
+ * past its bottom edge, so it straddles the line between the dark field and
+ * the white page below. Three things make that work:
+ *
+ * - The section carries **no `overflow-hidden`**. The background layer clips
+ *   its own arcs, which is all that ever needed clipping; clipping here
+ *   would cut the search bar in half and, worse, trap the autocomplete.
+ * - The dark field is **its own layer**, inset from the section's bottom by
+ *   the overlap, while a **matching negative bottom margin** pulls the next
+ *   section up into that gap. Background and layout move together; a
+ *   negative margin alone would not do it, because it shifts the sibling
+ *   without moving the hero's own painted edge.
+ * - The section is a **`z-10` stacking context**, so the hero — and with it
+ *   the autocomplete at `z-50` inside — paints above the section that now
+ *   overlaps it.
+ *
+ * The overlap is smaller on a phone: the stacked search surface is four
+ * times taller there, and half of it hanging onto white would read as a
+ * mistake rather than as a layer.
  */
 
 /** Where the mode pills lead. The homepage search is about matches. */
@@ -26,9 +44,13 @@ const MODES = [
 ] as const;
 
 /**
- * Shortcuts into the search the hero would otherwise take two steps to
- * reach. Each one is a real filter the results page already supports — no
- * option here promises something the backend cannot do.
+ * Shortcuts past the search box for the three things people most often want.
+ * Each one is a real filter the results page already supports — no option
+ * here promises something the backend cannot do.
+ *
+ * They sit *above* the search rather than below it because the search
+ * surface has to be the hero's final element for the overlap to work, and
+ * because they read as ways in rather than as settings on the box.
  */
 const QUICK_OPTIONS = [
   { key: "available", href: "/matches?availability=available" },
@@ -47,9 +69,18 @@ export function Hero() {
       // it; the padding puts the content back where it belongs. 73px is the
       // header's h-18 plus the 1px bottom border it keeps in both states so
       // its height never changes as it switches from transparent to solid.
-      className="relative isolate -mt-[73px] overflow-hidden bg-hero pb-14 pt-28 sm:pb-20 sm:pt-32 lg:pb-24"
+      //
+      // The negative bottom margin is the overlap — see the note above, and
+      // keep it in step with the next section's top padding on the homepage.
+      className="relative z-10 -mt-[73px] -mb-8 pb-0 pt-28 sm:-mb-11 sm:pt-32"
     >
-      <HeroBackground />
+      {/* The dark field, stopping one overlap short of the section's bottom.
+          That gap is what the search bar hangs into: the section itself has
+          no background, so the next section — pulled up by the matching
+          negative margin — shows through behind it. */}
+      <div className="absolute inset-x-0 bottom-8 top-0 overflow-hidden bg-hero sm:bottom-11">
+        <HeroBackground />
+      </div>
 
       <div className="container-page relative">
         {/* Mode pills. Scrollable on a phone rather than wrapping, so the
@@ -91,11 +122,7 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="mt-8 sm:mt-10">
-          <SearchBar tone="hero" />
-        </div>
-
-        <ul className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2">
+        <ul className="mt-6 flex flex-wrap items-center gap-2 sm:mt-7">
           {QUICK_OPTIONS.map((option) => (
             <li key={option.key}>
               <Link
@@ -108,6 +135,11 @@ export function Hero() {
             </li>
           ))}
         </ul>
+
+        {/* Last in the hero, and the only thing allowed past its edge. */}
+        <div className="relative z-20 mt-7 sm:mt-8">
+          <SearchBar tone="hero" />
+        </div>
       </div>
     </section>
   );

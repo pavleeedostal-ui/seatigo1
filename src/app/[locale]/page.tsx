@@ -45,7 +45,16 @@ export default async function HomePage({
   return (
     <>
       <Hero />
-      <PopularMatches matches={popularMatches} offersSummaries={offersSummaries} />
+      {/* The hero's search surface hangs past its bottom edge and overlaps
+          this section. The extra top padding is that overlap plus the
+          section's usual breathing room, so the heading never collides with
+          the floating search bar — keep it in step with the negative bottom
+          margin in Hero.tsx. */}
+      <PopularMatches
+        matches={popularMatches}
+        offersSummaries={offersSummaries}
+        className="pt-24 sm:pt-32 lg:pt-36"
+      />
       <CompetitionsGrid competitions={competitions} />
       <PopularClubs
         clubs={popularClubs.clubs.map((entry) => entry.club)}

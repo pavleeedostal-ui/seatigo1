@@ -24,9 +24,12 @@ import { Section, SectionHeader } from "@/components/shared/Section";
 export function PopularMatches({
   matches,
   offersSummaries,
+  className,
 }: {
   matches: Match[];
   offersSummaries: Map<string, CheapestOfferSummary>;
+  /** The homepage uses this to clear the hero's overlapping search bar. */
+  className?: string;
 }) {
   const t = useTranslations("Home.popularMatches");
 
@@ -34,7 +37,7 @@ export function PopularMatches({
   const lead = [first, second].filter(Boolean);
 
   return (
-    <Section>
+    <Section className={className}>
       <SectionHeader
         title={t("title")}
         subtitle={t("subtitle")}
