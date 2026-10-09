@@ -40,7 +40,19 @@ const PANEL_GAP = 8;
  * `city`) rather than re-running a free-text search, so choosing "Arsenal"
  * is exact. Typing something with no match still submits as `q`.
  */
-export function SearchBar({ className }: { className?: string }) {
+export function SearchBar({
+  className,
+  /**
+   * `hero` is the homepage's deep-green surface: the control becomes warm
+   * paper rather than plain white, sits on a heavier shadow so it lifts off
+   * the green, and gets a little more height. Everything else about it —
+   * fields, autocomplete, keyboard behaviour — is identical.
+   */
+  tone = "default",
+}: {
+  className?: string;
+  tone?: "default" | "hero";
+}) {
   const t = useTranslations("Hero");
   const router = useRouter();
 
@@ -236,6 +248,7 @@ export function SearchBar({ className }: { className?: string }) {
     }
   }
 
+  const hero = tone === "hero";
   const term = query.trim();
   const longEnough = term.length >= MIN_QUERY_LENGTH;
   const answersCurrentQuery = resolvedQuery === term;
@@ -271,12 +284,20 @@ export function SearchBar({ className }: { className?: string }) {
     <div ref={rootRef} className={cn("relative", className)}>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col rounded-surface border border-border bg-white p-2 text-left shadow-search sm:flex-row sm:items-center"
+        className={cn(
+          "flex flex-col rounded-surface text-left sm:flex-row sm:items-center",
+          tone === "hero"
+            ? "bg-surface-warm p-2.5 shadow-hero-search"
+            : "border border-border bg-white p-2 shadow-search",
+        )}
       >
         <div ref={fieldRef} className="flex min-w-0 flex-1 flex-col gap-0.5 px-4 py-2.5">
           <label
             htmlFor={`${listboxId}-input`}
-            className="text-xs font-medium text-ink-muted"
+            className={cn(
+              "text-xs font-medium",
+              hero ? "text-surface-warm-muted" : "text-ink-muted",
+            )}
           >
             {t("searchLabel")}
           </label>
@@ -302,14 +323,14 @@ export function SearchBar({ className }: { className?: string }) {
                 ? optionId(suggestions[activeIndex])
                 : undefined
             }
-            className="w-full bg-transparent text-[15px] text-ink placeholder:text-ink-faint focus:outline-none"
+            className={cn("w-full bg-transparent text-[15px] focus:outline-none", hero ? "text-surface-warm-ink placeholder:text-surface-warm-faint" : "text-ink placeholder:text-ink-faint")}
           />
         </div>
 
-        <div className="mx-4 h-px bg-border sm:mx-0 sm:h-8 sm:w-px" />
+        <div className={cn("mx-4 h-px sm:mx-0 sm:h-8 sm:w-px", hero ? "bg-surface-warm-line" : "bg-border")} />
 
         <label className="flex flex-col gap-0.5 px-4 py-2.5 sm:w-44">
-          <span className="text-xs font-medium text-ink-muted">{t("dateLabel")}</span>
+          <span className={cn("text-xs font-medium", hero ? "text-surface-warm-muted" : "text-ink-muted")}>{t("dateLabel")}</span>
           {/* Starts as text so the field reads "Choose date" instead of the
               browser's dd.mm.yyyy mask; becomes a real date input on focus. */}
           <input
@@ -324,18 +345,18 @@ export function SearchBar({ className }: { className?: string }) {
               if (!e.currentTarget.value) e.currentTarget.type = "text";
             }}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full bg-transparent text-[15px] text-ink placeholder:text-ink-faint focus:outline-none"
+            className={cn("w-full bg-transparent text-[15px] focus:outline-none", hero ? "text-surface-warm-ink placeholder:text-surface-warm-faint" : "text-ink placeholder:text-ink-faint")}
           />
         </label>
 
-        <div className="mx-4 h-px bg-border sm:mx-0 sm:h-8 sm:w-px" />
+        <div className={cn("mx-4 h-px sm:mx-0 sm:h-8 sm:w-px", hero ? "bg-surface-warm-line" : "bg-border")} />
 
         <label className="flex flex-col gap-0.5 px-4 py-2.5 sm:w-28">
-          <span className="text-xs font-medium text-ink-muted">{t("ticketsLabel")}</span>
+          <span className={cn("text-xs font-medium", hero ? "text-surface-warm-muted" : "text-ink-muted")}>{t("ticketsLabel")}</span>
           <select
             value={tickets}
             onChange={(e) => setTickets(e.target.value)}
-            className="w-full appearance-none bg-transparent text-[15px] text-ink focus:outline-none"
+            className={cn("w-full appearance-none bg-transparent text-[15px] focus:outline-none", hero ? "text-surface-warm-ink" : "text-ink")}
           >
             {TICKET_OPTIONS.map((n) => (
               <option key={n} value={n}>
@@ -345,7 +366,12 @@ export function SearchBar({ className }: { className?: string }) {
           </select>
         </label>
 
-        <Button type="submit" size="lg" className="mt-2 w-full sm:ml-1 sm:mt-0 sm:w-auto">
+        <Button
+          type="submit"
+          size="lg"
+          variant={tone === "hero" ? "gold" : "primary"}
+          className="mt-2 w-full sm:ml-1 sm:mt-0 sm:w-auto"
+        >
           <Search className="h-4 w-4" />
           {t("searchButton")}
         </Button>
@@ -353,18 +379,21 @@ export function SearchBar({ className }: { className?: string }) {
 
       {showPanel && (
         <div
-          className="absolute left-0 right-0 z-50 overflow-y-auto overscroll-contain rounded-card border border-border bg-white p-1.5 text-left shadow-pop"
+          className={cn(
+            "absolute left-0 right-0 z-50 overflow-y-auto overscroll-contain rounded-card border border-border p-1.5 text-left shadow-pop",
+            tone === "hero" ? "bg-surface-warm" : "bg-white",
+          )}
           style={{ top: panel.top, maxHeight: panel.maxHeight }}
         >
           {showLoading && (
-            <p className="flex items-center gap-2.5 px-3 py-3 text-[14px] text-ink-muted">
-              <Loader2 className="h-4 w-4 animate-spin text-ink-faint" aria-hidden="true" />
+            <p className={cn("flex items-center gap-2.5 px-3 py-3 text-[14px]", hero ? "text-surface-warm-muted" : "text-ink-muted")}>
+              <Loader2 className={cn("h-4 w-4 animate-spin", hero ? "text-surface-warm-faint" : "text-ink-faint")} aria-hidden="true" />
               {t("searching")}
             </p>
           )}
 
           {showEmpty && (
-            <p className="px-3 py-3 text-[14px] text-ink-muted">
+            <p className={cn("px-3 py-3 text-[14px]", hero ? "text-surface-warm-muted" : "text-ink-muted")}>
               {t("noSuggestions", { query: term })}
             </p>
           )}
@@ -379,7 +408,7 @@ export function SearchBar({ className }: { className?: string }) {
               <li key={group.kind} role="presentation">
                 <p
                   role="presentation"
-                  className="px-3 pb-1 pt-2.5 text-[11px] font-medium uppercase tracking-wider text-ink-faint"
+                  className={cn("px-3 pb-1 pt-2.5 text-[11px] font-medium uppercase tracking-wider", hero ? "text-surface-warm-faint" : "text-ink-faint")}
                 >
                   {t(`suggestionKind.${group.kind}` as const)}
                 </p>
@@ -390,6 +419,7 @@ export function SearchBar({ className }: { className?: string }) {
                       id={optionId(suggestion)}
                       suggestion={suggestion}
                       active={index === activeIndex}
+                      tone={tone}
                       onHover={() => setActiveIndex(index)}
                       onSelect={() => choose(suggestion)}
                     />
@@ -408,12 +438,14 @@ function SuggestionRow({
   id,
   suggestion,
   active,
+  tone,
   onHover,
   onSelect,
 }: {
   id: string;
   suggestion: SearchSuggestion;
   active: boolean;
+  tone: "default" | "hero";
   onHover: () => void;
   onSelect: () => void;
 }) {
@@ -432,14 +464,26 @@ function SuggestionRow({
       }}
       className={cn(
         "flex cursor-pointer items-center gap-3 rounded-control px-3 py-2.5 transition-colors",
-        active && "bg-background",
+        active && (tone === "hero" ? "bg-white" : "bg-background"),
       )}
     >
       <SuggestionIcon suggestion={suggestion} />
       <span className="min-w-0 flex-1">
-        <span className="block truncate text-[15px] text-ink">{suggestion.label}</span>
+        <span
+          className={cn(
+            "block truncate text-[15px]",
+            tone === "hero" ? "text-surface-warm-ink" : "text-ink",
+          )}
+        >
+          {suggestion.label}
+        </span>
         {suggestion.hint && (
-          <span className="block truncate text-[13px] text-ink-muted">
+          <span
+            className={cn(
+              "block truncate text-[13px]",
+              tone === "hero" ? "text-surface-warm-muted" : "text-ink-muted",
+            )}
+          >
             {suggestion.hint}
           </span>
         )}

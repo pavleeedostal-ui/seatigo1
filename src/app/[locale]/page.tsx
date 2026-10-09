@@ -51,8 +51,11 @@ export default async function HomePage({
         clubs={popularClubs.clubs.map((entry) => entry.club)}
         source={popularClubs.source}
       />
-      <HowItWorks />
+      {/* The informational block. "How it works" used to sit high enough to
+          read as a pitch; down here it is reference material, next to the
+          other things someone checks before they trust a comparison site. */}
       <TrustBadges />
+      <HowItWorks />
       <Faq />
     </>
   );

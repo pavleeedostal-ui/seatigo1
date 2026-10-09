@@ -29,7 +29,6 @@
     "matches": "Matchs",
     "competitions": "Compétitions",
     "clubs": "Clubs",
-    "howItWorks": "Comment ça marche",
     "signIn": "Se connecter",
     "findTickets": "Trouver des billets",
     "search": "Rechercher",
@@ -37,7 +36,7 @@
     "language": "Langue"
   },
   "Hero": {
-    "subtitle": "Comparez les prix des billets de vendeurs fiables.",
+    "subtitle": "Comparez les prix des billets de football dans toute l'Europe en une seule recherche.",
     "searchLabel": "Où",
     "searchPlaceholder": "Équipe, compétition ou ville",
     "dateLabel": "Quand",
@@ -52,7 +51,13 @@
       "city": "Ville"
     },
     "searching": "Recherche…",
-    "noSuggestions": "Aucun club, compétition ou ville ne correspond à « {query} »."
+    "noSuggestions": "Aucun club, compétition ou ville ne correspond à « {query} ».",
+    "browseLabel": "Parcourir Seatigo",
+    "quick": {
+      "available": "Uniquement avec billets",
+      "weekend": "Ce week-end",
+      "bestPrices": "Meilleurs prix"
+    }
   },
   "Home": {
     "popularMatches": {

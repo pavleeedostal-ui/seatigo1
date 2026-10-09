@@ -29,7 +29,6 @@
     "matches": "Zápasy",
     "competitions": "Soutěže",
     "clubs": "Kluby",
-    "howItWorks": "Jak to funguje",
     "signIn": "Přihlásit se",
     "findTickets": "Najít vstupenky",
     "search": "Hledat",
@@ -37,7 +36,7 @@
     "language": "Jazyk"
   },
   "Hero": {
-    "subtitle": "Porovnejte ceny vstupenek na fotbal od ověřených prodejců.",
+    "subtitle": "Porovnejte ceny vstupenek na fotbal v celé Evropě jedním hledáním.",
     "searchLabel": "Kde",
     "searchPlaceholder": "Tým, soutěž nebo město",
     "dateLabel": "Kdy",
@@ -52,7 +51,13 @@
       "city": "Město"
     },
     "searching": "Hledání…",
-    "noSuggestions": "Dotazu „{query}“ neodpovídá žádný klub, soutěž ani město."
+    "noSuggestions": "Dotazu „{query}“ neodpovídá žádný klub, soutěž ani město.",
+    "browseLabel": "Procházet Seatigo",
+    "quick": {
+      "available": "Jen zápasy se vstupenkami",
+      "weekend": "Tento víkend",
+      "bestPrices": "Nejlepší ceny"
+    }
   },
   "Home": {
     "popularMatches": {

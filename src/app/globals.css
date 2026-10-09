@@ -28,6 +28,37 @@
   --border: #e7e9ee;
   --border-strong: #d4d8e0;
   --danger: #d92d20;
+
+  /* Hero surface.
+     The homepage opens on a near-black green field that the rest of the
+     product does not use: it is the one place Seatigo gets to be a brand
+     rather than a tool, and keeping it to that one surface is what stops
+     the colour from turning into noise on every results page.
+
+     Gold is an accent, never a field. It appears on exactly two things —
+     the primary action and the hairline under the active pill — because a
+     gold that covers area stops reading as expensive and starts reading
+     as a casino. */
+  --hero: #0b0f0d;
+  --hero-elevated: #111816;
+  --hero-muted: #18211d;
+  --hero-ink: #f7f6f2;
+  --hero-ink-muted: #b7b8b1;
+  --hero-gold: #c6a86a;
+  --hero-champagne: #e4d3af;
+  /* Dividers on dark: light at 8%, so structure is felt rather than drawn. */
+  --hero-line: rgba(255, 255, 255, 0.08);
+  --hero-line-strong: rgba(255, 255, 255, 0.16);
+  /* Ivory, not white: the search surface should read as paper laid on the
+     dark, not as a hole punched through it. */
+  --surface-warm: #f5f3ee;
+  --surface-warm-ink: #151817;
+  /* Warm greys for the ivory surface. The product's --ink-muted/--ink-faint
+     are mixed for white and read faintly blue on ivory; these are the same
+     roles re-tuned warm, and both clear 4.5:1 on #f5f3ee. */
+  --surface-warm-muted: #4f4e48;
+  --surface-warm-faint: #68665e;
+  --surface-warm-line: #e2dfd6;
 }
 
 @theme inline {
@@ -45,6 +76,21 @@
   --color-border-strong: var(--border-strong);
   --color-danger: var(--danger);
 
+  --color-hero: var(--hero);
+  --color-hero-elevated: var(--hero-elevated);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-ink-muted: var(--hero-ink-muted);
+  --color-hero-gold: var(--hero-gold);
+  --color-hero-champagne: var(--hero-champagne);
+  --color-hero-line: var(--hero-line);
+  --color-hero-line-strong: var(--hero-line-strong);
+  --color-surface-warm: var(--surface-warm);
+  --color-surface-warm-ink: var(--surface-warm-ink);
+  --color-surface-warm-muted: var(--surface-warm-muted);
+  --color-surface-warm-faint: var(--surface-warm-faint);
+  --color-surface-warm-line: var(--surface-warm-line);
+
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -53,6 +99,9 @@
   --shadow-search: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -8px rgba(11, 18, 32, 0.12);
   --shadow-pop: 0 4px 6px -2px rgba(16, 24, 40, 0.04), 0 12px 24px -6px rgba(11, 18, 32, 0.12);
   --shadow-sheet: 0 -8px 40px rgba(11, 18, 32, 0.16);
+  /* The search surface lifts off the near-black hero. Deeper and darker
+     than the shadows used on white, or it reads as a grey smudge. */
+  --shadow-hero-search: 0 2px 4px rgba(0, 0, 0, 0.3), 0 32px 64px -20px rgba(0, 0, 0, 0.65);
 
   /* One radius per role, so components stop inventing their own. */
   --radius-control: 10px;
@@ -101,11 +150,16 @@
   }
 }
 
-/* Tailwind v4 defaults border-color to currentColor; keep borders neutral. */
-*,
-::before,
-::after {
-  border-color: var(--border);
+/* Tailwind v4 defaults border-color to currentColor; keep borders neutral.
+   This must sit in @layer base: an unlayered rule outruns every layered one
+   regardless of specificity, so written bare it silently beat every
+   `border-*` colour utility in the app — including `border-transparent`. */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
 }
 
 html {

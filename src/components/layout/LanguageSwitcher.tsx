@@ -12,7 +12,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher({ className }: { className?: string }) {
+export function LanguageSwitcher({
+  className,
+  /** `onDark` is the homepage hero, where the header sits on deep green. */
+  tone = "default",
+}: {
+  className?: string;
+  tone?: "default" | "onDark";
+}) {
   const locale = useLocale() as AppLocale;
   const pathname = usePathname();
   const router = useRouter();
@@ -25,7 +32,10 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           type="button"
           aria-label={t("language")}
           className={cn(
-            "inline-flex h-11 items-center gap-1.5 rounded-control px-2.5 text-[15px] text-ink-muted transition-colors hover:text-ink lg:h-9",
+            "inline-flex h-11 items-center gap-1.5 rounded-control px-2.5 text-[15px] transition-colors lg:h-9",
+            tone === "onDark"
+              ? "text-hero-ink-muted hover:text-hero-ink"
+              : "text-ink-muted hover:text-ink",
             className,
           )}
         >

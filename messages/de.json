@@ -29,7 +29,6 @@
     "matches": "Spiele",
     "competitions": "Wettbewerbe",
     "clubs": "Vereine",
-    "howItWorks": "So funktioniert's",
     "signIn": "Anmelden",
     "findTickets": "Tickets finden",
     "search": "Suche",
@@ -37,7 +36,7 @@
     "language": "Sprache"
   },
   "Hero": {
-    "subtitle": "Vergleiche Ticketpreise von vertrauenswürdigen Anbietern.",
+    "subtitle": "Vergleichen Sie Ticketpreise für Fußballspiele in ganz Europa mit einer Suche.",
     "searchLabel": "Wo",
     "searchPlaceholder": "Verein, Wettbewerb oder Stadt",
     "dateLabel": "Wann",
@@ -52,7 +51,13 @@
       "city": "Stadt"
     },
     "searching": "Suche läuft…",
-    "noSuggestions": "Keine Vereine, Wettbewerbe oder Städte passen zu „{query}“."
+    "noSuggestions": "Keine Vereine, Wettbewerbe oder Städte passen zu „{query}“.",
+    "browseLabel": "Seatigo durchsuchen",
+    "quick": {
+      "available": "Nur Spiele mit Tickets",
+      "weekend": "Dieses Wochenende",
+      "bestPrices": "Beste Preise"
+    }
   },
   "Home": {
     "popularMatches": {
