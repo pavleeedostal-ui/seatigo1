@@ -96,16 +96,18 @@ export function Hero() {
                   href={mode.href}
                   aria-current={mode.active ? "page" : undefined}
                   className={cn(
-                    "relative inline-flex h-10 items-center rounded-button px-4 text-[14px] font-medium transition-colors",
+                    // Height and margins are untouched on purpose: these sit
+                    // above the headline, so any vertical change would push
+                    // the search surface off its approved position.
+                    "relative inline-flex h-10 items-center rounded-full px-4 text-[14px] transition-colors",
                     mode.active
-                      ? "bg-surface-warm text-surface-warm-ink"
-                      : "border border-hero-line text-hero-ink-muted hover:border-hero-line-strong hover:text-hero-ink",
+                      ? // Ivory, with a brushed-gold edge rather than a gold
+                        // fill — the metal reads as a rim, not as paint.
+                        "bg-surface-warm font-medium text-surface-warm-ink ring-1 ring-hero-gold/40"
+                      : "border border-hero-line bg-white/[0.02] font-normal text-hero-ink-muted hover:border-hero-line-strong hover:text-hero-ink",
                   )}
                 >
                   {tNav(mode.key)}
-                  {mode.active && (
-                    <span className="absolute inset-x-4 -bottom-px h-px rounded-full bg-hero-gold" />
-                  )}
                 </Link>
               </li>
             ))}
@@ -127,10 +129,10 @@ export function Hero() {
             <li key={option.key}>
               <Link
                 href={option.href}
-                className="group inline-flex h-9 items-center gap-1.5 rounded-button border border-hero-line bg-hero-elevated/60 px-3.5 text-[13px] text-hero-ink-muted transition-colors hover:border-hero-line-strong hover:text-hero-ink"
+                className="group inline-flex h-9 items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-3.5 text-[13px] text-hero-ink-faint transition-colors hover:border-hero-line hover:text-hero-ink-muted"
               >
                 {t(`quick.${option.key}` as const)}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                <ArrowRight className="h-3 w-3 opacity-70 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </li>
           ))}

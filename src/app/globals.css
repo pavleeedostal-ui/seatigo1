@@ -43,9 +43,18 @@
   --hero-elevated: #111816;
   --hero-muted: #18211d;
   --hero-ink: #f7f6f2;
-  --hero-ink-muted: #b7b8b1;
-  --hero-gold: #c6a86a;
-  --hero-champagne: #e4d3af;
+  /* Three tiers on the dark field, and they must stay distinguishable:
+     headline strongest, subtitle clearly secondary, utility labels
+     weakest. --muted carries the subtitle, --faint the quick filters. */
+  --hero-ink-muted: #c2c3bc;
+  --hero-ink-faint: #969992;
+  /* Brushed brass rather than yellow: a shade cooler and less saturated
+     than a true gold, which is what keeps it reading as metal instead of
+     as a highlighter. Hover goes *down* into the deeper tone — a gold that
+     brightens on hover looks like a web page, not like an object. */
+  --hero-gold: #c7a96b;
+  --hero-gold-deep: #ae8e54;
+  --hero-champagne: #e2d3b2;
   /* Dividers on dark: light at 8%, so structure is felt rather than drawn. */
   --hero-line: rgba(255, 255, 255, 0.08);
   --hero-line-strong: rgba(255, 255, 255, 0.16);
@@ -81,7 +90,9 @@
   --color-hero-muted: var(--hero-muted);
   --color-hero-ink: var(--hero-ink);
   --color-hero-ink-muted: var(--hero-ink-muted);
+  --color-hero-ink-faint: var(--hero-ink-faint);
   --color-hero-gold: var(--hero-gold);
+  --color-hero-gold-deep: var(--hero-gold-deep);
   --color-hero-champagne: var(--hero-champagne);
   --color-hero-line: var(--hero-line);
   --color-hero-line-strong: var(--hero-line-strong);
