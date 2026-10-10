@@ -76,6 +76,13 @@ export function useFixtureCta(availability: TicketAvailability): string {
  * The card-level action. A compact secondary button rather than the page's
  * primary style: there are a dozen of these on a results page, and if each
  * one shouted, none of them would.
+ *
+ * Deliberately **not** `shrink-0`. It used to be, which is what pushed
+ * "Porovnat vstupenky" out through the right edge of the narrow four-column
+ * cards: a non-shrinking button plus a non-shrinking price in a fixed row
+ * needs more width than a ~284px card has, and the overflow has to go
+ * somewhere. The footers that use it now wrap or stack instead, and this
+ * caps itself at the container either way.
  */
 export function FixtureCta({
   availability,
@@ -89,7 +96,9 @@ export function FixtureCta({
   return (
     <span
       className={cn(
-        "inline-flex h-10 shrink-0 items-center gap-1.5 rounded-button border px-4 text-[14px] font-medium transition-colors duration-200",
+        // `whitespace-nowrap` keeps the label on one line; the footer gives
+        // it a row of its own when there is not enough width for two.
+        "inline-flex h-10 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-button border px-3.5 text-[14px] font-medium transition-colors duration-200",
         availability === "available"
           ? "border-border-strong text-ink group-hover:border-navy group-hover:bg-navy group-hover:text-white"
           : "border-border text-ink-muted group-hover:border-border-strong group-hover:text-ink",

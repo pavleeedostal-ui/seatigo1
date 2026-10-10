@@ -48,7 +48,10 @@ export function MatchCard({
           }
         : {})}
       className={cn(
-        "group flex flex-col rounded-card border border-border bg-white transition-colors duration-200 hover:border-border-strong",
+        // A query container: a compact four-column card and a wide lead card
+        // live at the same viewport width, so only the card's own size can
+        // decide whether its footer fits on one line.
+        "@container group flex flex-col rounded-card border border-border bg-white transition-colors duration-200 hover:border-border-strong",
         lead ? "p-5 sm:p-6" : "p-5",
         className,
       )}
@@ -69,14 +72,20 @@ export function MatchCard({
         className="mt-4 space-y-0.5 text-[13px]"
       />
 
-      <div className="mt-5 flex items-end justify-between gap-3 border-t border-border pt-4">
-        <FixturePrice
-          availability={availability}
-          summary={offersSummary}
-          size={lead ? "lead" : "default"}
-        />
+      {/* Stacked until the card itself is wide enough for price and action
+          side by side. Below ~22rem — every four-column card, and every card
+          on a phone — the button takes a full row of its own rather than
+          being squeezed past the card's edge. */}
+      <div className="mt-5 flex flex-col items-stretch gap-3 border-t border-border pt-4 @[22rem]:flex-row @[22rem]:items-end @[22rem]:justify-between">
+        <div className="min-w-0">
+          <FixturePrice
+            availability={availability}
+            summary={offersSummary}
+            size={lead ? "lead" : "default"}
+          />
+        </div>
 
-        <FixtureCta availability={availability}>
+        <FixtureCta availability={availability} className="w-full @[22rem]:w-auto">
           {availability === "available"
             ? t("card.compareTickets")
             : t("card.viewMatch")}

@@ -60,12 +60,17 @@ export function MatchListRow({
 
       <FixtureSchedule match={match} showTbc={false} className="min-w-0 flex-1" />
 
-      <div className="flex items-center justify-between gap-5 border-t border-border pt-4 lg:shrink-0 lg:justify-end lg:border-t-0 lg:pt-0">
-        <FixturePrice
-          availability={availability}
-          summary={offersSummary}
-          align="right"
-        />
+      {/* Wraps rather than overflowing: below lg this is the full width of
+          the card, but a long localized label plus a price still has to be
+          able to break onto two lines. */}
+      <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 border-t border-border pt-4 lg:shrink-0 lg:flex-nowrap lg:justify-end lg:border-t-0 lg:pt-0">
+        <div className="min-w-0">
+          <FixturePrice
+            availability={availability}
+            summary={offersSummary}
+            align="right"
+          />
+        </div>
 
         <FixtureCta availability={availability}>
           {availability === "available"
