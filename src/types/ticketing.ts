@@ -17,6 +17,14 @@ export type OfferSortKey =
  * A ticket seller Seatigo compares offers from. Never a Seatigo-owned
  * inventory — Seatigo links out to the provider's own checkout.
  */
+/**
+ * Where a seller's inventory comes from. `primary` is the club or its
+ * official agent; `secondary` is a marketplace reselling third-party
+ * inventory. Seatigo links out either way and never handles payment, but
+ * the distinction matters to a buyer and to consumer-protection rules.
+ */
+export type TicketMarketType = "primary" | "secondary";
+
 export interface TicketProvider {
   id: string;
   name: string;
@@ -24,6 +32,7 @@ export interface TicketProvider {
   website: string;
   /** Affiliate network or program this provider is contracted through, if any. */
   affiliateNetwork?: string;
+  marketType?: TicketMarketType;
   active: boolean;
   supportedCountries: string[];
   supportedCurrencies: string[];

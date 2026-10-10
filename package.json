@@ -18,7 +18,8 @@
     "import:ligue1": "tsx --tsconfig tsconfig.json scripts/import-ligue-1-fixtures.ts",
     "import:bundesliga": "tsx --tsconfig tsconfig.json scripts/import-bundesliga-fixtures.ts",
     "import:ucl": "tsx --tsconfig tsconfig.json scripts/import-champions-league-fixtures.ts",
-    "import:uel": "tsx --tsconfig tsconfig.json scripts/import-europa-league-fixtures.ts"
+    "import:uel": "tsx --tsconfig tsconfig.json scripts/import-europa-league-fixtures.ts",
+    "test": "tsx --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
