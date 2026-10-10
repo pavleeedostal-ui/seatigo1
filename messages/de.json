@@ -287,14 +287,20 @@
   },
   "Clubs": {
     "title": "Vereine",
-    "subtitle": "Finde kommende Spiele der beliebtesten europäischen Vereine.",
     "viewMatches": "Spiele ansehen",
     "upcomingFixtures": "Kommende Spiele",
     "noFixtures": "Für diesen Verein stehen derzeit keine Spiele an.",
     "stadium": "Heimstadion",
     "stadiumUnknown": "Heimstadion noch offen",
     "competitions": "Wettbewerbe",
-    "backToClubs": "Alle Vereine"
+    "backToClubs": "Alle Vereine",
+    "searchLabel": "Vereine suchen",
+    "searchPlaceholder": "Verein suchen",
+    "browseByLetter": "Vereine nach Buchstaben durchsuchen",
+    "allLetters": "Alle",
+    "noResults": "Keine Vereine gefunden.",
+    "noResultsHint": "Versuchen Sie einen anderen Namen oder Buchstaben.",
+    "directorySubtitle": "{count} Vereine aus ganz Europa. Suchen Sie nach Namen oder blättern Sie von A bis Z."
   },
   "Common": {
     "loading": "Wird geladen…",
@@ -386,12 +392,32 @@
     "disclaimer": "Seatigo vergleicht Ticketangebote von Drittanbietern. Preise und Verfügbarkeit können sich ändern. Der Kauf wird auf der Website des Anbieters abgeschlossen."
   },
   "Countries": {
+    "Armenia": "Armenien",
+    "Austria": "Österreich",
+    "Azerbaijan": "Aserbaidschan",
+    "Belgium": "Belgien",
+    "Bulgaria": "Bulgarien",
+    "Croatia": "Kroatien",
+    "Cyprus": "Zypern",
+    "Czechia": "Tschechien",
     "England": "England",
-    "Spain": "Spanien",
-    "Italy": "Italien",
-    "Germany": "Deutschland",
-    "France": "Frankreich",
     "Europe": "Europa",
-    "Monaco": "Monaco"
+    "France": "Frankreich",
+    "Germany": "Deutschland",
+    "Greece": "Griechenland",
+    "Hungary": "Ungarn",
+    "Israel": "Israel",
+    "Italy": "Italien",
+    "Monaco": "Monaco",
+    "Netherlands": "Niederlande",
+    "Norway": "Norwegen",
+    "Poland": "Polen",
+    "Portugal": "Portugal",
+    "Scotland": "Schottland",
+    "Slovakia": "Slowakei",
+    "Slovenia": "Slowenien",
+    "Spain": "Spanien",
+    "Turkey": "Türkei",
+    "Ukraine": "Ukraine"
   }
 }

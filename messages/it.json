@@ -287,14 +287,20 @@
   },
   "Clubs": {
     "title": "Squadre",
-    "subtitle": "Trova le prossime partite delle squadre europee più seguite.",
     "viewMatches": "Vedi partite",
     "upcomingFixtures": "Prossime partite",
     "noFixtures": "Questo club non ha partite in programma al momento.",
     "stadium": "Stadio",
     "stadiumUnknown": "Stadio da confermare",
     "competitions": "Competizioni",
-    "backToClubs": "Tutti i club"
+    "backToClubs": "Tutti i club",
+    "searchLabel": "Cerca squadre",
+    "searchPlaceholder": "Cerca squadra",
+    "browseByLetter": "Sfoglia le squadre per lettera",
+    "allLetters": "Tutte",
+    "noResults": "Nessuna squadra trovata.",
+    "noResultsHint": "Prova con un altro nome o un'altra lettera.",
+    "directorySubtitle": "{count} squadre in tutta Europa. Cerca per nome o sfoglia dalla A alla Z."
   },
   "Common": {
     "loading": "Caricamento…",
@@ -386,12 +392,32 @@
     "disclaimer": "Seatigo confronta offerte di biglietti di venditori terzi. Prezzi e disponibilità possono cambiare. Gli acquisti si completano sul sito del venditore."
   },
   "Countries": {
+    "Armenia": "Armenia",
+    "Austria": "Austria",
+    "Azerbaijan": "Azerbaigian",
+    "Belgium": "Belgio",
+    "Bulgaria": "Bulgaria",
+    "Croatia": "Croazia",
+    "Cyprus": "Cipro",
+    "Czechia": "Cechia",
     "England": "Inghilterra",
-    "Spain": "Spagna",
-    "Italy": "Italia",
-    "Germany": "Germania",
-    "France": "Francia",
     "Europe": "Europa",
-    "Monaco": "Monaco"
+    "France": "Francia",
+    "Germany": "Germania",
+    "Greece": "Grecia",
+    "Hungary": "Ungheria",
+    "Israel": "Israele",
+    "Italy": "Italia",
+    "Monaco": "Monaco",
+    "Netherlands": "Paesi Bassi",
+    "Norway": "Norvegia",
+    "Poland": "Polonia",
+    "Portugal": "Portogallo",
+    "Scotland": "Scozia",
+    "Slovakia": "Slovacchia",
+    "Slovenia": "Slovenia",
+    "Spain": "Spagna",
+    "Turkey": "Turchia",
+    "Ukraine": "Ucraina"
   }
 }

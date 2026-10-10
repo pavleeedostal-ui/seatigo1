@@ -287,14 +287,20 @@
   },
   "Clubs": {
     "title": "Kluby",
-    "subtitle": "Najděte nadcházející zápasy nejoblíbenějších evropských klubů.",
     "viewMatches": "Zobrazit zápasy",
     "upcomingFixtures": "Nadcházející zápasy",
     "noFixtures": "Tento klub teď nemá žádné nadcházející zápasy.",
     "stadium": "Domácí stadion",
     "stadiumUnknown": "Domácí stadion bude upřesněn",
     "competitions": "Soutěže",
-    "backToClubs": "Všechny kluby"
+    "backToClubs": "Všechny kluby",
+    "searchLabel": "Hledat klub",
+    "searchPlaceholder": "Hledat klub",
+    "browseByLetter": "Procházet kluby podle písmene",
+    "allLetters": "Vše",
+    "noResults": "Nenalezen žádný klub.",
+    "noResultsHint": "Zkuste jiný název nebo písmeno.",
+    "directorySubtitle": "{count} klubů z celé Evropy. Hledejte podle názvu, nebo procházejte od A do Z."
   },
   "Common": {
     "loading": "Načítání…",
@@ -386,12 +392,32 @@
     "disclaimer": "Seatigo porovnává nabídky vstupenek od prodejců třetích stran. Ceny a dostupnost se mohou měnit. Nákup se dokončuje na webu prodejce."
   },
   "Countries": {
+    "Armenia": "Arménie",
+    "Austria": "Rakousko",
+    "Azerbaijan": "Ázerbájdžán",
+    "Belgium": "Belgie",
+    "Bulgaria": "Bulharsko",
+    "Croatia": "Chorvatsko",
+    "Cyprus": "Kypr",
+    "Czechia": "Česko",
     "England": "Anglie",
-    "Spain": "Španělsko",
-    "Italy": "Itálie",
-    "Germany": "Německo",
-    "France": "Francie",
     "Europe": "Evropa",
-    "Monaco": "Monako"
+    "France": "Francie",
+    "Germany": "Německo",
+    "Greece": "Řecko",
+    "Hungary": "Maďarsko",
+    "Israel": "Izrael",
+    "Italy": "Itálie",
+    "Monaco": "Monako",
+    "Netherlands": "Nizozemsko",
+    "Norway": "Norsko",
+    "Poland": "Polsko",
+    "Portugal": "Portugalsko",
+    "Scotland": "Skotsko",
+    "Slovakia": "Slovensko",
+    "Slovenia": "Slovinsko",
+    "Spain": "Španělsko",
+    "Turkey": "Turecko",
+    "Ukraine": "Ukrajina"
   }
 }
