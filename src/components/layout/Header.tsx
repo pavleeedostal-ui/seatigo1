@@ -120,7 +120,10 @@ export function Header() {
           <Button
             asChild
             size="sm"
-            variant={onHero ? "gold" : "primary"}
+            // Gold on the dark hero, plain white once the header goes
+            // solid. Both variants share a box, so the swap is a colour
+            // cross-fade and nothing beside it moves.
+            variant={onHero ? "gold" : "outline"}
             className="hidden lg:inline-flex"
           >
             <Link href="/matches">{t("findTickets")}</Link>

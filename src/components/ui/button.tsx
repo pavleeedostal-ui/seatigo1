@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils";
  * homepage hero's premium action), `dark` (navy, the in-context action),
  * and `outline`/`ghost` for everything secondary.
  *
+ * `gold` and `outline` are deliberately the same box — same height, same
+ * radius, same 1px border — so a control can cross-fade between them
+ * without nudging its neighbours.
+ *
  * `gold` is scoped to the hero on purpose. It is the one surface with the
  * dark luxury treatment, and a muted gold needs a dark field behind it to
  * read as gold rather than as mustard.
@@ -19,7 +23,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-lime text-navy hover:bg-lime-dark",
-        gold: "bg-hero-gold text-surface-warm-ink hover:bg-hero-gold-deep",
+        gold:
+          "border border-transparent bg-hero-gold text-surface-warm-ink hover:bg-hero-gold-deep",
         dark: "bg-navy text-white hover:bg-navy-soft",
         outline:
           "border border-border bg-white text-ink hover:border-border-strong hover:bg-background",
