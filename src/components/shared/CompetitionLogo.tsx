@@ -23,11 +23,20 @@ const MAX_ASPECT = 2.6;
 export function CompetitionLogo({
   competition,
   size = 24,
+  /**
+   * Render into a fixed box of this width instead of letting the width
+   * follow the artwork. The mark is letterboxed inside it and pinned left,
+   * so a column of logos lines up on both edges however much their aspect
+   * ratios differ — LALIGA's wordmark is four times wider than Serie A's
+   * crest. Nothing is stretched or cropped either way.
+   */
+  boxWidth,
   className,
   priority = false,
 }: {
   competition: Competition;
   size?: number;
+  boxWidth?: number;
   className?: string;
   /** Set on above-the-fold logos so they are not lazy-loaded. */
   priority?: boolean;
@@ -43,12 +52,16 @@ export function CompetitionLogo({
       src={logo}
       alt=""
       aria-hidden="true"
-      width={Math.round(size * MAX_ASPECT)}
+      width={Math.round(boxWidth ?? size * MAX_ASPECT)}
       height={size}
       priority={priority}
       loading={priority ? undefined : "lazy"}
       className={cn("shrink-0 object-contain", className)}
-      style={{ height: size, width: "auto", maxWidth: size * MAX_ASPECT }}
+      style={
+        boxWidth
+          ? { height: size, width: boxWidth, objectPosition: "left center" }
+          : { height: size, width: "auto", maxWidth: size * MAX_ASPECT }
+      }
     />
   );
 }
