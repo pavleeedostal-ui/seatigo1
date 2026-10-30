@@ -17,8 +17,8 @@ function SelectTrigger({
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        "flex h-11 w-full items-center justify-between gap-2 rounded-control border border-border bg-white px-3.5 text-sm text-ink",
-        "focus:border-navy focus:outline-none data-[placeholder]:text-ink-faint",
+        "flex h-11 w-full items-center justify-between gap-2 rounded-control border border-line bg-white px-3.5 text-sm text-ink",
+        "focus:border-album focus:outline-none data-[placeholder]:text-ink-faint",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
@@ -43,7 +43,7 @@ function SelectContent({
       <SelectPrimitive.Content
         position={position}
         className={cn(
-          "z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-control border border-border bg-white shadow-pop animate-fade-in",
+          "z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-control border border-line bg-white shadow-pop animate-fade-in",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
           className,
@@ -67,14 +67,14 @@ function SelectItem({
     <SelectPrimitive.Item
       className={cn(
         "relative flex w-full cursor-pointer select-none items-center rounded-[8px] py-2 pl-8 pr-3 text-sm text-ink outline-none",
-        "data-[highlighted]:bg-background data-[state=checked]:font-medium",
+        "data-[highlighted]:bg-paper data-[state=checked]:font-medium",
         className,
       )}
       {...props}
     >
       <span className="absolute left-2.5 flex h-4 w-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className="h-4 w-4 text-navy" />
+          <Check className="h-4 w-4 text-album" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

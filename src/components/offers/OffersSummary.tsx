@@ -22,7 +22,7 @@ export function OffersSummary({
 
   return (
     <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
-      <p className="text-[14px] text-ink">
+      <p className="text-[15px] font-semibold text-ink">
         {t(offerCount === 1 ? "summaryOne" : "summary", {
           count: offerCount,
           sellers: sellerCount,

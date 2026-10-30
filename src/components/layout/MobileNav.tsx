@@ -40,7 +40,7 @@ export function MobileNav({ open, onOpenChange, navItems }: MobileNavProps) {
               key={item.href}
               href={item.href}
               onClick={() => onOpenChange(false)}
-              className="border-b border-border py-4 text-[17px] text-ink"
+              className="font-display border-b border-line py-4 text-[30px] text-ink"
             >
               {item.label}
             </Link>
@@ -48,14 +48,14 @@ export function MobileNav({ open, onOpenChange, navItems }: MobileNavProps) {
           <Link
             href="/sign-in"
             onClick={() => onOpenChange(false)}
-            className="border-b border-border py-4 text-[17px] text-ink"
+            className="border-b border-line py-4 text-[17px] font-medium text-ink"
           >
             {t("signIn")}
           </Link>
         </nav>
 
         <div className="mt-6">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wider text-ink-muted">
+          <p className="font-tab mb-3 text-[12px] text-ink-muted">
             {t("language")}
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -67,8 +67,8 @@ export function MobileNav({ open, onOpenChange, navItems }: MobileNavProps) {
                 className={cn(
                   "rounded-control border px-3 py-3 text-left text-[15px] transition-colors",
                   code === locale
-                    ? "border-navy bg-navy text-white"
-                    : "border-border text-ink hover:border-border-strong",
+                    ? "border-album bg-album text-white"
+                    : "border-line text-ink hover:border-ink",
                 )}
               >
                 {localeLabels[code]}

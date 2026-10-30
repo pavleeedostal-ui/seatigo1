@@ -20,14 +20,16 @@ export function EmptyOffers({
   const Icon = notAnnounced ? CalendarClock : TicketX;
 
   return (
-    <div className="flex flex-col items-center justify-center rounded-card border border-dashed border-border px-6 py-16 text-center">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-background">
-        <Icon className="h-6 w-6 text-ink-faint" />
+    // An empty slot on the page: the fixture is real and listed, nothing is
+    // stuck in it yet.
+    <div className="slot-empty flex flex-col items-center justify-center rounded-card px-6 py-16 text-center sm:py-20">
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-paper-deep">
+        <Icon className="h-6 w-6 text-ink-muted" />
       </div>
-      <h2 className="text-[19px] font-medium text-ink">
+      <h2 className="font-display text-balance text-[36px] text-ink sm:text-[44px]">
         {notAnnounced ? t("notAnnouncedTitle") : t("noOffersTitle")}
       </h2>
-      <p className="mt-2 max-w-md text-[15px] text-ink-muted">
+      <p className="mt-3 max-w-md text-[16px] text-ink-muted">
         {notAnnounced ? t("notAnnouncedBody") : t("noOffersBody")}
       </p>
       <Button asChild variant="outline" className="mt-6">

@@ -57,30 +57,34 @@
       "available": "Jen zápasy se vstupenkami",
       "weekend": "Tento víkend",
       "bestPrices": "Nejlepší ceny"
-    }
+    },
+    "stickersLabel": "Nejbližší zápasy"
   },
   "Home": {
     "popularMatches": {
-      "title": "Oblíbené zápasy",
-      "subtitle": "Zápasy, které fanoušci hledají právě teď.",
-      "viewAll": "Zobrazit všechny zápasy"
+      "title": "Nejbližší zápasy",
+      "subtitle": "Nadcházející zápasy z celé Evropy, od nejbližšího.",
+      "viewAll": "Zobrazit všechny zápasy",
+      "fixturesCount": "{count, plural, one {# zápas} few {# zápasy} other {# zápasů}}"
     },
     "howItWorks": {
       "title": "Jak Seatigo funguje",
-      "subtitle": "Tři kroky, které vás dělí od zápasového dne.",
-      "step1Title": "Najděte svůj zápas",
-      "step1Desc": "Vyhledávejte podle týmu, města, soutěže nebo data a během chvilky uvidíte dostupné vstupenky.",
-      "step2Title": "Vyberte si sedadlo",
-      "step2Desc": "Porovnejte sektory na mapě stadionu a vyberte si výhled, který vám vyhovuje.",
-      "step3Title": "Užijte si zápas",
-      "step3Desc": "Potvrďte své údaje a je hotovo — uvidíme se na stadionu."
+      "subtitle": "Od zápasu k prodejci ve čtyřech krocích.",
+      "step1Title": "Hledejte",
+      "step1Desc": "Zadejte klub, soutěž nebo město. Uvidíte každý nadcházející zápas, se vstupenkami i bez nich.",
+      "step2Title": "Porovnejte",
+      "step2Desc": "Podívejte se, kteří prodejci mají na zápas nabídky, a porovnejte ceny i kategorie míst vedle sebe.",
+      "step3Title": "Vyberte",
+      "step3Desc": "Zvolte nabídku, která vám vyhovuje. Seatigo vám vždy řekne, ke kterému prodejci budete pokračovat.",
+      "step4Title": "Kupte u prodejce",
+      "step4Desc": "Nákup dokončíte přímo na webu prodejce. Seatigo vstupenky nikdy neprodává."
     },
     "trust": {
       "title": "Proč porovnávat přes Seatigo",
-      "secure": "Transparentní ceny",
-      "secureDesc": "Před opuštěním Seatigo uvidíte celou cenu včetně poplatků.",
-      "verified": "Pouze ověření prodejci",
-      "verifiedDesc": "Porovnáváme nabídky od zavedených prodejců vstupenek a pokladen.",
+      "secure": "Ceny tak, jak je uvádí prodejci",
+      "secureDesc": "Zobrazujeme cenu každého prodejce tak, jak ji zveřejnil. Poplatky a doručení potvrdíte na jeho webu před platbou.",
+      "verified": "Každá nabídka má jméno",
+      "verifiedDesc": "U každé nabídky vidíte prodejce a každý odkaz vám před odchodem ze Seatigo řekne, kam vede.",
       "support": "Rozhodujete vy",
       "supportDesc": "Volně porovnávejte a nákup bezpečně dokončete přímo na webu prodejce."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Objevte svůj další zápas",
       "body": "Procházejte nadcházející fotbalové zápasy po celé Evropě a najděte ten, který chcete zažít naživo.",
-      "cta": "Objevujte"
+      "cta": "Objevujte",
+      "credit": "Foto: {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "Od",
       "sellers": "Prodejců",
-      "offers": "Nabídek"
+      "offers": "Nabídek",
+      "jump": "Porovnat nabídky",
+      "market": "{count, plural, one {# nabídka} few {# nabídky} other {# nabídek}} od {sellers, plural, one {# prodejce} other {# prodejců}}"
     },
     "related": {
       "homeTeam": "Další zápasy týmu {name}",
@@ -389,7 +396,8 @@
       "title": "Nabídky vstupenek již brzy",
       "description": "Pro tento zápas zatím nemáme žádné aktuální nabídky. Zkuste to znovu později nebo procházejte jiné zápasy."
     },
-    "disclaimer": "Seatigo porovnává nabídky vstupenek od prodejců třetích stran. Ceny a dostupnost se mohou měnit. Nákup se dokončuje na webu prodejce."
+    "disclaimer": "Seatigo porovnává nabídky vstupenek od prodejců třetích stran. Ceny a dostupnost se mohou měnit. Nákup se dokončuje na webu prodejce.",
+    "continuesTo": "Pokračuje na {seller}"
   },
   "Countries": {
     "Armenia": "Arménie",

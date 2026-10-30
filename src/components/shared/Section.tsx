@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
 
-/** Sections are separated by space, not by boxes. `tone="muted"` is the only alternate background. */
+/**
+ * Sections are pages of the album: separated by space and by ground, never
+ * by boxes. `tone="album"` prints the section on the blue field;
+ * `tone="slot"` on white.
+ */
 export function Section({
   className,
   children,
@@ -10,42 +14,66 @@ export function Section({
   className?: string;
   children: React.ReactNode;
   id?: string;
-  tone?: "plain" | "muted";
+  tone?: "plain" | "muted" | "slot" | "album";
 }) {
   return (
     <section
       id={id}
-      className={cn("py-12 sm:py-16 lg:py-20", tone === "muted" && "bg-background", className)}
+      className={cn(
+        "py-14 sm:py-20 lg:py-24",
+        tone === "muted" && "bg-paper-deep",
+        tone === "slot" && "bg-slot",
+        tone === "album" && "on-album bg-album text-white",
+        className,
+      )}
     >
       <div className="container-page">{children}</div>
     </section>
   );
 }
 
+/**
+ * A page title in the album's lettering, with an optional supporting line
+ * and one action aligned to its baseline.
+ */
 export function SectionHeader({
   title,
   subtitle,
   action,
   className,
+  onAlbum = false,
 }: {
   title: string;
   subtitle?: string;
   action?: React.ReactNode;
   className?: string;
+  onAlbum?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "mb-8 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end",
+        "mb-8 flex flex-col items-start justify-between gap-4 sm:mb-10 sm:flex-row sm:items-end",
         className,
       )}
     >
-      <div>
-        <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[32px]">
+      <div className="min-w-0">
+        <h2
+          className={cn(
+            "font-display text-balance text-[44px] sm:text-[60px] lg:text-[72px]",
+            onAlbum ? "text-white" : "text-ink",
+          )}
+        >
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-2 max-w-xl text-[15px] text-ink-muted">{subtitle}</p>
+          <p
+            className={cn(
+              "mt-3 max-w-xl text-pretty text-[16px] leading-relaxed sm:text-[17px]",
+              onAlbum ? "text-album-ink-muted" : "text-ink-muted",
+            )}
+          >
+            {subtitle}
+          </p>
         )}
       </div>
       {action}

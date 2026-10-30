@@ -5,35 +5,36 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * Four button roles only: `primary` (lime, one per view), `gold` (the
- * homepage hero's premium action), `dark` (navy, the in-context action),
- * and `outline`/`ghost` for everything secondary.
+ * Button roles, by the ground they sit on:
  *
- * `gold` and `outline` are deliberately the same box — same height, same
- * radius, same 1px border — so a control can cross-fade between them
- * without nudging its neighbours.
+ * - `primary` — ink on paper. The one action a working page is for.
+ * - `signal` — yellow on the album field. The primary action where the page
+ *   is blue (the hero search, the header on the homepage, the footer).
+ * - `light` — white on the album field, for its secondary actions.
+ * - `outline` / `ghost` / `link` — secondary on paper.
  *
- * `gold` is scoped to the hero on purpose. It is the one surface with the
- * dark luxury treatment, and a muted gold needs a dark field behind it to
- * read as gold rather than as mustard.
+ * `signal`, `light` and `outline` share one box (height, radius, 1px
+ * border), so the header can cross-fade between them without its
+ * neighbours moving.
  */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-button font-medium transition-colors duration-200 disabled:pointer-events-none disabled:opacity-45 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-button font-semibold transition-[background-color,border-color,color,transform] duration-200 active:translate-y-px disabled:pointer-events-none disabled:opacity-45 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-lime text-navy hover:bg-lime-dark",
-        gold:
-          "border border-transparent bg-hero-gold text-surface-warm-ink hover:bg-hero-gold-deep",
-        dark: "bg-navy text-white hover:bg-navy-soft",
+        primary: "bg-ink text-white hover:bg-album",
+        signal:
+          "border border-transparent bg-signal text-ink hover:bg-signal-deep",
+        light:
+          "border border-transparent bg-white text-ink hover:bg-paper",
         outline:
-          "border border-border bg-white text-ink hover:border-border-strong hover:bg-background",
-        ghost: "text-ink-muted hover:bg-background hover:text-ink",
-        link: "h-auto rounded-none p-0 text-ink underline-offset-4 hover:underline",
+          "border border-line-strong bg-slot text-ink hover:border-ink",
+        ghost: "text-ink-muted hover:bg-paper-deep hover:text-ink",
+        link: "h-auto rounded-none p-0 text-ink underline underline-offset-4 decoration-line-strong hover:decoration-ink",
       },
       size: {
         sm: "h-9 px-3.5 text-sm",
-        default: "h-11 px-5 text-sm",
+        default: "h-11 px-5 text-[15px]",
         lg: "h-12 px-6 text-[15px]",
         icon: "h-10 w-10",
       },

@@ -57,30 +57,34 @@
       "available": "Only matches with tickets",
       "weekend": "This weekend",
       "bestPrices": "Best prices"
-    }
+    },
+    "stickersLabel": "The next fixtures"
   },
   "Home": {
     "popularMatches": {
-      "title": "Popular Matches",
-      "subtitle": "The fixtures fans are searching for right now.",
-      "viewAll": "View all matches"
+      "title": "Next up",
+      "subtitle": "Upcoming fixtures from across Europe, soonest first.",
+      "viewAll": "View all matches",
+      "fixturesCount": "{count, plural, one {# fixture} other {# fixtures}}"
     },
     "howItWorks": {
-      "title": "How Seatigo Works",
-      "subtitle": "Three steps between you and matchday.",
-      "step1Title": "Find your match",
-      "step1Desc": "Search by team, city, competition or date and see what's available in seconds.",
-      "step2Title": "Choose your seat",
-      "step2Desc": "Compare sections on the stadium map and pick the view that suits you.",
-      "step3Title": "Enjoy the game",
-      "step3Desc": "Confirm your details and you're set — see you at the stadium."
+      "title": "How Seatigo works",
+      "subtitle": "From a fixture to a seller in four steps.",
+      "step1Title": "Search",
+      "step1Desc": "Type a club, competition or city. Every upcoming fixture is listed, with or without tickets.",
+      "step2Title": "Compare",
+      "step2Desc": "See which sellers have offers for that match, with their prices and seat categories side by side.",
+      "step3Title": "Choose",
+      "step3Desc": "Pick the offer that suits you. Seatigo tells you exactly which seller you'll continue to.",
+      "step4Title": "Buy from the seller",
+      "step4Desc": "You complete the purchase on the seller's own website. Seatigo never sells tickets."
     },
     "trust": {
       "title": "Why compare with Seatigo",
-      "secure": "Transparent pricing",
-      "secureDesc": "See the full price and fees before you leave Seatigo.",
-      "verified": "Trusted sellers only",
-      "verifiedDesc": "We compare offers from established ticket sellers and box offices.",
+      "secure": "Prices as sellers list them",
+      "secureDesc": "We show each seller's price as published. Fees and delivery are confirmed on the seller's site before you pay.",
+      "verified": "Every offer is named",
+      "verifiedDesc": "Each offer shows the seller behind it, and every link says where it goes before you leave Seatigo.",
       "support": "You're always in control",
       "supportDesc": "Compare freely, then complete your purchase safely on the seller's own site."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Discover your next match",
       "body": "Browse upcoming football matches across Europe and find the fixture you want to experience live.",
-      "cta": "Explore matches"
+      "cta": "Explore matches",
+      "credit": "Photo: {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "From",
       "sellers": "Sellers",
-      "offers": "Offers"
+      "offers": "Offers",
+      "jump": "Compare offers",
+      "market": "{count, plural, one {# offer} other {# offers}} from {sellers, plural, one {# seller} other {# sellers}}"
     },
     "related": {
       "homeTeam": "More {name} fixtures",
@@ -389,7 +396,8 @@
       "title": "Ticket offers coming soon",
       "description": "We don't have live offers for this match yet. Check back soon or browse other matches."
     },
-    "disclaimer": "Seatigo compares ticket offers from third-party sellers. Prices and availability may change. Purchases are completed on the seller's website."
+    "disclaimer": "Seatigo compares ticket offers from third-party sellers. Prices and availability may change. Purchases are completed on the seller's website.",
+    "continuesTo": "Continues to {seller}"
   },
   "Countries": {
     "Armenia": "Armenia",

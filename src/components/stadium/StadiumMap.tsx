@@ -17,12 +17,17 @@ interface StadiumMapProps {
   offerCounts?: Partial<Record<SeatCategoryKey, number>>;
 }
 
-const CATEGORY_COLORS: Record<SeatCategoryKey, string> = {
-  behind_goal: "#5B7DB1",
-  longside: "#3D5A80",
-  shortside: "#7C93B3",
-  premium: "#B6FF4A",
-  hospitality: "#EE8707",
+/**
+ * Stands printed in tints of the album blue, deepening toward the better
+ * seats; hospitality in ink. The same colours mark each offer row, so a row
+ * and its stand on the map can be matched at a glance.
+ */
+export const CATEGORY_COLORS: Record<SeatCategoryKey, string> = {
+  shortside: "#b9c0fa",
+  behind_goal: "#8a95f3",
+  longside: "#5664e6",
+  premium: "#2432db",
+  hospitality: "#0b0e2b",
 };
 
 const ZONES: { area: SeatCategoryKey; d: string }[] = [
@@ -67,12 +72,12 @@ export function StadiumMap({
             initial={false}
             animate={{
               fill: color,
-              opacity: !isAvailable ? 0.15 : isActive ? 1 : 0.5,
+              opacity: !isAvailable ? 0.18 : activeCategory === "all" || isActive ? 1 : 0.35,
             }}
             whileHover={isAvailable ? { opacity: 0.85 } : undefined}
             transition={{ duration: 0.2 }}
-            stroke={isActive ? "var(--navy)" : "white"}
-            strokeWidth={isActive ? 2.5 : 1.5}
+            stroke={isActive ? "var(--ink)" : "white"}
+            strokeWidth={isActive ? 3 : 1.5}
             role="button"
             tabIndex={isAvailable ? 0 : -1}
             aria-label={t(`categories.${zone.area}.name`)}
@@ -101,7 +106,7 @@ export function StadiumMap({
         role="img"
         aria-label={t("mapTitle")}
       >
-        <rect x="4" y="4" width="392" height="292" rx="24" fill="#EEF1F5" />
+        <rect x="4" y="4" width="392" height="292" rx="20" fill="#e3e6ef" />
 
         {ZONES.map(renderZone)}
 
@@ -118,11 +123,15 @@ export function StadiumMap({
               initial={false}
               animate={{
                 fill: CATEGORY_COLORS.hospitality,
-                opacity: !hospitalityAvailable ? 0.15 : hospitalityActive ? 1 : 0.75,
+                opacity: !hospitalityAvailable
+                  ? 0.18
+                  : activeCategory === "all" || hospitalityActive
+                    ? 1
+                    : 0.35,
               }}
               whileHover={hospitalityAvailable ? { opacity: 1 } : undefined}
-              stroke={hospitalityActive ? "var(--navy)" : "white"}
-              strokeWidth={hospitalityActive ? 2.5 : 1.5}
+              stroke={hospitalityActive ? "var(--signal)" : "white"}
+              strokeWidth={hospitalityActive ? 3 : 1.5}
               role="button"
               tabIndex={hospitalityAvailable ? 0 : -1}
               aria-label={t("categories.hospitality.name")}
@@ -141,8 +150,8 @@ export function StadiumMap({
           </TooltipContent>
         </Tooltip>
 
-        {/* Pitch */}
-        <rect x="120" y="90" width="160" height="120" rx="10" fill="#1F8A4C" />
+        {/* Pitch, printed as a white diagram rather than painted turf. */}
+        <rect x="120" y="90" width="160" height="120" rx="10" fill="#ffffff" />
         <rect
           x="122"
           y="92"
@@ -150,16 +159,16 @@ export function StadiumMap({
           height="116"
           rx="8"
           fill="none"
-          stroke="white"
-          strokeOpacity="0.5"
+          stroke="#b9bed0"
+          strokeOpacity="1"
           strokeWidth="1.5"
         />
-        <line x1="200" y1="92" x2="200" y2="208" stroke="white" strokeOpacity="0.5" strokeWidth="1.5" />
-        <circle cx="200" cy="150" r="20" fill="none" stroke="white" strokeOpacity="0.5" strokeWidth="1.5" />
-        <circle cx="200" cy="150" r="1.5" fill="white" fillOpacity="0.6" />
+        <line x1="200" y1="92" x2="200" y2="208" stroke="#b9bed0" strokeWidth="1.5" />
+        <circle cx="200" cy="150" r="20" fill="none" stroke="#b9bed0" strokeWidth="1.5" />
+        <circle cx="200" cy="150" r="2" fill="#b9bed0" />
       </svg>
 
-      <p className="text-xs text-ink-muted">{t("mapHint")}</p>
+      <p className="text-[13px] text-ink-muted">{t("mapHint")}</p>
     </div>
   );
 }

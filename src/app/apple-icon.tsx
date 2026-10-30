@@ -1,8 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // `apple-icon` only accepts raster formats, so the mark is rendered to PNG at
-// build time from the same geometry as icon.svg. Colors are the design's
-// oklch values converted to sRGB hex (Satori doesn't parse oklch).
+// build time from the same geometry and album colours as icon.svg.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
@@ -15,7 +14,7 @@ export default function AppleIcon() {
           height: "100%",
           display: "flex",
           position: "relative",
-          background: "#1e1a15",
+          background: "#2432db",
         }}
       >
         <div
@@ -26,7 +25,7 @@ export default function AppleIcon() {
             width: "13%",
             height: "42%",
             borderRadius: 999,
-            background: "#f8f5ee",
+            background: "#ffffff",
           }}
         />
         <div
@@ -37,7 +36,7 @@ export default function AppleIcon() {
             width: "40%",
             height: "13%",
             borderRadius: 999,
-            background: "#f8f5ee",
+            background: "#ffffff",
           }}
         />
         <div
@@ -48,7 +47,7 @@ export default function AppleIcon() {
             width: "14%",
             height: "14%",
             borderRadius: 999,
-            background: "#ac5346",
+            background: "#ffd43b",
           }}
         />
       </div>

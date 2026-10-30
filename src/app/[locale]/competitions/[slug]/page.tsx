@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ChevronRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { CompetitionStage, Match, StageCalendarEntry } from "@/types/football";
@@ -12,6 +11,7 @@ import {
   type AvailabilityFilter,
 } from "@/lib/fixtures/availability";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { MatchListRow } from "@/components/matches/MatchListRow";
 import { MatchweekNav } from "@/components/competitions/MatchweekNav";
 import { StageNav } from "@/components/competitions/StageNav";
@@ -179,38 +179,32 @@ export default async function CompetitionPage({
       sp.availability && sp.availability !== "all" ? sp.availability : undefined,
   };
 
+  const countryName = tCountries.has(competition.country)
+    ? tCountries(competition.country)
+    : competition.country;
+
   return (
-    <div className="container-page py-10 sm:py-14">
-      <nav
-        aria-label="Breadcrumb"
-        className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-ink-muted"
-      >
-        <Link href="/competitions" className="hover:text-ink">
-          {t("title")}
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 text-ink-faint" />
-        <span className="text-ink">{competition.name}</span>
-      </nav>
-
-      <div className="flex items-center gap-5 border-b border-border pb-8">
-        <CompetitionLogo competition={competition} size={72} priority />
-        <div className="min-w-0">
-          <p className="text-[13px] text-ink-muted">
-            {tCountries.has(competition.country)
-              ? tCountries(competition.country)
-              : competition.country}
+    <>
+      <PageHeader
+        breadcrumb={[{ href: "/competitions", label: t("title") }, { label: competition.name }]}
+        leading={
+          <span className="sticker inline-flex h-28 w-28 items-center justify-center p-4 sm:h-32 sm:w-32 sm:-rotate-[3deg]">
+            <CompetitionLogo competition={competition} size={80} priority />
+          </span>
+        }
+        title={competition.name}
+        subtitle={
+          <>
+            {countryName}
             {season && ` · ${t("season", { season })}`}
-          </p>
-          <h1 className="mt-2 text-[32px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
-            {competition.name}
-          </h1>
-          <p className="mt-2 text-[15px] text-ink-muted">
+            {" · "}
             {t("fixtureCount", { count: allUpcoming.length })}
-          </p>
-        </div>
-      </div>
+          </>
+        }
+      />
 
-      <div className="mt-8 flex flex-col gap-4">
+    <div className="container-page pb-20 pt-8 sm:pb-28 sm:pt-10">
+      <div className="flex flex-col gap-4">
         {staged && (
           <StageNav
             stages={stages}
@@ -249,8 +243,8 @@ export default async function CompetitionPage({
           <StageCalendarCard stage={activeStageEntry} />
         ) : (
           <>
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-[22px] font-semibold tracking-[-0.01em] text-ink">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-3 sm:mb-8">
+              <h2 className="font-display text-[44px] text-ink sm:text-[60px]">
                 {activeMatchweek != null && matchweeks.length > 0
                   ? t(staged ? "matchday" : "matchweek", { number: activeMatchweek })
                   : t("upcomingFixtures")}
@@ -263,16 +257,17 @@ export default async function CompetitionPage({
             </div>
 
             {fixtures.length === 0 ? (
-              <p className="rounded-card border border-dashed border-border px-6 py-14 text-center text-[15px] text-ink-muted">
+              <p className="slot-empty rounded-card px-6 py-14 text-center text-[16px] text-ink-muted">
                 {t("noFixtures")}
               </p>
             ) : (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 {fixtures.map((match) => (
                   <MatchListRow
                     key={match.id}
                     match={match}
                     offersSummary={offersSummaries.get(match.id) ?? null}
+                    showDate
                   />
                 ))}
               </div>
@@ -281,5 +276,6 @@ export default async function CompetitionPage({
         )}
       </div>
     </div>
+    </>
   );
 }

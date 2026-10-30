@@ -57,30 +57,34 @@
       "available": "Nur Spiele mit Tickets",
       "weekend": "Dieses Wochenende",
       "bestPrices": "Beste Preise"
-    }
+    },
+    "stickersLabel": "Die nächsten Spiele"
   },
   "Home": {
     "popularMatches": {
-      "title": "Beliebte Spiele",
-      "subtitle": "Die Partien, nach denen Fans gerade suchen.",
-      "viewAll": "Alle Spiele ansehen"
+      "title": "Als Nächstes",
+      "subtitle": "Kommende Spiele aus ganz Europa, die nächsten zuerst.",
+      "viewAll": "Alle Spiele ansehen",
+      "fixturesCount": "{count, plural, one {# Spiel} other {# Spiele}}"
     },
     "howItWorks": {
       "title": "So funktioniert Seatigo",
-      "subtitle": "Drei Schritte bis zum Spieltag.",
-      "step1Title": "Spiel finden",
-      "step1Desc": "Suche nach Verein, Stadt, Wettbewerb oder Datum und sieh in Sekunden, was verfügbar ist.",
-      "step2Title": "Platz wählen",
-      "step2Desc": "Vergleiche Bereiche auf dem Stadionplan und wähle die passende Sicht.",
-      "step3Title": "Spiel genießen",
-      "step3Desc": "Bestätige deine Daten – fertig. Wir sehen uns im Stadion."
+      "subtitle": "Vom Spiel zum Verkäufer in vier Schritten.",
+      "step1Title": "Suchen",
+      "step1Desc": "Gib einen Verein, einen Wettbewerb oder eine Stadt ein. Jedes kommende Spiel wird angezeigt, mit oder ohne Tickets.",
+      "step2Title": "Vergleichen",
+      "step2Desc": "Sieh, welche Verkäufer Angebote für das Spiel haben, mit Preisen und Platzkategorien nebeneinander.",
+      "step3Title": "Auswählen",
+      "step3Desc": "Wähle das passende Angebot. Seatigo sagt dir genau, zu welchem Verkäufer du weitergeleitet wirst.",
+      "step4Title": "Beim Verkäufer kaufen",
+      "step4Desc": "Den Kauf schließt du auf der Website des Verkäufers ab. Seatigo verkauft keine Tickets."
     },
     "trust": {
       "title": "Warum bei Seatigo vergleichen",
-      "secure": "Transparente Preise",
-      "secureDesc": "Du siehst den vollen Preis inklusive Gebühren, bevor du Seatigo verlässt.",
-      "verified": "Nur geprüfte Anbieter",
-      "verifiedDesc": "Wir vergleichen Angebote etablierter Ticketanbieter und Vorverkaufsstellen.",
+      "secure": "Preise, wie Verkäufer sie angeben",
+      "secureDesc": "Wir zeigen den Preis jedes Verkäufers so, wie er veröffentlicht ist. Gebühren und Versand bestätigst du vor dem Bezahlen beim Verkäufer.",
+      "verified": "Jedes Angebot mit Namen",
+      "verifiedDesc": "Jedes Angebot nennt seinen Verkäufer, und jeder Link zeigt vor dem Verlassen von Seatigo, wohin er führt.",
       "support": "Du entscheidest",
       "supportDesc": "Vergleiche in Ruhe und schließe den Kauf sicher auf der Seite des Anbieters ab."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Entdecken Sie Ihr nächstes Spiel",
       "body": "Stöbern Sie durch kommende Fußballspiele in ganz Europa und finden Sie die Partie, die Sie live erleben möchten.",
-      "cta": "Spiele entdecken"
+      "cta": "Spiele entdecken",
+      "credit": "Foto: {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "Ab",
       "sellers": "Anbieter",
-      "offers": "Angebote"
+      "offers": "Angebote",
+      "jump": "Angebote vergleichen",
+      "market": "{count, plural, one {# Angebot} other {# Angebote}} von {sellers, plural, one {# Verkäufer} other {# Verkäufern}}"
     },
     "related": {
       "homeTeam": "Weitere Spiele von {name}",
@@ -389,7 +396,8 @@
       "title": "Ticketangebote folgen in Kürze",
       "description": "Für dieses Spiel liegen noch keine aktuellen Angebote vor. Schau später noch einmal vorbei oder durchsuche andere Spiele."
     },
-    "disclaimer": "Seatigo vergleicht Ticketangebote von Drittanbietern. Preise und Verfügbarkeit können sich ändern. Der Kauf wird auf der Website des Anbieters abgeschlossen."
+    "disclaimer": "Seatigo vergleicht Ticketangebote von Drittanbietern. Preise und Verfügbarkeit können sich ändern. Der Kauf wird auf der Website des Anbieters abgeschlossen.",
+    "continuesTo": "Weiter zu {seller}"
   },
   "Countries": {
     "Armenia": "Armenien",

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ChevronRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { getFootballDataProvider } from "@/lib/football";
 import { getOffersForFixture, getCheapestOffersForFixtures } from "@/lib/ticketing/aggregator";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
@@ -132,52 +130,31 @@ export default async function MatchDetailPage({
   }
 
   return (
-    <div className="container-page py-10">
-      <nav
-        aria-label="Breadcrumb"
-        className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-ink-muted"
-      >
-        <Link href="/" className="hover:text-ink">
-          {t("breadcrumbHome")}
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 text-ink-faint" />
-        <Link
-          href={`/competitions/${match.competition.slug}`}
-          className="hover:text-ink"
-        >
-          {match.competition.name}
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 text-ink-faint" />
-        <span className="text-ink">
-          {match.homeTeam.name} vs {match.awayTeam.name}
-        </span>
-      </nav>
+    <>
+      <MatchHeroCard
+        match={match}
+        aside={availability === "available" ? <MatchOfferStats offers={offers} /> : undefined}
+      />
 
-      <MatchHeroCard match={match} />
+      <div className="container-page pb-20 pt-10 sm:pb-28 sm:pt-14">
+        {match.status === "postponed" && (
+          <p className="mb-8 rounded-card bg-signal px-4 py-3 text-[15px] font-medium text-ink">
+            {t("postponedNotice")}
+          </p>
+        )}
 
-      {/* Counted from the offers on this page, so it only ever appears when
-          there is a real market to describe. */}
-      {availability === "available" && <MatchOfferStats offers={offers} />}
-
-      {match.status === "postponed" && (
-        <p className="mt-6 rounded-card border border-border bg-background px-4 py-3 text-[14px] text-ink-muted">
-          {t("postponedNotice")}
-        </p>
-      )}
-
-      <div className="mt-12">
         {/* The comparison heading would contradict the empty state, so with
-            nothing to compare the empty card carries the section on its own. */}
+            nothing to compare the empty slot carries the section on its own. */}
         {availability === "available" ? (
-          <>
-            <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[32px]">
+          <section id="offers" className="scroll-mt-24">
+            <h2 className="font-display text-[44px] text-ink sm:text-[64px]">
               {tOffers("title")}
             </h2>
-            <p className="mt-2 mb-8 max-w-xl text-[15px] text-ink-muted">
+            <p className="mb-8 mt-3 max-w-xl text-[16px] text-ink-muted sm:mb-10">
               {tOffers("subtitle")}
             </p>
             <TicketComparison offers={offers} initialTickets={sp.tickets} />
-          </>
+          </section>
         ) : (
           <>
             <EmptyOffers availability={availability} />
@@ -185,6 +162,6 @@ export default async function MatchDetailPage({
           </>
         )}
       </div>
-    </div>
+    </>
   );
 }

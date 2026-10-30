@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 
 /**
  * The price slot of a match card — the single most important thing on it,
- * so the figure itself carries the weight and everything around it stays
- * quiet: a small "From" lead-in and one muted line of offer count.
+ * so the figure is set in the album's display numerals and everything
+ * around it stays quiet: a small "From" tab and one line of offer count.
  *
  * Every availability state fills the same slot, so a fixture with no offers
  * reads as a normal result rather than a disabled one.
@@ -38,28 +38,27 @@ export function FixturePrice({
             align === "right" && "lg:justify-end",
           )}
         >
-          <span className="text-[12px] uppercase tracking-wide text-ink-muted">
-            {t("from")}
-          </span>
+          <span className="font-tab text-[11px] text-ink-muted">{t("from")}</span>
           <span
             className={cn(
-              "font-semibold leading-none tracking-[-0.02em] text-ink",
-              size === "lead" ? "text-[30px]" : "text-[26px]",
+              "font-display tabular text-ink",
+              size === "lead" ? "text-[40px]" : "text-[34px]",
             )}
           >
             {formatPrice(summary.lowestPrice, summary.currency, locale)}
           </span>
         </p>
-        <p className="mt-1.5 text-[13px] text-ink-muted">
+        <p className="mt-1 text-[13px] text-ink-muted">
           {t("offersCount", { count: summary.offerCount })}
         </p>
       </div>
     );
   }
 
+  // The empty slot: said plainly, in the same place a price would sit.
   return (
     <div className={alignment}>
-      <p className="text-[15px] font-medium text-ink-muted">
+      <p className="font-tab text-[12px] text-ink-muted">
         {availability === "not_announced" ? t("dateTbc") : t("noOffers")}
       </p>
     </div>
@@ -98,10 +97,10 @@ export function FixtureCta({
       className={cn(
         // `whitespace-nowrap` keeps the label on one line; the footer gives
         // it a row of its own when there is not enough width for two.
-        "inline-flex h-10 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-button border px-3.5 text-[14px] font-medium transition-colors duration-200",
+        "inline-flex h-10 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-button border px-3.5 text-[14px] font-semibold transition-colors duration-200",
         availability === "available"
-          ? "border-border-strong text-ink group-hover:border-navy group-hover:bg-navy group-hover:text-white"
-          : "border-border text-ink-muted group-hover:border-border-strong group-hover:text-ink",
+          ? "border-ink bg-ink text-white group-hover:border-album group-hover:bg-album"
+          : "border-line-strong text-ink-muted group-hover:border-ink group-hover:text-ink",
         className,
       )}
     >

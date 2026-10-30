@@ -49,13 +49,19 @@ export function MatchDateGroups({
   const today = startOfUtcDay(new Date());
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-12">
       {groups.map((group) => {
         const label = labelFor(group.key, today, locale, t);
         return (
           <section key={group.key} aria-label={label}>
-            <h2 className="mb-3 text-[13px] font-medium uppercase tracking-wider text-ink-muted">
-              {label}
+            {/* A page divider in the album: the day in its lettering, a
+                rule, and how many fixtures it holds. */}
+            <h2 className="mb-4 flex items-baseline gap-4">
+              <span className="font-display text-[30px] text-ink sm:text-[36px]">{label}</span>
+              <span aria-hidden="true" className="h-px flex-1 translate-y-[-0.35em] bg-line-strong" />
+              <span className="font-tab tabular text-[12px] text-ink-muted">
+                {group.matches.length}
+              </span>
             </h2>
             <div className="flex flex-col gap-3">
               {group.matches.map((match) => (

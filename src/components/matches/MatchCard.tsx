@@ -1,117 +1,162 @@
-import { useTranslations } from "next-intl";
-import { ArrowRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Match } from "@/types/football";
 import type { CheapestOfferSummary } from "@/types/ticketing";
 import { getTicketAvailability } from "@/lib/fixtures/availability";
+import { formatKickoffTime, formatMatchDate } from "@/lib/format";
 import { ClubLogo } from "@/components/shared/ClubLogo";
 import { CompetitionLogo } from "@/components/shared/CompetitionLogo";
-import { FixtureSchedule } from "./FixtureSchedule";
-import { FixtureCta, FixturePrice } from "./FixturePrice";
+import { FixturePrice } from "./FixturePrice";
 import { cn } from "@/lib/utils";
 
 /**
- * Answers, in order: who is playing, when, where, how much, what to click.
- * Competition appears once, as a quiet label — never repeated as a badge.
- * A fixture with no ticket offers uses the same card, with the price slot
- * and the action label carrying the difference.
+ * A fixture as a slot in the album.
  *
- * `variant="lead"` is the same card at a larger size, used for the first one
- * or two fixtures on the homepage. It is a scale change, not a different
- * design — nothing is added that the normal card does not have.
+ * With real offers it is a **sticker**: white, die-cut, proud of the page,
+ * and it lifts like a peeled corner under the pointer. Without offers it is
+ * the **empty slot**: the same layout printed as a dashed die line on the
+ * page, crests and date still in place. The fixture stays on the page and
+ * stays clickable either way — the difference is only whether anything is
+ * stuck in yet.
+ *
+ * Reading order: when (the slot's tab), who, where, how much.
+ *
+ * `variant="lead"` is the same slot at a larger scale for the first fixtures
+ * on the homepage; nothing is added that the normal card lacks.
  */
 export function MatchCard({
   match,
   offersSummary,
   variant = "default",
   className,
+  tickets,
 }: {
   match: Match;
   offersSummary?: CheapestOfferSummary | null;
   variant?: "default" | "lead";
   className?: string;
+  /** Ticket quantity carried through from a search, when there was one. */
+  tickets?: string;
 }) {
   const t = useTranslations("Matches");
   const availability = getTicketAvailability(match, Boolean(offersSummary));
   const lead = variant === "lead";
+  const stuck = availability === "available";
 
   return (
     <Link
-      href={`/matches/${match.slug}`}
-      // Picked up by the delegated listener in CtaTracker, so counting a
-      // ticket click costs this server component no client JavaScript.
-      {...(availability === "available"
+      href={tickets ? `/matches/${match.slug}?tickets=${tickets}` : `/matches/${match.slug}`}
+      {...(stuck
         ? {
             "data-seatigo-cta": "compare_tickets_click",
             "data-seatigo-clubs": `${match.homeTeam.id},${match.awayTeam.id}`,
             "data-seatigo-fixture": match.id,
           }
         : {})}
-      className={cn(
-        // A query container: a compact four-column card and a wide lead card
-        // live at the same viewport width, so only the card's own size can
-        // decide whether its footer fits on one line.
-        "@container group flex flex-col rounded-card border border-border bg-white transition-colors duration-200 hover:border-border-strong",
-        lead ? "p-5 sm:p-6" : "p-5",
-        className,
-      )}
+      aria-label={`${match.homeTeam.name} – ${match.awayTeam.name}`}
+      className={cn("group block rounded-card focus-visible:outline-offset-4", className)}
     >
-      <p className="flex min-w-0 items-center gap-2 text-[13px] text-ink-muted">
-        <CompetitionLogo competition={match.competition} size={20} />
-        <span className="truncate">{match.competition.name}</span>
-      </p>
+      <article
+        className={cn(
+          "@container relative flex h-full flex-col rounded-card",
+          stuck ? "sticker" : "slot-empty",
+          lead ? "p-5 sm:p-6" : "p-4 sm:p-5",
+        )}
+      >
+        <header className="flex items-start justify-between gap-3">
+          <SlotTab match={match} />
+          <CompetitionLogo competition={match.competition} size={lead ? 28 : 24} />
+        </header>
 
-      <div className={cn("mt-4 flex flex-col", lead ? "gap-3" : "gap-2.5")}>
-        <TeamLine club={match.homeTeam} size={lead ? 44 : 36} lead={lead} />
-        <TeamLine club={match.awayTeam} size={lead ? 44 : 36} lead={lead} />
-      </div>
-
-      <FixtureSchedule
-        match={match}
-        showTbc={false}
-        className="mt-4 space-y-0.5 text-[13px]"
-      />
-
-      {/* Stacked until the card itself is wide enough for price and action
-          side by side. Below ~22rem — every four-column card, and every card
-          on a phone — the button takes a full row of its own rather than
-          being squeezed past the card's edge. */}
-      <div className="mt-5 flex flex-col items-stretch gap-3 border-t border-border pt-4 @[22rem]:flex-row @[22rem]:items-end @[22rem]:justify-between">
-        <div className="min-w-0">
-          <FixturePrice
-            availability={availability}
-            summary={offersSummary}
-            size={lead ? "lead" : "default"}
-          />
+        <div className={cn("flex flex-col", lead ? "mt-5 gap-3" : "mt-4 gap-2.5")}>
+          <TeamLine club={match.homeTeam} lead={lead} />
+          <TeamLine club={match.awayTeam} lead={lead} />
         </div>
 
-        <FixtureCta availability={availability} className="w-full @[22rem]:w-auto">
-          {availability === "available"
-            ? t("card.compareTickets")
-            : t("card.viewMatch")}
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </FixtureCta>
-      </div>
+        <p className="mt-3 truncate text-[13px] text-ink-muted">
+          {match.stadium
+            ? [match.stadium.name, match.city].filter(Boolean).join(" · ")
+            : t("card.venueTbc")}
+        </p>
+        {(match.kickoffProvisional || match.status === "postponed") && (
+          <p className="mt-0.5 text-[13px] text-ink-muted">
+            {match.status === "postponed" ? t("card.postponed") : t("card.timeProvisional")}
+          </p>
+        )}
+
+        <footer
+          className={cn(
+            "mt-auto flex items-end justify-between gap-3 pt-4",
+            stuck ? "border-t border-line" : "border-t border-dashed border-line-strong",
+            lead ? "mt-6" : "mt-5",
+          )}
+        >
+          <div className="min-w-0">
+            <FixturePrice
+              availability={availability}
+              summary={offersSummary}
+              size={lead ? "lead" : "default"}
+            />
+          </div>
+          <span
+            aria-hidden="true"
+            className={cn(
+              "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-200",
+              stuck
+                ? "bg-ink text-white group-hover:bg-album"
+                : "border border-line-strong text-ink-muted group-hover:border-ink group-hover:text-ink",
+            )}
+          >
+            <ArrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px" />
+          </span>
+        </footer>
+      </article>
     </Link>
   );
 }
 
-function TeamLine({
-  club,
-  size,
-  lead,
-}: {
-  club: Match["homeTeam"];
-  size: number;
-  lead: boolean;
-}) {
+/**
+ * The slot's address: kickoff day and time, printed like the number in the
+ * corner of an album slot. Unscheduled fixtures say so rather than guess.
+ */
+export function SlotTab({ match, className }: { match: Match; className?: string }) {
+  const locale = useLocale();
+  const t = useTranslations("Matches.card");
+
+  const day = match.kickoffTime
+    ? formatMatchDate(match.kickoffTime, locale)
+    : match.date
+      ? formatMatchDate(match.date, locale)
+      : t("dateTbc");
+  const time = match.kickoffTime ? formatKickoffTime(match.kickoffTime, locale) : null;
+
   return (
-    <div className="flex min-w-0 items-center gap-2.5">
-      <ClubLogo club={club} size={size} />
+    <p
+      className={cn(
+        "font-tab tabular inline-flex items-center gap-2 rounded-[6px] bg-album px-2 py-1 text-[12px] leading-none text-white",
+        className,
+      )}
+    >
+      <span>{day}</span>
+      {time && (
+        <>
+          <span aria-hidden="true" className="h-3 w-px bg-white/40" />
+          <span>{time}</span>
+        </>
+      )}
+    </p>
+  );
+}
+
+function TeamLine({ club, lead }: { club: Match["homeTeam"]; lead: boolean }) {
+  return (
+    <div className="flex min-w-0 items-center gap-3">
+      <ClubLogo club={club} size={lead ? 40 : 32} />
       <span
         className={cn(
-          "truncate font-medium text-ink",
-          lead ? "text-[17px]" : "text-[15px]",
+          "font-display truncate text-ink",
+          lead ? "text-[26px] sm:text-[30px]" : "text-[22px]",
         )}
         title={club.name}
       >

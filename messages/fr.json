@@ -57,30 +57,34 @@
       "available": "Uniquement avec billets",
       "weekend": "Ce week-end",
       "bestPrices": "Meilleurs prix"
-    }
+    },
+    "stickersLabel": "Les prochains matchs"
   },
   "Home": {
     "popularMatches": {
-      "title": "Matchs populaires",
-      "subtitle": "Les rencontres que les fans recherchent en ce moment.",
-      "viewAll": "Voir tous les matchs"
+      "title": "À venir",
+      "subtitle": "Les prochains matchs à travers l'Europe, du plus proche au plus lointain.",
+      "viewAll": "Voir tous les matchs",
+      "fixturesCount": "{count, plural, one {# match} other {# matchs}}"
     },
     "howItWorks": {
       "title": "Comment fonctionne Seatigo",
-      "subtitle": "Trois étapes avant le jour du match.",
-      "step1Title": "Trouvez votre match",
-      "step1Desc": "Recherchez par équipe, ville, compétition ou date et découvrez la disponibilité en quelques secondes.",
-      "step2Title": "Choisissez votre place",
-      "step2Desc": "Comparez les tribunes sur le plan du stade et choisissez la vue qui vous convient.",
-      "step3Title": "Profitez du match",
-      "step3Desc": "Confirmez vos informations, c'est fait : rendez-vous au stade."
+      "subtitle": "Du match au vendeur en quatre étapes.",
+      "step1Title": "Recherchez",
+      "step1Desc": "Saisissez un club, une compétition ou une ville. Tous les matchs à venir s'affichent, avec ou sans billets.",
+      "step2Title": "Comparez",
+      "step2Desc": "Voyez quels vendeurs proposent des offres pour ce match, avec les prix et catégories de places côte à côte.",
+      "step3Title": "Choisissez",
+      "step3Desc": "Sélectionnez l'offre qui vous convient. Seatigo vous indique précisément vers quel vendeur vous continuez.",
+      "step4Title": "Achetez chez le vendeur",
+      "step4Desc": "Vous finalisez l'achat sur le site du vendeur. Seatigo ne vend jamais de billets."
     },
     "trust": {
       "title": "Pourquoi comparer avec Seatigo",
-      "secure": "Prix transparents",
-      "secureDesc": "Voyez le prix complet, frais inclus, avant de quitter Seatigo.",
-      "verified": "Uniquement des vendeurs fiables",
-      "verifiedDesc": "Nous comparons des offres de vendeurs de billets et guichets reconnus.",
+      "secure": "Les prix tels que publiés",
+      "secureDesc": "Nous affichons le prix de chaque vendeur tel qu'il le publie. Frais et livraison sont confirmés sur son site avant de payer.",
+      "verified": "Chaque offre est nommée",
+      "verifiedDesc": "Chaque offre indique son vendeur, et chaque lien précise où il mène avant que vous quittiez Seatigo.",
       "support": "Vous gardez la main",
       "supportDesc": "Comparez tranquillement, puis finalisez l'achat en toute sécurité sur le site du vendeur."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Découvrez votre prochain match",
       "body": "Parcourez les prochains matchs de football dans toute l'Europe et trouvez la rencontre que vous voulez vivre en direct.",
-      "cta": "Explorer les matchs"
+      "cta": "Explorer les matchs",
+      "credit": "Photo : {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "À partir de",
       "sellers": "Vendeurs",
-      "offers": "Offres"
+      "offers": "Offres",
+      "jump": "Comparer les offres",
+      "market": "{count, plural, one {# offre} other {# offres}} de {sellers, plural, one {# vendeur} other {# vendeurs}}"
     },
     "related": {
       "homeTeam": "Autres matchs de {name}",
@@ -389,7 +396,8 @@
       "title": "Offres de billets bientôt disponibles",
       "description": "Nous n'avons pas encore d'offres actives pour ce match. Revenez bientôt ou explorez d'autres matchs."
     },
-    "disclaimer": "Seatigo compare des offres de billets de vendeurs tiers. Les prix et la disponibilité peuvent changer. Les achats se finalisent sur le site du vendeur."
+    "disclaimer": "Seatigo compare des offres de billets de vendeurs tiers. Les prix et la disponibilité peuvent changer. Les achats se finalisent sur le site du vendeur.",
+    "continuesTo": "Continue sur {seller}"
   },
   "Countries": {
     "Armenia": "Arménie",

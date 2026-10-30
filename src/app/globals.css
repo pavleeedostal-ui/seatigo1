@@ -1,129 +1,98 @@
 @import "tailwindcss";
 
 /*
- * Seatigo design tokens.
+ * Seatigo — "the album".
  *
- * The palette is deliberately quiet: white and off-white surfaces, deep navy
- * for weight, and a single lime accent reserved for primary actions, selected
- * states and price/trust emphasis. Structure comes from 1px borders and
- * whitespace — shadows are reserved for things that genuinely float
- * (search surface, dropdowns, sheets).
+ * The product is laid out like a season's sticker album: printed pages in
+ * one committed ultramarine, white die-cut slots on them, and every fixture
+ * or club a sticker in a slot. A fixture with real offers is stuck in; one
+ * without is an empty slot that is still on the page.
+ *
+ * Colour roles, and only these:
+ *   album   the printed page. Owns whole fields (hero, page headers, the
+ *           footer), never a scattered accent.
+ *   paper   the ground of working pages, a cool printed white.
+ *   slot    the white die-cut a sticker sits in.
+ *   ink     type and the primary action.
+ *   signal  yellow, for focus and selection on the album field only.
+ *   foil    one holographic finish, on the lowest price and nowhere else.
  */
 
 :root {
-  /* Raw palette. Kept out of the --color-* namespace so the @theme mapping
-     below is a real reference, not a self-reference (which CSS treats as
-     invalid, silently falling back to currentColor in plain rules). */
-  --navy: #0b1220;
-  --navy-soft: #16202e;
-  --bg: #f7f8fa;
-  --white: #ffffff;
-  --lime: #b6ff4a;
-  --lime-dark: #9ae62f;
-  --ink: #101828;
-  --ink-muted: #667085;
-  /* Non-text only: placeholders, icons, decorative separators.
-     Below 4.5:1 on white, so informational copy uses --ink-muted. */
-  --ink-faint: #98a2b3;
-  --border: #e7e9ee;
-  --border-strong: #d4d8e0;
-  --danger: #d92d20;
+  --album: #2432db;
+  --album-deep: #1a23a6;
+  --album-night: #10166e;
+  /* Type on the album field. Both clear 4.5:1 on --album. */
+  --album-ink: #ffffff;
+  --album-ink-muted: #cfd3ff;
+  --album-line: rgba(255, 255, 255, 0.2);
+  --album-line-strong: rgba(255, 255, 255, 0.38);
 
-  /* Hero surface.
-     The homepage opens on a near-black green field that the rest of the
-     product does not use: it is the one place Seatigo gets to be a brand
-     rather than a tool, and keeping it to that one surface is what stops
-     the colour from turning into noise on every results page.
+  --paper: #eef0f6;
+  --paper-deep: #e3e6ef;
+  --slot: #ffffff;
 
-     Gold is an accent, never a field. It appears on exactly two things —
-     the primary action and the hairline under the active pill — because a
-     gold that covers area stops reading as expensive and starts reading
-     as a casino. */
-  --hero: #0b0f0d;
-  --hero-elevated: #111816;
-  --hero-muted: #18211d;
-  --hero-ink: #f7f6f2;
-  /* Three tiers on the dark field, and they must stay distinguishable:
-     headline strongest, subtitle clearly secondary, utility labels
-     weakest. --muted carries the subtitle, --faint the quick filters. */
-  --hero-ink-muted: #c2c3bc;
-  --hero-ink-faint: #969992;
-  /* Brushed brass rather than yellow: a shade cooler and less saturated
-     than a true gold, which is what keeps it reading as metal instead of
-     as a highlighter. Hover goes *down* into the deeper tone — a gold that
-     brightens on hover looks like a web page, not like an object. */
-  --hero-gold: #c7a96b;
-  --hero-gold-deep: #ae8e54;
-  --hero-champagne: #e2d3b2;
-  /* Dividers on dark: light at 8%, so structure is felt rather than drawn. */
-  --hero-line: rgba(255, 255, 255, 0.08);
-  --hero-line-strong: rgba(255, 255, 255, 0.16);
-  /* Ivory, not white: the search surface should read as paper laid on the
-     dark, not as a hole punched through it. */
-  --surface-warm: #f5f3ee;
-  --surface-warm-ink: #151817;
-  /* Warm greys for the ivory surface. The product's --ink-muted/--ink-faint
-     are mixed for white and read faintly blue on ivory; these are the same
-     roles re-tuned warm, and both clear 4.5:1 on #f5f3ee. */
-  --surface-warm-muted: #4f4e48;
-  --surface-warm-faint: #68665e;
-  --surface-warm-line: #e2dfd6;
+  --ink: #0b0e2b;
+  --ink-soft: #1d2250;
+  /* 7:1 on white, 6.3:1 on paper. */
+  --ink-muted: #4e5475;
+  /* Non-text only: icons, empty-slot dashes, decorative rules. */
+  --ink-faint: #8a8fa8;
+
+  --line: #dadde8;
+  --line-strong: #b9bed0;
+
+  --signal: #ffd43b;
+  --signal-deep: #f2c200;
+  --danger: #c8102e;
 }
 
 @theme inline {
-  --color-navy: var(--navy);
-  --color-navy-soft: var(--navy-soft);
-  --color-background: var(--bg);
-  --color-surface: var(--white);
-  --color-lime: var(--lime);
-  --color-lime-dark: var(--lime-dark);
-  --color-foreground: var(--ink);
+  --color-album: var(--album);
+  --color-album-deep: var(--album-deep);
+  --color-album-night: var(--album-night);
+  --color-album-ink: var(--album-ink);
+  --color-album-ink-muted: var(--album-ink-muted);
+  --color-album-line: var(--album-line);
+  --color-album-line-strong: var(--album-line-strong);
+
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-slot: var(--slot);
   --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
   --color-danger: var(--danger);
 
-  --color-hero: var(--hero);
-  --color-hero-elevated: var(--hero-elevated);
-  --color-hero-muted: var(--hero-muted);
-  --color-hero-ink: var(--hero-ink);
-  --color-hero-ink-muted: var(--hero-ink-muted);
-  --color-hero-ink-faint: var(--hero-ink-faint);
-  --color-hero-gold: var(--hero-gold);
-  --color-hero-gold-deep: var(--hero-gold-deep);
-  --color-hero-champagne: var(--hero-champagne);
-  --color-hero-line: var(--hero-line);
-  --color-hero-line-strong: var(--hero-line-strong);
-  --color-surface-warm: var(--surface-warm);
-  --color-surface-warm-ink: var(--surface-warm-ink);
-  --color-surface-warm-muted: var(--surface-warm-muted);
-  --color-surface-warm-faint: var(--surface-warm-faint);
-  --color-surface-warm-line: var(--surface-warm-line);
-
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Only floating surfaces get a shadow. Cards use borders. Literal values:
-     @theme inline needs to inline these, so they cannot be var() references. */
-  --shadow-search: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -8px rgba(11, 18, 32, 0.12);
-  --shadow-pop: 0 4px 6px -2px rgba(16, 24, 40, 0.04), 0 12px 24px -6px rgba(11, 18, 32, 0.12);
-  --shadow-sheet: 0 -8px 40px rgba(11, 18, 32, 0.16);
-  /* The search surface lifts off the near-black hero. Deeper and darker
-     than the shadows used on white, or it reads as a grey smudge. */
-  --shadow-hero-search: 0 2px 4px rgba(0, 0, 0, 0.3), 0 32px 64px -20px rgba(0, 0, 0, 0.65);
+  /* A sticker sits slightly proud of the page: a hairline contact shadow
+     plus a soft drop below it. Literal values; @theme inline inlines them. */
+  --shadow-sticker: 0 1px 0 rgba(11, 14, 43, 0.06), 0 8px 18px -10px rgba(11, 14, 43, 0.35);
+  --shadow-peel: 0 1px 0 rgba(11, 14, 43, 0.06), 0 18px 30px -14px rgba(11, 14, 43, 0.45);
+  --shadow-pop: 0 2px 4px rgba(11, 14, 43, 0.06), 0 18px 40px -12px rgba(11, 14, 43, 0.28);
+  --shadow-search: 0 2px 0 rgba(11, 14, 43, 0.12), 0 30px 60px -24px rgba(6, 9, 60, 0.6);
+  --shadow-sheet: 0 -8px 40px rgba(11, 14, 43, 0.18);
 
-  /* One radius per role, so components stop inventing their own. */
-  --radius-control: 10px;
-  --radius-button: 12px;
-  --radius-card: 16px;
-  --radius-surface: 20px;
+  /* Die-cut corners. Slots and stickers share one radius, so a sticker
+     sits exactly in its slot. */
+  --radius-control: 8px;
+  --radius-button: 8px;
+  --radius-card: 12px;
+  --radius-surface: 16px;
 
-  --animate-fade-in: fade-in 0.2s ease both;
-  --animate-slide-up: slide-up 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
-  --animate-accordion-down: accordion-down 0.2s ease;
-  --animate-accordion-up: accordion-up 0.2s ease;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-fade-in: fade-in 0.2s var(--ease-out-expo) both;
+  --animate-slide-up: slide-up 0.32s var(--ease-out-expo) both;
+  --animate-accordion-down: accordion-down 0.24s var(--ease-out-expo);
+  --animate-accordion-up: accordion-up 0.2s var(--ease-out-expo);
 
   @keyframes fade-in {
     from {
@@ -161,41 +130,165 @@
   }
 }
 
-/* Tailwind v4 defaults border-color to currentColor; keep borders neutral.
-   This must sit in @layer base: an unlayered rule outruns every layered one
-   regardless of specificity, so written bare it silently beat every
-   `border-*` colour utility in the app — including `border-transparent`. */
+/* Must sit in @layer base: an unlayered rule outranks every layered one,
+   and would silently beat every `border-*` colour utility in the app. */
 @layer base {
   *,
   ::before,
   ::after {
-    border-color: var(--border);
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--album);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--album);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/*
+ * The album's component vocabulary. In @layer components so any Tailwind
+ * utility on the same element still wins — written unlayered, these would
+ * silently override `ring-*`, `bg-*` and friends.
+ */
+@layer components {
+/* On the printed page, a blue ring vanishes: focus goes signal yellow. */
+.on-album :focus-visible {
+  outline-color: var(--signal);
 }
 
-body {
-  background: var(--white);
+/*
+ * The album's display voice: Archivo pulled to its condensed width, heavy,
+ * in capitals — the lettering of a sticker album's team pages. Condensed is
+ * also what keeps "Vstupenky" and "Eintrittskarten" on one line.
+ */
+.font-display {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 62%;
+  font-variation-settings: "wdth" 62;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.9;
+}
+
+/* Small capitals for tabs and labels: condensed, tracked, never mono. */
+.font-tab {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 80%;
+  font-variation-settings: "wdth" 80;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * The foil. One finish, kept for the lowest price on a page — the shiny
+ * badge sticker of the set. It drifts when the pointer moves over its
+ * sticker (see `--foil-x`), and holds still for reduced motion.
+ */
+.foil {
+  --foil-x: 30%;
+  background:
+    linear-gradient(
+      115deg,
+      #f4f6ff 0%,
+      #dfe6ff 18%,
+      #d6f4ff 34%,
+      #f6dcff 52%,
+      #fff1c9 70%,
+      #e6ebff 86%,
+      #f4f6ff 100%
+    );
+  background-size: 260% 100%;
+  background-position: var(--foil-x) 50%;
   color: var(--ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+  box-shadow: inset 0 0 0 1px rgba(11, 14, 43, 0.1);
+  transition: background-position 0.6s var(--ease-out-expo);
 }
 
-::selection {
-  background: var(--lime);
-  color: var(--navy);
+.group:hover .foil {
+  --foil-x: 85%;
 }
 
-:focus-visible {
-  outline: 2px solid var(--navy);
-  outline-offset: 2px;
-  border-radius: 4px;
+/* The empty slot: a dashed die line, printed, waiting for its sticker. */
+.slot-empty {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23B9BED0' stroke-width='2' stroke-dasharray='6%2c 6' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
 
-/* Native date inputs render their own placeholder/indicator; keep them quiet. */
+/* The sticker: white, die-cut, proud of the page; lifts like a peeled
+   corner on hover. */
+.sticker {
+  background: var(--slot);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sticker);
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    box-shadow 0.45s var(--ease-out-expo);
+}
+
+.group:hover .sticker,
+.sticker.group:hover,
+.group:focus-visible .sticker {
+  transform: translateY(-3px) rotate(-0.4deg);
+  box-shadow: var(--shadow-peel);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .sticker,
+  .foil {
+    transition: none;
+  }
+  .group:hover .sticker,
+  .sticker.group:hover,
+  .group:focus-visible .sticker {
+    transform: none;
+  }
+}
+
+/* The empty slot printed on the album field itself. */
+.slot-empty-on-album {
+  background-color: rgba(255, 255, 255, 0.04);
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23FFFFFF' stroke-opacity='0.55' stroke-width='2' stroke-dasharray='6%2c 6' stroke-linecap='butt'/%3e%3c/svg%3e");
+}
+}
+
+/* Native date inputs render their own indicator; keep it quiet. */
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.45;
   cursor: pointer;
@@ -203,9 +296,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .container-page {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin-inline: auto;
-  padding-inline: 20px;
+  padding-inline: 16px;
 }
 
 @media (min-width: 640px) {

@@ -41,24 +41,25 @@ export function RelatedMatches({
       {populated.map((group) => (
         <section key={`${group.kind}-${group.name}`}>
           <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
-            <h2 className="text-[19px] font-semibold tracking-[-0.01em] text-ink">
+            <h2 className="font-display text-[30px] text-ink sm:text-[36px]">
               {t(group.kind, { name: group.name })}
             </h2>
             <Link
               href={group.href}
-              className="inline-flex shrink-0 items-center gap-1.5 text-[14px] font-medium text-ink transition-colors hover:text-ink-muted"
+              className="inline-flex shrink-0 items-center gap-1.5 border-b-2 border-ink pb-0.5 text-[14px] font-semibold text-ink transition-colors hover:border-album hover:text-album"
             >
               {t("seeAll")}
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {group.matches.map((match) => (
               <MatchListRow
                 key={match.id}
                 match={match}
                 offersSummary={offersSummaries.get(match.id) ?? null}
+                showDate
               />
             ))}
           </div>

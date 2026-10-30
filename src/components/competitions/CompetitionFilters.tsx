@@ -71,10 +71,10 @@ export function CompetitionFilters({
 
       <label
         className={cn(
-          "relative inline-flex h-9 cursor-pointer items-center rounded-button border px-3.5 text-[14px] transition-colors",
+          "relative inline-flex h-9 cursor-pointer items-center rounded-full border px-4 text-[14px] font-medium transition-colors",
           value.date
-            ? "border-navy bg-navy text-white"
-            : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+            ? "border-album bg-album text-white"
+            : "border-line-strong bg-slot text-ink hover:border-ink",
         )}
       >
         <span>{value.date || t("date")}</span>
@@ -132,10 +132,10 @@ function Pill({
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger
         className={cn(
-          "h-9 w-auto gap-1.5 rounded-button px-3.5 text-[14px]",
+          "h-9 w-auto gap-1.5 rounded-full px-4 text-[14px] font-medium",
           active
-            ? "border-navy bg-navy text-white"
-            : "text-ink-muted hover:border-border-strong hover:text-ink",
+            ? "border-album bg-album text-white"
+            : "border-line-strong bg-slot text-ink hover:border-ink",
         )}
       >
         <span className="max-w-[170px] truncate">{label}</span>

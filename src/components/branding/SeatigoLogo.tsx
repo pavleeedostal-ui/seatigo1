@@ -1,26 +1,31 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Seatigo brand marks — from the Claude Design identity ("Seatigo Logo.dc.html").
+ * Seatigo brand marks.
  *
  * The mark is a stadium seat seen from the side: a vertical pill (the seat
  * back), a horizontal pill (the base), and a dot marking the seat that is
  * yours. Geometry below is the design's percentage layout mapped 1:1 onto a
  * 100x100 viewBox, so it stays vector-sharp at every size.
  *
- * Colors are the design's exact oklch values — do not substitute approximations.
+ * The geometry is the original identity's and stays exact. The colours follow
+ * the album palette: on paper the seat is ink and "your seat" is album
+ * ultramarine; on the album field the seat is white and the dot turns signal
+ * yellow, the one colour that stays loud on the blue.
  */
 
-const INK = "oklch(0.22 0.012 70)";
-const PAPER = "oklch(0.97 0.01 85)";
-const ACCENT = "oklch(0.55 0.12 30)";
+const INK = "#0b0e2b";
+const PAPER = "#ffffff";
+const ALBUM = "#2432db";
+const SIGNAL = "#ffd43b";
 
 export type SeatigoVariant = "dark" | "light" | "mono";
 
 /** `dark` = ink on light backgrounds, `light` = paper on dark, `mono` = single-color. */
 function palette(variant: SeatigoVariant) {
   const shape = variant === "light" ? PAPER : INK;
-  return { shape, dot: variant === "mono" ? shape : ACCENT };
+  const dot = variant === "mono" ? shape : variant === "light" ? SIGNAL : ALBUM;
+  return { shape, dot };
 }
 
 function toLength(size: number | string): string {
@@ -71,10 +76,11 @@ export function SeatigoWordmark({
     <span
       className={className}
       style={{
-        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-        fontWeight: 600,
+        fontFamily: "var(--font-archivo), 'Helvetica Neue', Arial, sans-serif",
+        fontWeight: 800,
+        fontVariationSettings: '"wdth" 88',
         fontSize: toLength(size),
-        letterSpacing: "-0.035em",
+        letterSpacing: "-0.03em",
         lineHeight: 0.9,
         color: variant === "light" ? PAPER : INK,
       }}
@@ -128,13 +134,12 @@ export function SeatigoLogo({
         <SeatigoWordmark size={`calc(${length} * 0.68)`} variant={variant} />
         {tagline && (
           <span
-            className="font-mono uppercase"
+            className="font-tab"
             style={{
               // 0.125 is the design's ratio at the large primary lockup; below
               // ~80px that lands under 10px, so the mono caps need a floor.
               fontSize: `max(10px, calc(${length} * 0.125))`,
-              letterSpacing: "0.2em",
-              color: variant === "light" ? "oklch(0.78 0.015 80)" : "oklch(0.5 0.02 70)",
+              color: variant === "light" ? "#cfd3ff" : "#4e5475",
             }}
           >
             {tagline}

@@ -2,13 +2,14 @@ import Image from "next/image";
 import type { TicketProvider } from "@/types/ticketing";
 import { cn } from "@/lib/utils";
 
+/** Seller monograms: distinct from each other, all at home on the album. */
 const PALETTE = [
-  "#0E1E5B",
-  "#8E1B2E",
-  "#0B5D3B",
-  "#5B2A86",
-  "#B45309",
-  "#0E7490",
+  "#0b0e2b",
+  "#1a23a6",
+  "#5664e6",
+  "#a3162f",
+  "#0e6a80",
+  "#6b4a00",
 ];
 
 function hashCode(value: string): number {
@@ -42,7 +43,7 @@ export function ProviderBadge({
         alt={provider.name}
         width={size}
         height={size}
-        className={cn("rounded-lg object-contain", className)}
+        className={cn("rounded-[8px] object-contain", className)}
       />
     );
   }
@@ -52,7 +53,7 @@ export function ProviderBadge({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-lg font-semibold text-white",
+        "inline-flex shrink-0 items-center justify-center rounded-[8px] font-semibold text-white",
         className,
       )}
       style={{

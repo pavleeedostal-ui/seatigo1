@@ -39,11 +39,16 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border bg-white">
-      <div className="container-page grid grid-cols-2 gap-10 py-16 sm:gap-12 lg:grid-cols-5">
-        <div className="col-span-2 lg:col-span-2">
-          <SeatigoLogo size={32} tagline={t("tagline")} />
-          <div className="mt-6 flex items-center gap-2">
+    // The album's back cover: the deepest blue, the slogan at poster scale,
+    // and the plain facts — where purchases happen — at the foot.
+    <footer className="on-album bg-album-night text-white">
+      <div className="container-page grid grid-cols-2 gap-10 pb-14 pt-16 sm:gap-12 sm:pt-20 lg:grid-cols-12">
+        <div className="col-span-2 lg:col-span-6">
+          <SeatigoLogo size={30} variant="light" />
+          <p className="font-display mt-8 text-[56px] text-white sm:text-[80px]">
+            {t("tagline")}
+          </p>
+          <div className="mt-8 flex items-center gap-2">
             {socials.map((social) => (
               <a
                 key={social.label}
@@ -51,7 +56,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={social.label}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-control border border-border text-ink-muted transition-colors hover:border-border-strong hover:text-ink"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-album-line text-album-ink-muted transition-colors hover:border-white hover:text-white"
               >
                 <social.icon className="h-4 w-4" />
               </a>
@@ -59,13 +64,15 @@ export function Footer() {
           </div>
         </div>
 
-        <FooterColumn title={t("navTitle")} links={exploreLinks} />
-        <FooterColumn title={t("companyTitle")} links={companyLinks} />
-        <FooterColumn title={t("legalTitle")} links={legalLinks} />
+        <div className="col-span-2 grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-6 lg:pt-2">
+          <FooterColumn title={t("navTitle")} links={exploreLinks} />
+          <FooterColumn title={t("companyTitle")} links={companyLinks} />
+          <FooterColumn title={t("legalTitle")} links={legalLinks} />
+        </div>
       </div>
 
-      <div className="border-t border-border">
-        <div className="container-page flex flex-col gap-3 py-6 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-album-line">
+        <div className="container-page flex flex-col gap-3 py-6 text-[13px] text-album-ink-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Seatigo. {t("rights")}
           </p>
@@ -85,13 +92,13 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="mb-4 text-[13px] font-medium uppercase tracking-wider text-ink-muted">{title}</p>
+      <p className="font-tab mb-4 text-[12px] text-album-ink-muted">{title}</p>
       <ul className="flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-[15px] text-ink-muted transition-colors hover:text-ink"
+              className="text-[16px] font-medium text-white underline decoration-transparent underline-offset-4 transition-colors hover:decoration-signal"
             >
               {link.label}
             </Link>

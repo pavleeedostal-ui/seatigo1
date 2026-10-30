@@ -68,10 +68,10 @@ export function MatchweekNav({
       <Link
         href={buildHref("all")}
         className={cn(
-          "inline-flex h-9 shrink-0 items-center rounded-button border px-3.5 text-[14px] transition-colors",
+          "inline-flex h-9 shrink-0 items-center rounded-full border px-4 text-[14px] font-medium transition-colors",
           showingAll
-            ? "border-navy bg-navy text-white"
-            : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+            ? "border-album bg-album text-white"
+            : "border-line-strong bg-slot text-ink hover:border-ink",
         )}
       >
         {t(round === "matchday" ? "allMatchdays" : "allMatchweeks")}
@@ -91,10 +91,10 @@ export function MatchweekNav({
               aria-current={isActive ? "page" : undefined}
               title={t(round, { number: week })}
               className={cn(
-                "inline-flex h-9 w-10 shrink-0 items-center justify-center rounded-button border text-[14px] tabular-nums transition-colors",
+                "inline-flex h-9 w-10 shrink-0 items-center justify-center rounded-full border text-[14px] font-medium tabular-nums transition-colors",
                 isActive
-                  ? "border-navy bg-navy text-white"
-                  : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+                  ? "border-album bg-album text-white"
+                  : "border-line-strong bg-slot text-ink hover:border-ink",
               )}
             >
               {week}

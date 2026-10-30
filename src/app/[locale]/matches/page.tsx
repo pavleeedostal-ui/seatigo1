@@ -19,6 +19,7 @@ import { MatchListRow } from "@/components/matches/MatchListRow";
 import { MatchDateGroups } from "@/components/matches/MatchDateGroups";
 import { MatchFiltersControls } from "@/components/matches/MatchFiltersDrawer";
 import { SearchSummaryBar } from "@/components/matches/SearchSummaryBar";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { EmptyState } from "@/components/matches/EmptyState";
 
 interface SearchParams {
@@ -199,17 +200,12 @@ export default async function MatchesPage({
   };
 
   return (
-    <div className="container-page py-10 sm:py-14">
-      <div className="mb-8">
-        <h1 className="text-[32px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
-          {t("title")}
-        </h1>
-        <p className="mt-2 max-w-xl text-[15px] text-ink-muted">{t("subtitle")}</p>
-      </div>
-
+    <>
+    <PageHeader title={t("title")} subtitle={t("subtitle")} />
+    <div className="container-page pb-16 pt-8 sm:pb-24 sm:pt-10">
       <SearchSummaryBar state={searchState} />
 
-      <div className="sticky top-18 z-30 -mx-5 mb-8 border-b border-border bg-white/90 px-5 py-3 backdrop-blur-md sm:mx-0 sm:px-0">
+      <div className="sticky top-16 z-30 -mx-4 mb-8 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-md sm:-mx-8 sm:px-8 lg:top-18 lg:mx-0 lg:px-0">
         <MatchFiltersControls
           options={filterOptions}
           value={searchState}
@@ -233,10 +229,12 @@ export default async function MatchesPage({
               match={match}
               offersSummary={offersSummaries.get(match.id) ?? null}
               tickets={sp.tickets}
+              showDate
             />
           ))}
         </div>
       )}
     </div>
+    </>
   );
 }

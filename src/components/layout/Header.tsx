@@ -11,121 +11,93 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 /**
- * One header, two settings.
+ * The album's spine: one blue band across the top of every page.
  *
- * On top of the homepage hero it is deliberately bare: logo on the left,
- * utilities on the right, no links in between. The category pills sit
- * directly below the header and carry that navigation, so repeating it
- * beside the logo would be clutter — and the logo gets the room it needs to
- * read as a mark rather than as the first item in a list.
- *
- * The links come back the moment the hero scrolls away, because the pills
- * go with it and a header with no navigation at all would strand anyone
- * halfway down the page. Everywhere else it is the ordinary light header,
- * since the content underneath is white.
+ * It is the same colour as the homepage hero and as every page header
+ * below it, so at rest the header and the page's own title band read as
+ * one printed field. Once that field scrolls away the band deepens a step
+ * and draws a hairline, so it stays legible over the paper beneath.
  */
-/** Roughly the header's own height: past this, the hero is behind it. */
-const HERO_HANDOFF_PX = 72;
-
 export function Header() {
   const t = useTranslations("Nav");
   const pathname = usePathname();
-  const [scrollY, setScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     function onScroll() {
-      setScrollY(window.scrollY);
+      setScrolled(window.scrollY > 8);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrolled = scrollY > 4;
-  // `usePathname` from the i18n router is already locale-stripped.
-  //
-  // The switch to the solid header waits until the hero's own height has
-  // passed under it, rather than firing on the first pixel of scroll — a
-  // white bar sliding across the green on a 4px nudge looks like a glitch.
-  const onHero = pathname === "/" && scrollY < HERO_HANDOFF_PX;
-
-  // "How it works" is no longer a destination in the top navigation; it
-  // lives in the informational block at the foot of the homepage.
   const navItems = [
     { href: "/matches", label: t("matches") },
     { href: "/competitions", label: t("competitions") },
     { href: "/clubs", label: t("clubs") },
   ];
 
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b transition-colors duration-200",
-        onHero
-          ? "border-transparent bg-transparent"
-          : scrolled
-            ? "border-border bg-white/85 backdrop-blur-md"
-            : "border-transparent bg-white",
+        "on-album sticky top-0 z-40 w-full border-b text-album-ink transition-[background-color,border-color] duration-300",
+        scrolled
+          ? "border-album-line bg-album-deep"
+          : "border-transparent bg-album",
       )}
     >
-      <div className="container-page flex h-18 items-center gap-8">
+      <div className="container-page flex h-16 items-center gap-8 lg:h-18">
         <Link
           href="/"
           aria-label="Seatigo home"
           className="flex items-center rounded-control"
         >
-          <SeatigoLogo size={26} variant={onHero ? "light" : "dark"} />
+          <SeatigoLogo size={26} variant="light" />
         </Link>
 
-        <nav
-          className={cn(
-            "hidden flex-1 items-center gap-7",
-            // Hidden only while the hero's own pills are on screen.
-            onHero ? "lg:hidden" : "lg:flex",
-          )}
-          aria-label="Main"
-        >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-[15px] transition-colors",
-                onHero
-                  ? "text-hero-ink-muted hover:text-hero-ink"
-                  : "text-ink-muted hover:text-ink",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden flex-1 items-center gap-1 lg:flex" aria-label="Main">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative rounded-control px-3 py-2 text-[15px] font-medium transition-colors",
+                  active ? "text-album-ink" : "text-album-ink-muted hover:text-album-ink",
+                )}
+              >
+                {item.label}
+                {/* Where you are in the album: a signal tab under the link. */}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-3 -bottom-[13px] h-[3px] rounded-full bg-signal transition-opacity lg:-bottom-[17px]",
+                    active ? "opacity-100" : "opacity-0",
+                  )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-1 lg:gap-3">
-          <LanguageSwitcher tone={onHero ? "onDark" : "default"} />
+        <div className="ml-auto flex items-center gap-1 lg:gap-2">
+          <LanguageSwitcher />
 
           <Link
             href="/sign-in"
-            className={cn(
-              "hidden rounded-control px-2 py-1 text-[15px] transition-colors lg:block",
-              onHero
-                ? "text-hero-ink-muted hover:text-hero-ink"
-                : "text-ink-muted hover:text-ink",
-            )}
+            className="hidden rounded-control px-3 py-2 text-[15px] font-medium text-album-ink-muted transition-colors hover:text-album-ink lg:block"
           >
             {t("signIn")}
           </Link>
 
-          <Button
-            asChild
-            size="sm"
-            // Gold on the dark hero, plain white once the header goes
-            // solid. Both variants share a box, so the swap is a colour
-            // cross-fade and nothing beside it moves.
-            variant={onHero ? "gold" : "outline"}
-            className="hidden lg:inline-flex"
-          >
+          <Button asChild size="sm" variant="light" className="hidden lg:inline-flex">
             <Link href="/matches">{t("findTickets")}</Link>
           </Button>
 
@@ -133,12 +105,7 @@ export function Header() {
             type="button"
             aria-label={t("menu")}
             onClick={() => setMobileOpen(true)}
-            className={cn(
-              "-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-control transition-colors lg:hidden",
-              onHero
-                ? "text-hero-ink hover:bg-white/10"
-                : "text-ink hover:bg-background",
-            )}
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-control text-album-ink transition-colors hover:bg-white/10 lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>

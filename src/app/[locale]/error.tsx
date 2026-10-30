@@ -17,13 +17,13 @@ export default function ErrorBoundary({
 
   return (
     <div className="container-page flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-background">
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-paper-deep">
         <AlertTriangle className="h-6 w-6 text-danger" />
       </div>
-      <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-ink">
+      <h1 className="font-display text-[44px] text-ink">
         Something went wrong
       </h1>
-      <p className="mt-2 max-w-md text-[15px] text-ink-muted">
+      <p className="mt-3 max-w-md text-[16px] text-ink-muted">
         Please try again. If the problem persists, come back a little later.
       </p>
       <Button className="mt-6" onClick={reset}>

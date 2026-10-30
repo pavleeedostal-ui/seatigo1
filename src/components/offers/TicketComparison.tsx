@@ -82,7 +82,7 @@ export function TicketComparison({
   return (
     <div>
       <div className="mb-6 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(240px,300px)_minmax(0,1fr)] lg:gap-10">
-        <div className="flex justify-center lg:sticky lg:top-32 lg:self-start">
+        <div className="order-last rounded-card bg-slot p-5 shadow-sticker lg:sticky lg:top-28 lg:order-none lg:self-start">
           <StadiumMap
             availableCategories={availableCategories}
             activeCategory={filters.category}
@@ -92,7 +92,7 @@ export function TicketComparison({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="sticky top-18 z-30 -mx-5 flex flex-wrap items-center justify-between gap-3 border-b border-border bg-white/90 px-5 py-3 backdrop-blur-md sm:mx-0 sm:px-0">
+          <div className="sticky top-16 z-30 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b border-line bg-paper/90 px-4 py-3 backdrop-blur-md sm:-mx-8 sm:px-8 lg:top-18 lg:mx-0 lg:px-0">
             <OffersSummary
               offerCount={offers.length}
               sellerCount={overallSellerCount}
@@ -119,9 +119,9 @@ export function TicketComparison({
             />
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4 pt-2">
             {sortedOffers.length === 0 ? (
-              <p className="rounded-card border border-dashed border-border p-8 text-center text-[15px] text-ink-muted">
+              <p className="slot-empty rounded-card p-10 text-center text-[15px] text-ink-muted">
                 {t("empty.description")}
               </p>
             ) : (

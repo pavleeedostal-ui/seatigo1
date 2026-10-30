@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -11,9 +11,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CtaTracker } from "@/components/analytics/CtaTracker";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+/**
+ * One family for the whole album. Archivo's width axis gives the condensed
+ * display capitals and the normal-width UI text from a single file, and
+ * latin-ext carries Czech, German, Spanish, Italian and French diacritics.
+ */
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -72,9 +79,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${archivo.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <body className="flex min-h-full flex-col bg-paper text-ink">
         <NextIntlClientProvider>
           <TooltipProvider delayDuration={150}>
             <CtaTracker />

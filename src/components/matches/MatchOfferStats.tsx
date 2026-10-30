@@ -1,16 +1,17 @@
 import { useLocale, useTranslations } from "next-intl";
+import { ArrowDown } from "lucide-react";
 import type { TicketOffer } from "@/types/ticketing";
 import { formatPrice } from "@/lib/format";
 import { dedupeOffers, sellerCountOf } from "@/lib/ticketing/identity";
 
 /**
- * A three-figure read on the market for this fixture, directly under the
- * hero: what it starts at, how many sellers are listing, how many offers
- * there are in total.
+ * The market for this fixture as one sticker on the fixture header: where
+ * it starts (on the foil — the lowest price is the one shiny sticker of the
+ * set), how many offers from how many sellers, and a way down to them.
  *
- * Every number is counted from the offers actually on the page. There is no
- * placeholder and no estimate — the component is only rendered when there
- * are offers, so it can never show a zero dressed up as information.
+ * Every number is counted from the offers actually on the page. The
+ * component is only rendered when there are offers, so it can never show a
+ * zero dressed up as information.
  */
 export function MatchOfferStats({ offers }: { offers: TicketOffer[] }) {
   const locale = useLocale();
@@ -26,33 +27,28 @@ export function MatchOfferStats({ offers }: { offers: TicketOffer[] }) {
   const sellerCount = sellerCountOf(unique);
 
   return (
-    <dl className="mt-6 flex flex-wrap items-end gap-x-10 gap-y-5">
-      <div>
-        <dt className="text-[12px] uppercase tracking-wide text-ink-muted">
-          {t("lowestPrice")}
-        </dt>
-        <dd className="mt-1 text-[32px] font-semibold leading-none tracking-[-0.02em] text-ink">
-          {formatPrice(lowest.price, lowest.currency, locale)}
+    <div className="sticker w-full max-w-sm p-5 text-ink sm:-rotate-[1.5deg] sm:p-6">
+      <dl>
+        <dt className="font-tab text-[12px] text-ink-muted">{t("lowestPrice")}</dt>
+        <dd className="foil mt-2 inline-flex rounded-[8px] px-3 py-1.5">
+          <span className="font-display tabular text-[56px] text-ink">
+            {formatPrice(lowest.price, lowest.currency, locale)}
+          </span>
         </dd>
-      </div>
-
-      <div>
-        <dt className="text-[12px] uppercase tracking-wide text-ink-muted">
-          {t("sellers")}
+        <dt className="sr-only">
+          {t("offers")} / {t("sellers")}
         </dt>
-        <dd className="mt-1 text-[20px] font-medium leading-none tabular-nums text-ink">
-          {sellerCount}
+        <dd className="mt-3 text-[15px] font-medium text-ink-muted">
+          {t("market", { count: unique.length, sellers: sellerCount })}
         </dd>
-      </div>
-
-      <div>
-        <dt className="text-[12px] uppercase tracking-wide text-ink-muted">
-          {t("offers")}
-        </dt>
-        <dd className="mt-1 text-[20px] font-medium leading-none tabular-nums text-ink">
-          {unique.length}
-        </dd>
-      </div>
-    </dl>
+      </dl>
+      <a
+        href="#offers"
+        className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-button bg-ink px-5 text-[15px] font-semibold text-white transition-colors hover:bg-album"
+      >
+        {t("jump")}
+        <ArrowDown className="h-4 w-4" />
+      </a>
+    </div>
   );
 }

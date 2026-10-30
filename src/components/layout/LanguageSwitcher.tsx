@@ -12,14 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher({
-  className,
-  /** `onDark` is the homepage hero, where the header sits on deep green. */
-  tone = "default",
-}: {
-  className?: string;
-  tone?: "default" | "onDark";
-}) {
+/** Lives in the header, so it is always set on the album field. */
+export function LanguageSwitcher({ className }: { className?: string }) {
   const locale = useLocale() as AppLocale;
   const pathname = usePathname();
   const router = useRouter();
@@ -32,15 +26,12 @@ export function LanguageSwitcher({
           type="button"
           aria-label={t("language")}
           className={cn(
-            "inline-flex h-11 items-center gap-1.5 rounded-control px-2.5 text-[15px] transition-colors lg:h-9",
-            tone === "onDark"
-              ? "text-hero-ink-muted hover:text-hero-ink"
-              : "text-ink-muted hover:text-ink",
+            "inline-flex h-11 items-center gap-1.5 rounded-control px-2.5 text-[15px] font-medium text-album-ink-muted transition-colors hover:text-album-ink lg:h-9",
             className,
           )}
         >
           <Globe className="h-4 w-4" />
-          <span className="uppercase">{locale}</span>
+          <span className="font-tab text-[13px]">{locale}</span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

@@ -45,7 +45,7 @@ export function SearchSummaryBar({ state }: { state: MatchesSearchState }) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="mb-6 flex flex-col gap-2 rounded-card border border-border bg-white p-2 sm:flex-row sm:items-center"
+        className="mb-6 flex flex-col gap-2 rounded-card bg-slot p-2 shadow-sticker sm:flex-row sm:items-center"
       >
         <label className="flex flex-1 items-center gap-2.5 rounded-xl px-3 py-2.5 text-left">
           <Search className="h-4 w-4 shrink-0 text-ink-faint" />
@@ -54,7 +54,7 @@ export function SearchSummaryBar({ state }: { state: MatchesSearchState }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t("title")}
-            className="w-full bg-transparent text-sm text-ink placeholder:text-ink-faint focus:outline-none"
+            className="w-full bg-transparent text-[16px] text-ink placeholder:text-ink-muted focus:outline-none"
           />
         </label>
         <div className="hidden h-7 w-px bg-border sm:block" />
@@ -64,7 +64,7 @@ export function SearchSummaryBar({ state }: { state: MatchesSearchState }) {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full bg-transparent text-sm text-ink focus:outline-none"
+            className="w-full bg-transparent text-[16px] text-ink focus:outline-none"
           />
         </label>
         <div className="hidden h-7 w-px bg-border sm:block" />
@@ -73,7 +73,7 @@ export function SearchSummaryBar({ state }: { state: MatchesSearchState }) {
           <select
             value={tickets}
             onChange={(e) => setTickets(e.target.value)}
-            className="w-full appearance-none bg-transparent text-sm text-ink focus:outline-none"
+            className="w-full appearance-none bg-transparent text-[16px] text-ink focus:outline-none"
           >
             {TICKET_OPTIONS.map((n) => (
               <option key={n} value={n}>
@@ -101,11 +101,19 @@ export function SearchSummaryBar({ state }: { state: MatchesSearchState }) {
   }
 
   return (
-    <div className="mb-6 flex items-center justify-between gap-4 rounded-card border border-border px-5 py-4">
-      <p className="truncate text-[15px] font-medium text-ink">{summaryText()}</p>
-      <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="shrink-0">
+    <div className="mb-6 flex items-center justify-between gap-4 rounded-card bg-slot px-5 py-3.5 shadow-sticker">
+      <p className="truncate text-[16px] font-semibold text-ink">{summaryText()}</p>
+      {/* Icon-only on a phone, where a long label ("Modifier la recherche")
+          would leave the summary itself no room. */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setEditing(true)}
+        aria-label={t("searchSummary.editSearch")}
+        className="shrink-0 rounded-full max-sm:w-9 max-sm:px-0"
+      >
         <Pencil className="h-3.5 w-3.5" />
-        {t("searchSummary.editSearch")}
+        <span className="max-sm:sr-only">{t("searchSummary.editSearch")}</span>
       </Button>
     </div>
   );

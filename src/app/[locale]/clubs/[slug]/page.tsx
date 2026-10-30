@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ChevronRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getFootballDataProvider } from "@/lib/football";
 import { getCheapestOffersForFixtures } from "@/lib/ticketing/aggregator";
 import { recordClubInterest } from "@/lib/analytics/club-popularity";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { MatchListRow } from "@/components/matches/MatchListRow";
 import { ClubLogo } from "@/components/shared/ClubLogo";
 import { CompetitionLogo } from "@/components/shared/CompetitionLogo";
@@ -72,71 +72,63 @@ export default async function ClubPage({
     matches.find((m) => m.homeTeam.slug === slug && m.stadium)?.stadium ?? null;
 
   return (
-    <div className="container-page py-10 sm:py-14">
-      <nav
-        aria-label="Breadcrumb"
-        className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-ink-muted"
+    <>
+      {/* The club's team page in the album: crest pressed on as a sticker,
+          name at poster scale, home ground, and the competitions it plays. */}
+      <PageHeader
+        breadcrumb={[{ href: "/clubs", label: t("backToClubs") }, { label: club.name }]}
+        leading={
+          <span className="sticker inline-flex rounded-full p-4 sm:-rotate-[4deg] sm:p-5">
+            <ClubLogo club={club} size={88} priority />
+          </span>
+        }
+        title={club.name}
+        subtitle={homeVenue ? `${homeVenue.name} · ${homeVenue.city}` : t("stadiumUnknown")}
       >
-        <Link href="/clubs" className="hover:text-ink">
-          {t("backToClubs")}
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 text-ink-faint" />
-        <span className="text-ink">{club.name}</span>
-      </nav>
-
-      <div className="flex items-center gap-5 border-b border-border pb-8">
-        <ClubLogo club={club} size={80} priority />
-        <div className="min-w-0">
-          <h1 className="text-[32px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
-            {club.name}
-          </h1>
-          <p className="mt-2 text-[15px] text-ink-muted">
-            {homeVenue ? `${homeVenue.name} · ${homeVenue.city}` : t("stadiumUnknown")}
-          </p>
-        </div>
-      </div>
-
-      {competitions.length > 0 && (
-        <div className="mt-8">
-          <h2 className="mb-3 text-[13px] font-medium uppercase tracking-wider text-ink-muted">
-            {t("competitions")}
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {competitions.map((competition) => (
-              <Link
-                key={competition.slug}
-                href={`/competitions/${competition.slug}`}
-                className="inline-flex items-center gap-2 rounded-button border border-border px-3.5 py-2 text-[14px] text-ink transition-colors hover:border-border-strong"
-              >
-                <CompetitionLogo competition={competition} size={20} />
-                {competition.name}
-              </Link>
-            ))}
+        {competitions.length > 0 && (
+          <div className="mt-8 border-t border-album-line pt-6">
+            <h2 className="font-tab mb-3 text-[12px] text-album-ink-muted">{t("competitions")}</h2>
+            <ul className="flex flex-wrap gap-2">
+              {competitions.map((competition) => (
+                <li key={competition.slug}>
+                  <Link
+                    href={`/competitions/${competition.slug}`}
+                    className="inline-flex h-10 items-center gap-2 rounded-full bg-white pl-1.5 pr-4 text-[14px] font-semibold text-ink transition-colors hover:bg-signal"
+                  >
+                    <span className="inline-flex h-7 w-7 items-center justify-center">
+                      <CompetitionLogo competition={competition} size={22} />
+                    </span>
+                    {competition.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      )}
+        )}
+      </PageHeader>
 
-      <div className="mt-10">
-        <h2 className="mb-6 text-[22px] font-semibold tracking-[-0.01em] text-ink">
+      <div className="container-page pb-20 pt-10 sm:pb-28 sm:pt-14">
+        <h2 className="font-display mb-8 text-[44px] text-ink sm:text-[60px]">
           {t("upcomingFixtures")}
         </h2>
 
         {matches.length === 0 ? (
-          <p className="rounded-card border border-dashed border-border px-6 py-14 text-center text-[15px] text-ink-muted">
+          <p className="slot-empty rounded-card px-6 py-14 text-center text-[16px] text-ink-muted">
             {t("noFixtures")}
           </p>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {matches.map((match) => (
               <MatchListRow
                 key={match.id}
                 match={match}
                 offersSummary={offersSummaries.get(match.id) ?? null}
+                showDate
               />
             ))}
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

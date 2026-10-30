@@ -18,7 +18,7 @@ function TooltipContent({
       <TooltipPrimitive.Content
         sideOffset={sideOffset}
         className={cn(
-          "z-50 overflow-hidden rounded-control bg-navy px-2.5 py-1.5 text-xs text-white shadow-pop animate-fade-in",
+          "z-50 overflow-hidden rounded-control bg-ink px-2.5 py-1.5 text-xs text-white shadow-pop animate-fade-in",
           className,
         )}
         {...props}

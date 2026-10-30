@@ -16,7 +16,7 @@ function SheetOverlay({
   return (
     <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-50 bg-navy/30 backdrop-blur-[2px] data-[state=open]:animate-fade-in",
+        "fixed inset-0 z-50 bg-ink/40 backdrop-blur-[2px] data-[state=open]:animate-fade-in",
         className,
       )}
       {...props}
@@ -42,7 +42,7 @@ function SheetContent({
       >
         <div className="mx-auto mb-5 h-1 w-9 rounded-full bg-border-strong" />
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-control p-2 text-ink-muted hover:bg-background">
+        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-control p-2 text-ink-muted hover:bg-paper">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>

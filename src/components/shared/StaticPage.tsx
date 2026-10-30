@@ -1,10 +1,15 @@
+import { PageHeader } from "./PageHeader";
+
+/** A plain page of the album: its title on the blue band, its text on paper. */
 export function StaticPage({ title, body }: { title: string; body: string }) {
   return (
-    <div className="container-page max-w-2xl py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-        {title}
-      </h1>
-      <p className="mt-5 text-lg leading-relaxed text-ink-muted">{body}</p>
-    </div>
+    <>
+      <PageHeader title={title} size="compact" />
+      <div className="container-page pb-24 pt-12 sm:pt-16">
+        <p className="max-w-[65ch] text-pretty text-[18px] leading-relaxed text-ink-soft sm:text-[20px]">
+          {body}
+        </p>
+      </div>
+    </>
   );
 }

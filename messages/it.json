@@ -57,30 +57,34 @@
       "available": "Solo partite con biglietti",
       "weekend": "Questo fine settimana",
       "bestPrices": "Prezzi migliori"
-    }
+    },
+    "stickersLabel": "Le prossime partite"
   },
   "Home": {
     "popularMatches": {
-      "title": "Partite popolari",
-      "subtitle": "Le partite più cercate dai tifosi in questo momento.",
-      "viewAll": "Vedi tutte le partite"
+      "title": "In arrivo",
+      "subtitle": "Le prossime partite in tutta Europa, dalla più vicina.",
+      "viewAll": "Vedi tutte le partite",
+      "fixturesCount": "{count, plural, one {# partita} other {# partite}}"
     },
     "howItWorks": {
       "title": "Come funziona Seatigo",
-      "subtitle": "Tre passi che ti separano dal giorno della partita.",
-      "step1Title": "Trova la tua partita",
-      "step1Desc": "Cerca per squadra, città, competizione o data e scopri la disponibilità in pochi secondi.",
-      "step2Title": "Scegli il tuo posto",
-      "step2Desc": "Confronta i settori sulla mappa dello stadio e scegli la visuale che preferisci.",
-      "step3Title": "Goditi la partita",
-      "step3Desc": "Conferma i tuoi dati ed è fatta: ci vediamo allo stadio."
+      "subtitle": "Dalla partita al venditore in quattro passi.",
+      "step1Title": "Cerca",
+      "step1Desc": "Scrivi un club, una competizione o una città. Trovi ogni partita in programma, con o senza biglietti.",
+      "step2Title": "Confronta",
+      "step2Desc": "Scopri quali venditori hanno offerte per quella partita, con prezzi e categorie di posto affiancati.",
+      "step3Title": "Scegli",
+      "step3Desc": "Scegli l'offerta che fa per te. Seatigo ti dice esattamente da quale venditore proseguirai.",
+      "step4Title": "Acquista dal venditore",
+      "step4Desc": "Completi l'acquisto sul sito del venditore. Seatigo non vende mai biglietti."
     },
     "trust": {
       "title": "Perché confrontare con Seatigo",
-      "secure": "Prezzi trasparenti",
-      "secureDesc": "Vedi il prezzo completo di commissioni prima di lasciare Seatigo.",
-      "verified": "Solo venditori affidabili",
-      "verifiedDesc": "Confrontiamo offerte di venditori di biglietti e biglietterie affermati.",
+      "secure": "Prezzi come li pubblica il venditore",
+      "secureDesc": "Mostriamo il prezzo di ogni venditore così come è pubblicato. Commissioni e consegna si confermano sul suo sito prima di pagare.",
+      "verified": "Ogni offerta ha un nome",
+      "verifiedDesc": "Ogni offerta indica il suo venditore e ogni link dice dove porta prima che tu lasci Seatigo.",
       "support": "Decidi tu",
       "supportDesc": "Confronta con calma e completa l'acquisto in sicurezza sul sito del venditore."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Scopri la tua prossima partita",
       "body": "Sfoglia le prossime partite di calcio in tutta Europa e trova l'incontro che vuoi vivere dal vivo.",
-      "cta": "Esplora le partite"
+      "cta": "Esplora le partite",
+      "credit": "Foto: {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "Da",
       "sellers": "Venditori",
-      "offers": "Offerte"
+      "offers": "Offerte",
+      "jump": "Confronta le offerte",
+      "market": "{count, plural, one {# offerta} other {# offerte}} da {sellers, plural, one {# venditore} other {# venditori}}"
     },
     "related": {
       "homeTeam": "Altre partite di {name}",
@@ -389,7 +396,8 @@
       "title": "Offerte di biglietti in arrivo",
       "description": "Non abbiamo ancora offerte attive per questa partita. Torna presto o sfoglia altre partite."
     },
-    "disclaimer": "Seatigo confronta offerte di biglietti di venditori terzi. Prezzi e disponibilità possono cambiare. Gli acquisti si completano sul sito del venditore."
+    "disclaimer": "Seatigo confronta offerte di biglietti di venditori terzi. Prezzi e disponibilità possono cambiare. Gli acquisti si completano sul sito del venditore.",
+    "continuesTo": "Prosegue su {seller}"
   },
   "Countries": {
     "Armenia": "Armenia",

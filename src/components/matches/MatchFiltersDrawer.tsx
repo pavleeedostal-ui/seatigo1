@@ -47,7 +47,7 @@ export function MatchFiltersDrawer({
           type="button"
           onClick={() => onOpenChange(true)}
           className={cn(
-            "inline-flex h-10 items-center gap-2 rounded-button border border-border px-3.5 text-[14px] text-ink transition-colors hover:border-border-strong lg:hidden",
+            "inline-flex h-10 items-center gap-2 rounded-full border border-line-strong bg-slot px-4 text-[14px] font-medium text-ink transition-colors hover:border-ink lg:hidden",
           )}
         >
           <SlidersHorizontal className="h-4 w-4" />

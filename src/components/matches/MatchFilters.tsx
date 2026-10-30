@@ -135,10 +135,10 @@ export function MatchFilters({
             type="button"
             onClick={() => updateParams({ range })}
             className={cn(
-              "h-9 rounded-button border px-3.5 text-[14px] transition-colors",
+              "h-9 rounded-full border px-4 text-[14px] font-medium transition-colors",
               active
-                ? "border-navy bg-navy text-white"
-                : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+                ? "border-album bg-album text-white"
+                : "border-line-strong bg-slot text-ink hover:border-ink",
             )}
           >
             {/* The date range's "all" is "Any date", so it never reads the
@@ -204,10 +204,10 @@ export function MatchFilters({
             type="button"
             onClick={onMore}
             className={cn(
-              "inline-flex h-9 items-center gap-2 rounded-button border px-3.5 text-[14px] transition-colors",
+              "inline-flex h-9 items-center gap-2 rounded-full border px-4 text-[14px] font-medium transition-colors",
               hiddenActiveCount > 0
-                ? "border-navy bg-navy text-white"
-                : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+                ? "border-album bg-album text-white"
+                : "border-line-strong bg-slot text-ink hover:border-ink",
             )}
           >
             <SlidersHorizontal className="h-4 w-4" />
@@ -305,7 +305,7 @@ export function MatchFilters({
               if (!e.currentTarget.value) e.currentTarget.type = "text";
             }}
             onChange={(e) => updateParams({ date: e.target.value || undefined })}
-            className="h-11 w-full rounded-control border border-border bg-white px-3.5 text-sm text-ink placeholder:text-ink-faint focus:border-navy focus:outline-none"
+            className="h-11 w-full rounded-control border border-line bg-white px-3.5 text-sm text-ink placeholder:text-ink-faint focus:border-album focus:outline-none"
           />
         </Field>
 
@@ -346,7 +346,7 @@ export function MatchFilters({
         </Field>
       </div>
 
-      <div className="sticky bottom-0 -mx-6 -mb-6 flex items-center justify-between gap-3 border-t border-border bg-white px-6 py-4">
+      <div className="sticky bottom-0 -mx-6 -mb-6 flex items-center justify-between gap-3 border-t border-line bg-white px-6 py-4">
         <Button
           type="button"
           variant="ghost"
@@ -448,10 +448,10 @@ function FilterPill({
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger
         className={cn(
-          "h-9 w-auto gap-1.5 rounded-button px-3.5 text-[14px]",
+          "h-9 w-auto gap-1.5 rounded-full px-4 text-[14px] font-medium",
           active
-            ? "border-navy bg-navy text-white"
-            : "text-ink-muted hover:border-border-strong hover:text-ink",
+            ? "border-album bg-album text-white"
+            : "border-line-strong bg-slot text-ink hover:border-ink",
         )}
       >
         {selectedLogo && (
@@ -489,10 +489,10 @@ function DatePill({
   return (
     <label
       className={cn(
-        "relative inline-flex h-9 cursor-pointer items-center rounded-button border px-3.5 text-[14px] transition-colors",
+        "relative inline-flex h-9 cursor-pointer items-center rounded-full border px-4 text-[14px] font-medium transition-colors",
         value
-          ? "border-navy bg-navy text-white"
-          : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+          ? "border-album bg-album text-white"
+          : "border-line-strong bg-slot text-ink hover:border-ink",
       )}
     >
       <span>{value || label}</span>

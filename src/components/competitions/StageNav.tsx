@@ -46,10 +46,10 @@ export function StageNav({
                 href={hrefFor(stage)}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-9 items-center gap-2 rounded-button border px-3.5 text-[14px] transition-colors",
+                  "inline-flex h-9 items-center gap-2 rounded-full border px-4 text-[14px] font-medium transition-colors",
                   isActive
-                    ? "border-navy bg-navy text-white"
-                    : "border-border text-ink-muted hover:border-border-strong hover:text-ink",
+                    ? "border-album bg-album text-white"
+                    : "border-line-strong bg-slot text-ink hover:border-ink",
                 )}
               >
                 {t(`stage.${stage.stage}`)}
@@ -57,7 +57,7 @@ export function StageNav({
                   <span
                     className={cn(
                       "rounded-full px-1.5 py-0.5 text-[11px] leading-none",
-                      isActive ? "bg-white/15 text-white" : "bg-background text-ink-muted",
+                      isActive ? "bg-white/20 text-white" : "bg-paper-deep text-ink-muted",
                     )}
                   >
                     {t("stageUndrawnShort")}

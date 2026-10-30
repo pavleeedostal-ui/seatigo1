@@ -5,7 +5,6 @@ import { Hero } from "@/components/home/Hero";
 import { PopularMatches } from "@/components/home/PopularMatches";
 import { DiscoverMatchesBanner } from "@/components/home/DiscoverMatchesBanner";
 import { HowItWorks } from "@/components/home/HowItWorks";
-import { TrustBadges } from "@/components/home/TrustBadges";
 import { Faq } from "@/components/home/Faq";
 
 /**
@@ -16,11 +15,15 @@ import { Faq } from "@/components/home/Faq";
  */
 export const revalidate = 300;
 
+/** Three stickers on the hero's sheet, then the next eight on the album page. */
+const HERO_STICKERS = 3;
+const FEATURED = 8;
+
 /**
- * Search, a handful of real fixtures, one invitation, then the reassurance
- * content. The competition and club grids that used to sit in the middle
- * were a directory restating navigation that already exists in the header
- * and on their own pages; the editorial banner asks a question instead.
+ * The album, opened: the cover page with the search and the next fixtures
+ * as stickers, the following fixtures as a page of slots, one photograph of
+ * a real matchday, then how it works and the questions people ask before
+ * trusting a comparison site.
  */
 export default async function HomePage({
   params,
@@ -33,27 +36,32 @@ export default async function HomePage({
   const provider = getFootballDataProvider();
   // Fixtures come from the football provider alone. Ticket offers are
   // joined in afterwards for display and never decide what is listed.
-  const popularMatches = await provider.getUpcomingMatches(6);
-  const offersSummaries = await getCheapestOffersForFixtures(popularMatches);
+  const upcoming = await provider.getUpcomingMatches(HERO_STICKERS + FEATURED);
+  const offersSummaries = await getCheapestOffersForFixtures(upcoming);
+
+  const stickers = upcoming.slice(0, HERO_STICKERS).map((match) => ({
+    match,
+    summary: offersSummaries.get(match.id) ?? null,
+  }));
 
   return (
     <>
-      <Hero />
-      {/* The hero's search surface hangs past its bottom edge and overlaps
-          this section. The extra top padding is that overlap plus the
-          section's usual breathing room, so the heading never collides with
-          the floating search bar — keep it in step with the negative bottom
-          margin in Hero.tsx. */}
+      <Hero stickers={stickers} />
       <PopularMatches
-        matches={popularMatches}
+        matches={upcoming.slice(HERO_STICKERS)}
         offersSummaries={offersSummaries}
-        className="pt-24 sm:pt-32 lg:pt-36"
       />
-      <DiscoverMatchesBanner />
-      {/* The informational block. "How it works" used to sit high enough to
-          read as a pitch; down here it is reference material, next to the
-          other things someone checks before they trust a comparison site. */}
-      <TrustBadges />
+      <DiscoverMatchesBanner
+        image={{
+          src: "/images/editorial/matchday-floodlights.jpg",
+          alt: "",
+          author: "Krzysztof Popławski",
+          license: "CC BY 4.0",
+          sourceUrl:
+            "https://commons.wikimedia.org/wiki/File:Mecz_pi%C5%82karski_Wis%C5%82a_Krak%C3%B3w_-_Zag%C5%82%C4%99bie_Sosnwoiec,_28_pa%C5%BAdziernika_2022,_Po%C5%BCegnanie_Stadionu_Ludowego,_KP.jpg",
+          licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+        }}
+      />
       <HowItWorks />
       <Faq />
     </>

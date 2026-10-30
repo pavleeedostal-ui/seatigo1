@@ -7,19 +7,13 @@ import { MatchCard } from "@/components/matches/MatchCard";
 import { Section, SectionHeader } from "@/components/shared/Section";
 
 /**
- * The homepage's one fixture section.
+ * The page after the cover: the fixtures that follow the hero's three
+ * stickers, as slots on one album page. The first two are printed larger;
+ * the rest keep a scannable four-across rhythm.
  *
- * It used to be two — "Popular Matches" and "Upcoming Fixtures" — which drew
- * from the same provider in the same order and so showed the same football
- * twice. This is the merge: the next two fixtures get a larger card, the
- * rest stay scannable at normal size, and one link goes to the full list.
- *
- * Fixtures are whatever the provider returns, in its order. Nothing here is
- * curated or pinned.
- *
- * One way out, not two: the header link is the section's navigation. A
- * second button under the grid pointed at the same place and only made the
- * page longer.
+ * Fixtures are whatever the provider returns, in its order — soonest
+ * first. Nothing is curated, pinned or ranked by popularity, and the
+ * heading says so.
  */
 export function PopularMatches({
   matches,
@@ -28,13 +22,10 @@ export function PopularMatches({
 }: {
   matches: Match[];
   offersSummaries: Map<string, CheapestOfferSummary>;
-  /** The homepage uses this to clear the hero's overlapping search bar. */
   className?: string;
 }) {
   const t = useTranslations("Home.popularMatches");
-
-  const [first, second, ...rest] = matches;
-  const lead = [first, second].filter(Boolean);
+  if (matches.length === 0) return null;
 
   return (
     <Section className={className}>
@@ -44,38 +35,26 @@ export function PopularMatches({
         action={
           <Link
             href="/matches"
-            className="inline-flex shrink-0 items-center gap-1.5 text-[15px] font-medium text-ink transition-colors hover:text-ink-muted"
+            className="group inline-flex shrink-0 items-center gap-2 border-b-2 border-ink pb-1 text-[15px] font-semibold text-ink transition-colors hover:border-album hover:text-album"
           >
             {t("viewAll")}
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         }
       />
 
-      {lead.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {lead.map((match) => (
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        {matches.map((match, i) => (
+          <li key={match.id} className={i < 2 ? "sm:col-span-1 lg:col-span-2" : undefined}>
             <MatchCard
-              key={match.id}
               match={match}
-              variant="lead"
+              variant={i < 2 ? "lead" : "default"}
               offersSummary={offersSummaries.get(match.id) ?? null}
+              className="h-full"
             />
-          ))}
-        </div>
-      )}
-
-      {rest.length > 0 && (
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {rest.map((match) => (
-            <MatchCard
-              key={match.id}
-              match={match}
-              offersSummary={offersSummaries.get(match.id) ?? null}
-            />
-          ))}
-        </div>
-      )}
+          </li>
+        ))}
+      </ul>
     </Section>
   );
 }

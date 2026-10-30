@@ -4,6 +4,7 @@ import { getFootballDataProvider } from "@/lib/football";
 import { CLUB_CRESTS, resolveClubCrest } from "@/lib/football/club-logos";
 import { buildAlternates, canonicalFor } from "@/lib/seo";
 import { normalizeText } from "@/lib/text";
+import { PageHeader } from "@/components/shared/PageHeader";
 import {
   ClubsDirectory,
   type DirectoryClub,
@@ -65,17 +66,13 @@ export default async function ClubsPage({
   }));
 
   return (
-    <div className="container-page py-10 sm:py-14">
-      <div className="mb-8">
-        <h1 className="text-[32px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
-          {t("title")}
-        </h1>
-        <p className="mt-2 max-w-xl text-[15px] text-ink-muted">
-          {t("directorySubtitle", { count: directory.length })}
-        </p>
-      </div>
-
+    <>
+      <PageHeader
+        title={t("title")}
+        subtitle={t("directorySubtitle", { count: directory.length })}
+        className="[&>div]:pb-6 sm:[&>div]:pb-8"
+      />
       <ClubsDirectory clubs={directory} />
-    </div>
+    </>
   );
 }

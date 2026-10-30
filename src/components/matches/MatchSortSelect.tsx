@@ -47,7 +47,7 @@ export function MatchSortSelect({ state }: { state: MatchesSearchState }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-10 items-center gap-2 rounded-button border border-border px-3.5 text-[14px] text-ink transition-colors hover:border-border-strong lg:hidden"
+        className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong bg-slot px-4 text-[14px] font-medium text-ink transition-colors hover:border-ink lg:hidden"
       >
         <ArrowUpDown className="h-4 w-4" />
         {t("label")}

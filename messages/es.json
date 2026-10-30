@@ -57,30 +57,34 @@
       "available": "Solo partidos con entradas",
       "weekend": "Este fin de semana",
       "bestPrices": "Mejores precios"
-    }
+    },
+    "stickersLabel": "Los próximos partidos"
   },
   "Home": {
     "popularMatches": {
-      "title": "Partidos populares",
-      "subtitle": "Los partidos que los aficionados buscan ahora mismo.",
-      "viewAll": "Ver todos los partidos"
+      "title": "Próximos partidos",
+      "subtitle": "Los próximos partidos de toda Europa, por orden de fecha.",
+      "viewAll": "Ver todos los partidos",
+      "fixturesCount": "{count, plural, one {# partido} other {# partidos}}"
     },
     "howItWorks": {
       "title": "Cómo funciona Seatigo",
-      "subtitle": "Tres pasos hasta el día del partido.",
-      "step1Title": "Encuentra tu partido",
-      "step1Desc": "Busca por equipo, ciudad, competición o fecha y descubre la disponibilidad en segundos.",
-      "step2Title": "Elige tu asiento",
-      "step2Desc": "Compara zonas en el mapa del estadio y elige la vista que prefieras.",
-      "step3Title": "Disfruta del partido",
-      "step3Desc": "Confirma tus datos y listo: nos vemos en el estadio."
+      "subtitle": "Del partido al vendedor en cuatro pasos.",
+      "step1Title": "Busca",
+      "step1Desc": "Escribe un club, una competición o una ciudad. Verás todos los próximos partidos, con o sin entradas.",
+      "step2Title": "Compara",
+      "step2Desc": "Mira qué vendedores tienen ofertas para ese partido, con precios y categorías de asiento lado a lado.",
+      "step3Title": "Elige",
+      "step3Desc": "Escoge la oferta que te convenga. Seatigo te indica exactamente a qué vendedor continuarás.",
+      "step4Title": "Compra al vendedor",
+      "step4Desc": "Completas la compra en la web del propio vendedor. Seatigo nunca vende entradas."
     },
     "trust": {
       "title": "Por qué comparar con Seatigo",
-      "secure": "Precios transparentes",
-      "secureDesc": "Verás el precio completo con las tasas antes de salir de Seatigo.",
-      "verified": "Solo vendedores de confianza",
-      "verifiedDesc": "Comparamos ofertas de vendedores de entradas y taquillas establecidos.",
+      "secure": "Precios tal como los publica el vendedor",
+      "secureDesc": "Mostramos el precio de cada vendedor tal como lo publica. Las comisiones y el envío se confirman en su web antes de pagar.",
+      "verified": "Cada oferta tiene nombre",
+      "verifiedDesc": "Cada oferta indica su vendedor, y cada enlace dice adónde lleva antes de salir de Seatigo.",
       "support": "Tú tienes el control",
       "supportDesc": "Compara con calma y completa la compra de forma segura en la web del vendedor."
     },
@@ -109,7 +113,8 @@
     "discover": {
       "title": "Descubre tu próximo partido",
       "body": "Explora los próximos partidos de fútbol por toda Europa y encuentra el encuentro que quieres vivir en directo.",
-      "cta": "Explorar partidos"
+      "cta": "Explorar partidos",
+      "credit": "Foto: {author}"
     }
   },
   "Matches": {
@@ -198,7 +203,9 @@
     "stats": {
       "lowestPrice": "Desde",
       "sellers": "Vendedores",
-      "offers": "Ofertas"
+      "offers": "Ofertas",
+      "jump": "Comparar ofertas",
+      "market": "{count, plural, one {# oferta} other {# ofertas}} de {sellers, plural, one {# vendedor} other {# vendedores}}"
     },
     "related": {
       "homeTeam": "Más partidos del {name}",
@@ -389,7 +396,8 @@
       "title": "Ofertas de entradas próximamente",
       "description": "Todavía no tenemos ofertas activas para este partido. Vuelve pronto o explora otros partidos."
     },
-    "disclaimer": "Seatigo compara ofertas de entradas de vendedores externos. Los precios y la disponibilidad pueden cambiar. Las compras se completan en la web del vendedor."
+    "disclaimer": "Seatigo compara ofertas de entradas de vendedores externos. Los precios y la disponibilidad pueden cambiar. Las compras se completan en la web del vendedor.",
+    "continuesTo": "Continúa en {seller}"
   },
   "Countries": {
     "Armenia": "Armenia",

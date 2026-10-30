@@ -137,10 +137,10 @@ export function OffersFiltersPanel({
           <Select key={f.key} value={f.selected} onValueChange={f.onChange}>
             <SelectTrigger
               className={cn(
-                "h-9 w-auto gap-1.5 rounded-button px-3.5 text-[14px]",
+                "h-9 w-auto gap-1.5 rounded-full px-4 text-[14px] font-medium",
                 f.active
-                  ? "border-navy bg-navy text-white"
-                  : "text-ink-muted hover:border-border-strong hover:text-ink",
+                  ? "border-album bg-album text-white"
+                  : "border-line-strong bg-slot text-ink hover:border-ink",
               )}
             >
               <span className="max-w-[150px] truncate">
@@ -197,7 +197,7 @@ export function OffersFiltersPanel({
         ))}
       </div>
 
-      <div className="sticky bottom-0 -mx-6 -mb-6 flex items-center justify-between gap-3 border-t border-border bg-white px-6 py-4">
+      <div className="sticky bottom-0 -mx-6 -mb-6 flex items-center justify-between gap-3 border-t border-line bg-white px-6 py-4">
         <Button
           type="button"
           variant="ghost"

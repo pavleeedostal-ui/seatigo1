@@ -1,7 +1,11 @@
 import { useTranslations } from "next-intl";
-import { Section, SectionHeader } from "@/components/shared/Section";
 
-export function TrustBadges() {
+/**
+ * What a visitor should be able to rely on before trusting a comparison
+ * site — each line a description of how Seatigo actually behaves, never a
+ * claim it cannot back. Printed beneath "How it works" on the blue field.
+ */
+export function TrustList() {
   const t = useTranslations("Home.trust");
 
   const items = [
@@ -11,19 +15,18 @@ export function TrustBadges() {
   ];
 
   return (
-    <Section tone="muted">
-      <SectionHeader title={t("title")} />
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
+    <div className="mt-16 border-t border-album-line pt-10 sm:mt-20">
+      <h3 className="font-tab text-[13px] text-album-ink-muted">{t("title")}</h3>
+      <ul className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
         {items.map((item) => (
-          <div key={item.title}>
-            <div className="mb-4 h-px w-10 bg-navy" />
-            <p className="text-[17px] font-medium text-ink">{item.title}</p>
-            <p className="mt-2 text-[15px] leading-relaxed text-ink-muted">
+          <li key={item.title}>
+            <p className="text-[18px] font-semibold text-white">{item.title}</p>
+            <p className="mt-2 text-pretty text-[15px] leading-relaxed text-album-ink-muted">
               {item.desc}
             </p>
-          </div>
+          </li>
         ))}
-      </div>
-    </Section>
+      </ul>
+    </div>
   );
 }
